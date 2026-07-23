@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RDESK DESIGN | O Desafio das 5 Semanas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           SISTEMA DE DESIGN: BRUTALIST NEON INDUSTRIAL
+           ========================================= */
+        :root {
+            --bg-carbon: #0F1115;
+            --surface: #181B22;
+            --text-white: #FFFFFF;
+            --highlight: #FFEA00;
+            --success: #00FF66;
+            --neon-pink: #FF007F;
+            --neon-cyan: #00BFFF;
+            --border-glow: 0 0 10px rgba(255, 0, 127, 0.3), inset 0 0 10px rgba(0, 191, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-carbon);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+            /* Efeito Grade Industrial no fundo */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        h1, h2, h3 { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* =========================================
+           EFEITO ZEIGARNIK (BARRA DE PROGRESSO)
+           ========================================= */
+        #progress-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: #222; z-index: 9999;
+        }
+        #progress-bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            box-shadow: 0 0 10px var(--neon-pink);
+            transition: width 0.1s ease-out;
+        }
+        #status-text {
+            position: fixed; top: 5px; left: 50%; transform: translateX(-50%);
+            font-size: 10px; font-weight: 900; color: #FFF; z-index: 9999;
+            background: rgba(0,0,0,0.8); padding: 2px 10px; border-radius: 0 0 5px 5px;
+            letter-spacing: 2px;
+        }
+
+        /* CONTAINERS E BLOCOS */
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        
+        .block { margin-bottom: 60px; }
+        
+        .logo {
+            font-family: 'Anton', sans-serif; font-size: 3rem; text-align: center;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 30px; line-height: 1; text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* VIDEOS */
+        .video-box {
+            width: 100%; aspect-ratio: 16/9; background: #000;
+            border: 2px solid #333; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--border-glow); margin-bottom: 20px;
+        }
+        .video-box::after { content: "► PLAY VÍDEO"; font-family: 'Anton'; color: #555; font-size: 2rem; }
+
+        /* TIPOGRAFIA DE CHOQUE */
+        .headline { font-size: 2.2rem; color: var(--highlight); line-height: 1.1; margin-bottom: 15px; }
+        .text-body { font-size: 1.1rem; color: #CCC; margin-bottom: 20px; }
+        .highlight-box { border-left: 4px solid var(--neon-cyan); padding-left: 15px; margin: 20px 0; }
+
+        /* SIMULADOR FINANCEIRO (O CORAÇÃO DA PÁGINA) */
+        .calculator-card {
+            background: var(--surface); border: 1px solid #333; padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative;
+        }
+        .calc-header { font-size: 1.5rem; color: #FFF; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px;}
+        
+        input[type=range] {
+            width: 100%; margin: 20px 0; appearance: none; background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            appearance: none; height: 30px; width: 30px; border-radius: 0;
+            background: var(--neon-cyan); cursor: pointer; box-shadow: 0 0 15px var(--neon-cyan);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 8px; background: #333;
+        }
+
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700; color: #AAA;}
+        .val-highlight { color: #FFF; }
+        .pix-total {
+            background: #000; border: 2px dashed var(--success); padding: 15px;
+            text-align: center; margin-top: 20px;
+        }
+        .pix-total span { display: block; font-family: 'Anton'; font-size: 2.8rem; color: var(--success); }
+
+        /* TIMELINE ACADEMIA */
+        .timeline { border-left: 3px solid #333; padding-left: 20px; margin-top: 30px; }
+        .timeline-item { position: relative; margin-bottom: 30px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -27px; top: 5px; width: 10px; height: 10px;
+            background: var(--neon-pink); border-radius: 50%; box-shadow: 0 0 10px var(--neon-pink);
+        }
+        .timeline-title { font-weight: 900; font-size: 1.2rem; color: #FFF; }
+        .timeline-desc { font-size: 0.95rem; color: #999; margin-top: 5px; }
+
+        /* BOTÃO DE TORQUE (CTA) */
+        .cta-btn {
+            display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            color: #FFF; text-align: center; padding: 20px; font-family: 'Anton'; font-size: 1.5rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.4);
+            transition: transform 0.1s; margin-top: 20px;
+        }
+        .cta-btn:active { transform: scale(0.98); }
+
+        /* BADGES */
+        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 3px 8px; font-size: 0.8rem; font-weight: 900; margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+    <div id="status-text">IMPACTO INICIAL</div>
+
+    <div class="container">
+        
+        <div class="block" id="secao-impacto">
+            <div class="logo">RDESK DESIGN</div>
+            <div class="video-box">
+                </div>
+            <h1 class="headline">Você passou na primeira peneira. Bem-vindo à parte de trás da Matrix.</h1>
+            <p class="text-body">Se você escaneou o cartaz, seu cérebro busca quebrar o teto tradicional. Esqueça processos seletivos cinzas e currículos falsos. Aqui, a esteira só aceita torque puro e execução real.</p>
+        </div>
+
+        <div class="block">
+            <h2 class="headline" style="color: #FFF;">Quem disse que você não pode ganhar <span style="color: var(--highlight);">R$ 15 MIL no mês?</span></h2>
+            <div class="highlight-box">
+                <p class="text-body" style="margin: 0;">A sociedade te treinou para aceitar o salário mínimo porque lucram com a sua limitação. O mercado local digital precisa de agilidade. Na RDESK, você é o próprio dono do seu limite.</p>
+            </div>
+        </div>
+
+        <div class="block" id="secao-engenharia">
+            <h2 class="headline">A Engenharia do Pix: O Dinheiro na Mesa</h2>
+            <p class="text-body">Ninguém te larga sozinho. Na 1ª semana eu pego na sua mão em reuniões ao vivo. Veja a matemática indiscutível usando nosso campeão de vendas: <strong>1.000 Panfletos Couché 70g (PA65G6)</strong> vendido a R$ 324,95 (Custo nosso: R$ 85,00).</p>
+            
+            <div class="calculator-card">
+                <div class="badge">SIMULADOR DE TORQUE RDESK</div>
+                <div class="calc-header">Arraste para definir sua meta: <span id="client-count" style="color: var(--neon-cyan);">3 Clientes</span>/semana</div>
+                
+                <input type="range" id="client-slider" min="1" max="10" value="3">
+                
+                <div class="result-row">
+                    <span>Margem Gerada (Total):</span>
+                    <span class="val-highlight" id="val-margin">R$ 719,85</span>
+                </div>
+                <div class="result-row">
+                    <span>Seu Tier Alcançado:</span>
+                    <span class="val-highlight" id="val-tier" style="color: var(--highlight);">30%</span>
+                </div>
+                <div class="result-row">
+                    <span>Sua Comissão Base:</span>
+                    <span class="val-highlight" id="val-base">R$ 215,96</span>
+                </div>
+                <div class="result-row" style="border-top: 1px solid #333; padding-top: 10px;">
+                    <span>Bônus de Criação Canva (+15%):</span>
+                    <span class="val-highlight" id="val-bonus">R$ 32,39</span>
+                </div>
+                
+                <div class="pix-total">
+                    <p style="font-weight: 900; font-size: 0.9rem; color: #FFF; text-transform: uppercase;">Total Líquido no seu Bolso:</p>
+                    <span id="val-total">R$ 248,35</span>
+                </div>
+                <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 15px;">*Cálculo matemático real. Não existe teto de ganho.</p>
+            </div>
+        </div>
+
+        <div class="block" id="secao-arsenal">
+            <h2 class="headline" style="font-size: 1.8rem;">Academia de Elite: A Rampa de Alta Renda</h2>
+            <p class="text-body">Você não será um mero "digitador". Nós vamos te transformar em uma máquina corporativa.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Fase 1: Canva (Web/Mobile)</div>
+                    <div class="timeline-desc">O Músculo Inicial. Treinamento básico acompanhado para dominar margens, sangrias e gerar caixa no mesmo dia, até dentro do ônibus.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Fase 2: O Combate Vetorial</div>
+                    <div class="timeline-desc">Inkscape (Open Source) vs CorelDRAW. Entenda porque o Corel comanda as plotters e prensas industriais de todo o mundo.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Fase 3: A Guerra dos Pixels</div>
+                    <div class="timeline-desc">GIMP (Cirúrgico e Leve) vs Photoshop. Domínio da imagem pura sem travar o seu PC.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Fase 4: Interfaces e O Seu Império</div>
+                    <div class="timeline-desc">Sistemas de agendamento para comércios locais. O código de ouro: Nos produtos puramente digitais, <strong>100% do lucro vai para você</strong>. Zero taxas.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block" id="secao-compromisso">
+            <h2 class="headline" style="color: #FFF;">O Peso do Compromisso: GOV.BR</h2>
+            <div class="highlight-box" style="border-color: var(--success);">
+                <p class="text-body">A entrada é gratuita. O treinamento inicial é gratuito. Mas blindamos o sistema contra preguiçosos.</p>
+                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Você assinará um contrato experimental de 5 semanas usando a criptografia do GOV.BR, com exigência de 1 a 3 testemunhas (familiares ou amigos). O preço que você paga é o seu compromisso social de não desistir.</p>
+            </div>
+
+            <div class="video-box" style="margin-top: 40px;">
+                </div>
+
+            <a href="https://wa.me/5531982313684?text=Robert,%20li%20toda%20a%20página.%20Quero%20assinar%20o%20contrato%20via%20GOV.BR%20e%20começar%20meu%20teste%20agora." class="cta-btn">
+                [ QUERO COMEÇAR HOJE ]
+            </a>
+            <p style="text-align: center; font-size: 0.8rem; color: #555; margin-top: 15px;">Ao clicar, você será enviado à central do WhatsApp para gerar sua pasta corporativa no Drive.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // --- 1. Efeito Zeigarnik (Barra de Progresso) ---
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+
+            let statusText = document.getElementById("status-text");
+            if(scrolled < 25) { statusText.innerText = "IMPACTO INICIAL"; }
+            else if(scrolled < 60) { statusText.innerText = "ENGENHARIA DE GANHOS"; }
+            else if(scrolled < 85) { statusText.innerText = "ARSENAL TÉCNICO"; }
+            else { statusText.innerText = "COMPROMISSO SOCIAL"; statusText.style.color = "#00FF66"; }
+        };
+
+        // --- 2. Lógica Matemática Bruta (M.E.S.A) ---
+        const slider = document.getElementById('client-slider');
+        const txtClients = document.getElementById('client-count');
+        const txtMargin = document.getElementById('val-margin');
+        const txtTier = document.getElementById('val-tier');
+        const txtBase = document.getElementById('val-base');
+        const txtBonus = document.getElementById('val-bonus');
+        const txtTotal = document.getElementById('val-total');
+
+        const costPA65G6 = 85.00;
+        const salePA65G6 = 324.95;
+        const netMarginPerSale = salePA65G6 - costPA65G6; // R$ 239.95
+
+        function updateCalculator() {
+            let clients = parseInt(slider.value);
+            txtClients.innerText = clients + (clients === 1 ? " Cliente" : " Clientes");
+
+            // Define o Tier
+            let tierPercent = 0.10; // 1 cliente
+            let tierText = "10%";
+            if (clients === 2) { tierPercent = 0.20; tierText = "20%"; }
+            else if (clients >= 3) { tierPercent = 0.30; tierText = "30%"; }
+
+            // Cálculos
+            let totalMargin = netMarginPerSale * clients;
+            let baseCommission = totalMargin * tierPercent;
+            let designBonus = baseCommission * 0.15; // 15% sobre a comissão gerada!
+            let totalInPocket = baseCommission + designBonus;
+
+            // Atualiza UI Formatada
+            txtMargin.innerText = "R$ " + totalMargin.toFixed(2).replace('.', ',');
+            txtTier.innerText = tierText;
+            txtBase.innerText = "R$ " + baseCommission.toFixed(2).replace('.', ',');
+            txtBonus.innerText = "R$ " + designBonus.toFixed(2).replace('.', ',');
+            txtTotal.innerText = "R$ " + totalInPocket.toFixed(2).replace('.', ',');
+        }
+
+        // Event Listener do Slider
+        slider.addEventListener('input', updateCalculator);
+        
+        // Init
+        updateCalculator();
+    </script>
+</body>
+</html>
