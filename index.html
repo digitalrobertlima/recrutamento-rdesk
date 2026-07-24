@@ -71,15 +71,6 @@
             margin-bottom: 30px; line-height: 1; text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* VIDEOS */
-        .video-box {
-            width: 100%; aspect-ratio: 16/9; background: #000;
-            border: 2px solid #333; position: relative;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: var(--border-glow); margin-bottom: 20px;
-        }
-        .video-box::after { content: "► PLAY VÍDEO"; font-family: 'Anton'; color: #555; font-size: 2rem; }
-
         /* TIPOGRAFIA DE CHOQUE */
         .headline { font-size: 2.2rem; color: var(--highlight); line-height: 1.1; margin-bottom: 15px; }
         .text-body { font-size: 1.1rem; color: #CCC; margin-bottom: 20px; }
@@ -144,18 +135,20 @@
 
     <div class="container">
         
+        <!-- BLOCO 1: O GANCHO COM O VÍDEO NOVO -->
         <div class="block" id="secao-impacto">
             <div class="logo">RDESK DESIGN</div>
+            
             <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-bottom: 20px; overflow: hidden;">
                 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-                    src="https://www.youtube.com/embed/wIbrzTwbWAE?si=pioaQtB47VWwTi25" 
+                    src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" 
                     title="YouTube video player" 
-                    frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" 
                     allowfullscreen>
                 </iframe>
             </div>
+            
             <h1 class="headline">Você passou no primeiro filtro. Bem-vindo à parte de trás da Matrix.</h1>
             <p class="text-body">Se você escaneou o cartaz, seu cérebro busca quebrar o teto tradicional. Esqueça processos seletivos cinzas e currículos falsos. Aqui, a esteira só aceita torque puro e execução real.</p>
         </div>
@@ -233,8 +226,16 @@
                 <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Você assinará um contrato experimental de 5 semanas usando a criptografia do GOV.BR, com exigência de 1 a 3 testemunhas (familiares ou amigos). O preço que você paga é o seu compromisso social de não desistir.</p>
             </div>
 
-            <div class="video-box" style="margin-top: 40px;">
-                </div>
+            <!-- VÍDEO 2: O FECHAMENTO -->
+            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-top: 40px; margin-bottom: 30px; overflow: hidden;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
+                    src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
 
             <a href="https://wa.me/5531982313684?text=Robert,%20li%20toda%20a%20página.%20Quero%20assinar%20o%20contrato%20via%20GOV.BR%20e%20começar%20meu%20teste%20agora." class="cta-btn">
                 [ QUERO COMEÇAR HOJE ]
