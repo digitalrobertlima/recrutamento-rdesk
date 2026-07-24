@@ -27,9 +27,8 @@
             background-color: var(--bg-carbon);
             color: var(--text-white);
             font-family: 'Inter', sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
-            /* Efeito Grade Industrial no fundo */
             background-image: 
                 linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
@@ -38,67 +37,55 @@
 
         h1, h2, h3 { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* =========================================
-           EFEITO ZEIGARNIK (BARRA DE PROGRESSO)
-           ========================================= */
+        /* BARRA DE PROGRESSO */
         #progress-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 5px;
-            background: #222; z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: #222; z-index: 9999;
         }
         #progress-bar {
             height: 100%; width: 0%;
             background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            box-shadow: 0 0 10px var(--neon-pink);
-            transition: width 0.1s ease-out;
+            box-shadow: 0 0 10px var(--neon-pink); transition: width 0.1s ease-out;
         }
         #status-text {
             position: fixed; top: 5px; left: 50%; transform: translateX(-50%);
             font-size: 10px; font-weight: 900; color: #FFF; z-index: 9999;
-            background: rgba(0,0,0,0.8); padding: 2px 10px; border-radius: 0 0 5px 5px;
-            letter-spacing: 2px;
+            background: rgba(0,0,0,0.8); padding: 3px 12px; border-radius: 0 0 5px 5px; letter-spacing: 2px;
         }
 
-        /* CONTAINERS E BLOCOS */
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-        
+        /* CONTAINER BASE (MOBILE) */
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; transition: all 0.3s ease; }
         .block { margin-bottom: 60px; }
         
         .logo {
-            font-family: 'Anton', sans-serif; font-size: 3rem; text-align: center;
+            font-family: 'Anton', sans-serif; font-size: 3.5rem; text-align: center;
             background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 30px; line-height: 1; text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 30px; line-height: 1.1; text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
         }
 
-        /* TIPOGRAFIA DE CHOQUE */
         .headline { font-size: 2.2rem; color: var(--highlight); line-height: 1.1; margin-bottom: 15px; }
         .text-body { font-size: 1.1rem; color: #CCC; margin-bottom: 20px; }
-        .highlight-box { border-left: 4px solid var(--neon-cyan); padding-left: 15px; margin: 20px 0; }
+        .highlight-box { border-left: 4px solid var(--neon-cyan); padding-left: 15px; margin: 20px 0; background: rgba(0, 191, 255, 0.05); padding: 15px; }
 
-        /* SIMULADOR FINANCEIRO (O CORAÇÃO DA PÁGINA) */
+        /* SIMULADOR FINANCEIRO */
         .calculator-card {
             background: var(--surface); border: 1px solid #333; padding: 25px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; transition: all 0.3s ease;
         }
         .calc-header { font-size: 1.5rem; color: #FFF; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px;}
         
-        input[type=range] {
-            width: 100%; margin: 20px 0; appearance: none; background: transparent;
-        }
+        input[type=range] { width: 100%; margin: 20px 0; appearance: none; background: transparent; }
         input[type=range]::-webkit-slider-thumb {
-            appearance: none; height: 30px; width: 30px; border-radius: 0;
-            background: var(--neon-cyan); cursor: pointer; box-shadow: 0 0 15px var(--neon-cyan);
+            appearance: none; height: 35px; width: 35px; border-radius: 0;
+            background: var(--neon-cyan); cursor: pointer; box-shadow: 0 0 15px var(--neon-cyan); transition: transform 0.1s;
         }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 8px; background: #333;
-        }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; background: #333; }
 
         .result-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700; color: #AAA;}
         .val-highlight { color: #FFF; }
         .pix-total {
-            background: #000; border: 2px dashed var(--success); padding: 15px;
-            text-align: center; margin-top: 20px;
+            background: #000; border: 2px dashed var(--success); padding: 15px; text-align: center; margin-top: 20px;
         }
         .pix-total span { display: block; font-family: 'Anton'; font-size: 2.8rem; color: var(--success); }
 
@@ -112,18 +99,39 @@
         .timeline-title { font-weight: 900; font-size: 1.2rem; color: #FFF; }
         .timeline-desc { font-size: 0.95rem; color: #999; margin-top: 5px; }
 
-        /* BOTÃO DE TORQUE (CTA) */
+        /* BOTÃO CTA */
         .cta-btn {
             display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            color: #FFF; text-align: center; padding: 20px; font-family: 'Anton'; font-size: 1.5rem;
+            color: #FFF; text-align: center; padding: 22px; font-family: 'Anton'; font-size: 1.6rem;
             text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.4);
-            transition: transform 0.1s; margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.4); transition: all 0.2s ease; margin-top: 20px; cursor: pointer;
         }
         .cta-btn:active { transform: scale(0.98); }
 
-        /* BADGES */
-        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 3px 8px; font-size: 0.8rem; font-weight: 900; margin-bottom: 10px;}
+        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 4px 10px; font-size: 0.8rem; font-weight: 900; margin-bottom: 10px;}
+
+        /* =========================================
+           MEDIA QUERIES - EXPERIÊNCIA DESKTOP (PC)
+           ========================================= */
+        @media (min-width: 768px) {
+            .container { max-width: 850px; padding: 60px 20px; }
+            .block { margin-bottom: 80px; }
+            .logo { font-size: 5rem; margin-bottom: 40px; }
+            .headline { font-size: 3.5rem; line-height: 1.05; }
+            .text-body { font-size: 1.25rem; }
+            
+            /* Efeitos de Hover para PC */
+            .calculator-card:hover { border-color: rgba(0, 191, 255, 0.5); box-shadow: 0 15px 40px rgba(0, 191, 255, 0.15); }
+            .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 0, 127, 0.6); filter: brightness(1.1); }
+            
+            .timeline { margin-left: 20px; border-width: 4px; }
+            .timeline-item::before { left: -30px; width: 14px; height: 14px; }
+            .timeline-title { font-size: 1.4rem; }
+            .timeline-desc { font-size: 1.1rem; }
+            
+            .result-row { font-size: 1.2rem; margin-bottom: 15px; }
+            .pix-total span { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -135,11 +143,11 @@
 
     <div class="container">
         
-        <!-- BLOCO 1: O GANCHO COM O VÍDEO NOVO -->
+        <!-- BLOCO 1: GANCHO -->
         <div class="block" id="secao-impacto">
             <div class="logo">RDESK DESIGN</div>
             
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-bottom: 20px; overflow: hidden;">
+            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-bottom: 30px; overflow: hidden;">
                 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
                     src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" 
                     title="YouTube video player" 
@@ -182,21 +190,21 @@
                     <span>Sua Comissão Base:</span>
                     <span class="val-highlight" id="val-base">R$ 215,96</span>
                 </div>
-                <div class="result-row" style="border-top: 1px solid #333; padding-top: 10px;">
+                <div class="result-row" style="border-top: 1px solid #333; padding-top: 15px;">
                     <span>Bônus de Criação Canva (+15%):</span>
                     <span class="val-highlight" id="val-bonus">R$ 32,39</span>
                 </div>
                 
                 <div class="pix-total">
-                    <p style="font-weight: 900; font-size: 0.9rem; color: #FFF; text-transform: uppercase;">Total Líquido no seu Bolso:</p>
+                    <p style="font-weight: 900; font-size: 1rem; color: #FFF; text-transform: uppercase;">Total Líquido no seu Bolso:</p>
                     <span id="val-total">R$ 248,35</span>
                 </div>
-                <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 15px;">*Cálculo matemático real. Não existe teto de ganho.</p>
+                <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 15px;">*Cálculo matemático real. Não existe teto de ganho.</p>
             </div>
         </div>
 
         <div class="block" id="secao-arsenal">
-            <h2 class="headline" style="font-size: 1.8rem;">Academia de Elite: A Rampa de Alta Renda</h2>
+            <h2 class="headline" style="font-size: 2.2rem;">Academia de Elite: A Rampa de Alta Renda</h2>
             <p class="text-body">Você não será um mero "digitador". Nós vamos te transformar em uma máquina corporativa.</p>
             
             <div class="timeline">
@@ -220,13 +228,13 @@
         </div>
 
         <div class="block" id="secao-compromisso">
-            <h2 class="headline" style="color: #FFF;">O Peso do Compromisso: GOV.BR</h2>
+            <h2 class="headline" style="color: #FFF;">O Peso do Compromisso</h2>
             <div class="highlight-box" style="border-color: var(--success);">
                 <p class="text-body">A entrada é gratuita. O treinamento inicial é gratuito. Mas blindamos o sistema contra preguiçosos.</p>
                 <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Você assinará um contrato experimental de 5 semanas usando a criptografia do GOV.BR, com exigência de 1 a 3 testemunhas (familiares ou amigos). O preço que você paga é o seu compromisso social de não desistir.</p>
             </div>
 
-            <!-- VÍDEO 2: O FECHAMENTO -->
+            <!-- VÍDEO 2: FECHAMENTO -->
             <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-top: 40px; margin-bottom: 30px; overflow: hidden;">
                 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
                     src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" 
@@ -237,10 +245,11 @@
                 </iframe>
             </div>
 
-            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert,%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20saber%20mais%20como%20funciona%20a%20RDESK" class="cta-btn">
+            <!-- LINK DO WHATSAPP ATUALIZADO -->
+            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20saber%20mais%20como%20funciona%20a%20RDESK.%20Quero%20transformar%20minha%20vida%20e%20estou%20cansado%20de%20ganhar%20pouco." class="cta-btn">
                 [ QUERO COMEÇAR HOJE ]
             </a>
-            <p style="text-align: center; font-size: 0.8rem; color: #555; margin-top: 15px;">Ao clicar, você será enviado à central do WhatsApp para gerar sua pasta corporativa no Drive.</p>
+            <p style="text-align: center; font-size: 0.9rem; color: #555; margin-top: 20px;">Ao clicar, você será enviado à central do WhatsApp para gerar sua pasta corporativa no Drive.</p>
         </div>
 
     </div>
@@ -277,19 +286,16 @@
             let clients = parseInt(slider.value);
             txtClients.innerText = clients + (clients === 1 ? " Cliente" : " Clientes");
 
-            // Define o Tier
-            let tierPercent = 0.10; // 1 cliente
+            let tierPercent = 0.10; 
             let tierText = "10%";
             if (clients === 2) { tierPercent = 0.20; tierText = "20%"; }
             else if (clients >= 3) { tierPercent = 0.30; tierText = "30%"; }
 
-            // Cálculos
             let totalMargin = netMarginPerSale * clients;
             let baseCommission = totalMargin * tierPercent;
-            let designBonus = baseCommission * 0.15; // 15% sobre a comissão gerada!
+            let designBonus = baseCommission * 0.15; 
             let totalInPocket = baseCommission + designBonus;
 
-            // Atualiza UI Formatada
             txtMargin.innerText = "R$ " + totalMargin.toFixed(2).replace('.', ',');
             txtTier.innerText = tierText;
             txtBase.innerText = "R$ " + baseCommission.toFixed(2).replace('.', ',');
@@ -297,10 +303,7 @@
             txtTotal.innerText = "R$ " + totalInPocket.toFixed(2).replace('.', ',');
         }
 
-        // Event Listener do Slider
         slider.addEventListener('input', updateCalculator);
-        
-        // Init
         updateCalculator();
     </script>
 </body>
