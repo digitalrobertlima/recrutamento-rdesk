@@ -82,7 +82,7 @@
         /* SIMULADOR INTERATIVO */
         .calculator-card {
             background: var(--surface); border: 2px solid var(--neon-pink); border-radius: 14px;
-            padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 30px;
+            padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 25px;
         }
         .calc-title { font-size: 1.2rem; color: #FFF; text-align: center; margin-bottom: 5px; }
         .calc-subtitle { font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-bottom: 15px; }
@@ -122,6 +122,21 @@
             background: rgba(0, 255, 102, 0.08); border-left: 4px solid var(--success);
             padding: 12px; border-radius: 0 8px 8px 0; margin-top: 15px; font-size: 0.9rem; color: #E5E7EB; text-align: left;
             font-weight: 600; line-height: 1.4;
+        }
+
+        /* NOVA CAIXA DE REVELAÇÃO DO SALÁRIO MÍNIMO (ENTRE O SIMULADOR E O VÍDEO) */
+        .salary-insight-box {
+            background: linear-gradient(135deg, rgba(0,255,102,0.1) 0%, rgba(0,191,255,0.08) 100%);
+            border: 2px solid var(--success); border-radius: 12px; padding: 22px 18px; margin-bottom: 30px;
+            box-shadow: 0 0 25px rgba(0,255,102,0.15); text-align: center;
+        }
+        .salary-insight-box h3 { color: var(--success); font-size: 1.35rem; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0,255,102,0.3); }
+        .salary-insight-box p { color: #E5E7EB; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
+        .salary-insight-box p strong { color: var(--highlight); }
+        .salary-badge {
+            display: inline-block; background: var(--success); color: #000; font-family: 'Anton';
+            font-size: 1rem; padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0,255,102,0.4);
         }
 
         /* BOTÃO GIGANTE DE AÇÃO (CTA) */
@@ -175,7 +190,7 @@
             <p>Esqueça a ideia maluca de atender 10 ou 20 pessoas por semana. O segredo para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É totalmente possível, está na sua rua e começa com a nossa força motriz: o panfleto!</p>
         </div>
 
-        <!-- SIMULADOR INTERATIVO (PANFLETO MARCADO COMO TORQUE INICIAL) -->
+        <!-- SIMULADOR INTERATIVO -->
         <div class="calculator-card">
             <div class="calc-title">⚡ Simulador de Faturamento Real:</div>
             <div class="calc-subtitle">Começa com o panfleto. Selecione os outros itens e veja o combo crescer!</div>
@@ -231,8 +246,16 @@
             </div>
         </div>
 
+        <!-- 🚀 AQUI ENTRA A NOVA CAIXA MAGNÉTICA: O PODER DOS 2 PRODUTOS -->
+        <div class="salary-insight-box">
+            <h3>⚡ A MÁGICA DOS 2 PRODUTOS POR CLIENTE</h3>
+            <p>Olha que loucura: se você mantiver os mesmos <strong>3 clientes na semana</strong> e adicionar apenas <strong>1 produto a mais</strong> (marcando o <strong>Panfleto de Rua</strong> para atrair o cliente + o <strong>Cartão Fidelidade</strong> para ele reter o público)...</p>
+            <p>Você já fatura <strong>mais de um salário mínimo limpo</strong> no mês trabalhando com pouquíssimos lojistas!</p>
+            <div class="salary-badge">🔥 O Salário Mínimo Superado com Apenas 2 Itens!</div>
+        </div>
+
         <!-- SEGUNDO VÍDEO DE FECHAMENTO -->
-        <div class="video-box" style="margin-top: 20px; border-color: var(--success);">
+        <div class="video-box" style="border-color: var(--success);">
             <iframe src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" title="Video 2" allowfullscreen></iframe>
         </div>
 
