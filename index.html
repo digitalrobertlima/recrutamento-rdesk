@@ -69,7 +69,7 @@
         .story-text h4 { color: #FFF; font-size: 1.05rem; margin-bottom: 4px; }
         .story-text p { color: #9CA3AF; font-size: 0.9rem; line-height: 1.4; }
 
-        /* CAIXA DE MENTALIDADE (3 A 4 CLIENTES) */
+        /* CAIXA DE MENTALIDADE */
         .mindset-box {
             background: linear-gradient(145deg, #181B22 0%, #1c2636 100%);
             border: 2px solid var(--highlight); border-radius: 12px; padding: 22px 18px; margin-bottom: 30px;
@@ -84,9 +84,10 @@
             background: var(--surface); border: 2px solid var(--neon-pink); border-radius: 14px;
             padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 30px;
         }
-        .calc-title { font-size: 1.2rem; color: #FFF; text-align: center; margin-bottom: 15px; }
+        .calc-title { font-size: 1.2rem; color: #FFF; text-align: center; margin-bottom: 5px; }
+        .calc-subtitle { font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-bottom: 15px; }
 
-        /* SLIDER DE CLIENTES POR SEMANA */
+        /* SLIDER DE CLIENTES (ATÉ 12) */
         .slider-section {
             background: rgba(0,0,0,0.4); border: 1px solid #333; padding: 15px; border-radius: 10px; margin-bottom: 15px;
         }
@@ -103,8 +104,9 @@
         .product-option {
             display: flex; align-items: center; justify-content: space-between;
             background: rgba(255,255,255,0.03); border: 1px solid #262B37; padding: 12px;
-            margin-bottom: 8px; border-radius: 8px; cursor: pointer;
+            margin-bottom: 8px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
         }
+        .product-option:hover { border-color: var(--neon-cyan); }
         .product-option input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--neon-pink); cursor: pointer; }
         .product-label { flex: 1; margin-left: 12px; font-weight: 700; font-size: 0.9rem; color: #E5E7EB; }
         .product-price { font-family: 'Anton'; font-size: 1.1rem; color: var(--highlight); }
@@ -167,23 +169,24 @@
             </div>
         </div>
 
-        <!-- NOVA CAIXA DE MENTALIDADE (3 A 4 CLIENTES POR SEMANA) -->
+        <!-- CAIXA DE MENTALIDADE -->
         <div class="mindset-box">
             <h3>🎯 O SEGREDO: 3 A 4 CLIENTES POR SEMANA</h3>
-            <p>Esqueça a ideia maluca de atender 10 ou 20 pessoas por semana (isso é coisa de agência gigante). O segredo para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É totalmente possível, está na sua rua e não exige nada do outro mundo!</p>
+            <p>Esqueça a ideia maluca de atender 10 ou 20 pessoas por semana. O segredo para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É totalmente possível, está na sua rua e começa com a nossa força motriz: o panfleto!</p>
         </div>
 
-        <!-- SIMULADOR INTERATIVO COM MULTIPLICADOR SEMANAL -->
+        <!-- SIMULADOR INTERATIVO (PANFLETO MARCADO COMO TORQUE INICIAL) -->
         <div class="calculator-card">
             <div class="calc-title">⚡ Simulador de Faturamento Real:</div>
+            <div class="calc-subtitle">Começa com o panfleto. Selecione os outros itens e veja o combo crescer!</div>
             
-            <!-- SELETOR DE CLIENTES POR SEMANA -->
+            <!-- SELETOR DE CLIENTES (ATÉ 12, PADRÃO 3) -->
             <div class="slider-section">
                 <div class="slider-label">Quantos lojistas você vai fechar na semana? <span id="client-count">3 Clientes</span></div>
-                <input type="range" id="client-slider" min="1" max="5" value="3">
+                <input type="range" id="client-slider" min="1" max="12" value="3">
             </div>
 
-            <div style="font-size: 0.8rem; color: #9CA3AF; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">Marque os produtos do combo fechado:</div>
+            <div style="font-size: 0.8rem; color: #9CA3AF; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">Monte o pacote do lojista:</div>
 
             <label class="product-option">
                 <input type="checkbox" class="calc-item" data-sale="184.95" data-cost="48.09">
@@ -197,9 +200,10 @@
                 <span class="product-price">R$ 274,95</span>
             </label>
 
-            <label class="product-option">
+            <!-- TORQUE INICIAL (MARCADO POR PADRÃO) -->
+            <label class="product-option" style="border-color: var(--success); background: rgba(0,255,102,0.03);">
                 <input type="checkbox" class="calc-item" data-sale="309.95" data-cost="80.59" checked>
-                <span class="product-label">1.000 Panfletos de Rua</span>
+                <span class="product-label">📄 1.000 Panfletos de Rua (Torque Inicial)</span>
                 <span class="product-price">R$ 309,95</span>
             </label>
 
@@ -218,11 +222,11 @@
             <!-- CAIXA DE RESULTADO -->
             <div class="money-box">
                 <p>Dinheiro limpo no seu bolso por semana:</p>
-                <span class="money-value" id="res-total">R$ 589,62</span>
+                <span class="money-value" id="res-total">R$ 0,00</span>
                 
                 <!-- TERMÔMETRO EMOCIONAL DINÂMICO -->
                 <div class="emotional-feedback" id="emotional-msg">
-                    🔥 Sensacional! Fechando essa meta realista por semana, você fatura mais de R$ 2.300 limpos no mês trabalhando com o comércio local!
+                    🔥 Vamos lá! Marque os produtos e veja o poder do torque inicial na sua esteira de ganhos.
                 </div>
             </div>
         </div>
@@ -240,7 +244,7 @@
 
     </div>
 
-    <!-- SCRIPT DO SIMULADOR E MULTIPLICADOR -->
+    <!-- SCRIPT DO SIMULADOR -->
     <script>
         const checkboxes = document.querySelectorAll('.calc-item');
         const slider = document.getElementById('client-slider');
@@ -274,13 +278,17 @@
 
             elTotal.innerText = "R$ " + totalSemanal.toFixed(2).replace('.', ',');
 
-            // FEEDBACK EMOCIONAL BASEADO NO VOLUME SEMANAL
-            if (numClients === 1) {
-                emotionalMsg.innerHTML = "💡 Com apenas 1 cliente na semana você já faz um dinheiro bacana. Mas veja o que acontece quando você atinge a meta ideal de 3 a 4 clientes!";
-            } else if (numClients <= 3) {
-                emotionalMsg.innerHTML = `🚀 Perfeito! Fechando ${numClients} lojistas por semana com o combo, você bota cerca de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no mês. Meta totalmente alcançável!`;
+            // FEEDBACK EMOCIONAL AJUSTADO PARA O RITMO DE ATÉ 12 CLIENTES
+            if (totalSemanal === 0) {
+                emotionalMsg.innerHTML = "💡 Selecione pelo menos o panfleto de entrada ou outro item para acionar a força motriz e calcular seus ganhos!";
+            } else if (numClients <= 2) {
+                emotionalMsg.innerHTML = "💡 Ritmo leve! Fechando 1 ou 2 lojistas por semana com os combos você já fatura uma graninha excelente.";
+            } else if (numClients <= 4) {
+                emotionalMsg.innerHTML = `🚀 Perfeito! Fechando ${numClients} lojistas por semana com o combo, você bota cerca de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no mês. Meta realista e totalmente alcançável!`;
+            } else if (numClients <= 8) {
+                emotionalMsg.innerHTML = `💥 ACELERANDO FORTE! Com ${numClients} clientes na semana, seu faturamento mensal passa de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong>. Você está voando alto!`;
             } else {
-                emotionalMsg.innerHTML = `🔥 NÍVEL MASTER! Atendendo ${numClients} clientes por semana, você ultrapassa <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> por mês. É a virada de chave total na sua vida!`;
+                emotionalMsg.innerHTML = `🔥 NÍVEL MÁXIMO (2 POR DIA)! Chegar a ${numClients} clientes na semana é para quem quer destruir a meta e faturar mais de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> por mês! O céu é o limite!`;
             }
         }
 
