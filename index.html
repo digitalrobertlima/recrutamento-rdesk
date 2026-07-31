@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK DESIGN | O Poder da Observação e dos Ganhos Reais</title>
+    <title>RDESK DESIGN | O Poder do Varejo Real</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -53,7 +53,7 @@
             border: 1px solid #333; border-top: none;
         }
 
-        /* CONTAINER BASE (MOBILE FIRST) */
+        /* CONTAINER BASE */
         .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
         .block { margin-bottom: 60px; }
         
@@ -66,22 +66,21 @@
 
         .headline { font-size: 2.1rem; color: var(--highlight); line-height: 1.15; margin-bottom: 15px; }
         .text-body { font-size: 1.1rem; color: #D1D5DB; margin-bottom: 20px; }
-        .highlight-box { border-left: 4px solid var(--neon-cyan); background: rgba(0, 191, 255, 0.06); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-
-        /* CARDS DE HISTÓRIA (STORYTELLING) */
-        .story-card {
-            background: var(--surface); border: 1px solid #333; border-radius: 12px; padding: 24px 20px; margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); position: relative;
+        
+        .highlight-box { 
+            border-left: 4px solid var(--neon-cyan); 
+            background: rgba(0, 191, 255, 0.06); 
+            padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; 
         }
-        .story-tag {
-            display: inline-block; background: rgba(255, 0, 127, 0.15); color: var(--neon-pink);
-            font-size: 0.75rem; font-weight: 900; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase;
-        }
-        .story-title { font-size: 1.4rem; color: #FFF; margin-bottom: 10px; }
-        .story-text { font-size: 0.95rem; color: #9CA3AF; margin-bottom: 15px; }
-        .story-highlight { background: rgba(0, 255, 102, 0.05); border-left: 3px solid var(--success); padding: 12px; font-size: 0.9rem; color: #E5E7EB; border-radius: 0 6px 6px 0; }
 
-        /* SIMULADOR DE PACOTES COMERCIAIS */
+        .story-box {
+            background: var(--surface); border: 1px solid #333; border-radius: 12px; padding: 22px; margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+        .story-box h3 { color: var(--neon-cyan); font-size: 1.3rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .story-box p { font-size: 0.95rem; color: #C5CBD3; margin-bottom: 12px; }
+
+        /* SIMULADOR DE PEDIDO REAL */
         .calculator-card {
             background: var(--surface); border: 1px solid #333; padding: 25px 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; border-radius: 12px;
@@ -107,7 +106,7 @@
         .val-highlight { color: #FFF; font-weight: bold; }
         .pix-total { font-family: 'Anton'; font-size: 2.8rem; color: var(--success); display: block; margin-top: 5px; }
 
-        /* BOTÃO CTA DE IMPACTO */
+        /* CTA DE IMPACTO */
         .cta-btn {
             display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
             color: #FFF; text-align: center; padding: 24px; font-family: 'Anton'; font-size: 1.6rem;
@@ -118,9 +117,7 @@
 
         .badge { display: inline-block; background: #333; color: var(--highlight); padding: 5px 12px; font-size: 0.8rem; font-weight: 900; margin-bottom: 12px; border-radius: 4px; }
 
-        /* =========================================
-            DESKTOP (PC)
-            ========================================= */
+        /* DESKTOP */
         @media (min-width: 768px) {
             .container { max-width: 850px; padding: 60px 20px; }
             .block { margin-bottom: 80px; }
@@ -136,11 +133,11 @@
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
-    <div id="status-text">HISTÓRIAS REAIS</div>
+    <div id="status-text">LEIA ESTA HISTÓRIA</div>
 
     <div class="container">
         
-        <!-- BLOCO 1: VÍDEO E INTRODUÇÃO -->
+        <!-- BLOCO 1: VÍDEO E GANCHO HUMANO -->
         <div class="block" id="secao-impacto">
             <div class="logo">RDESK DESIGN</div>
             
@@ -154,65 +151,44 @@
                 </iframe>
             </div>
             
-            <h1 class="headline">O poder de enxergar o que ninguém vê e faturar alto.</h1>
-            <p class="text-body">Esqueça a ideia de que você vai vender apenas "um panfleto". Na RDESK, você aprende a olhar para um comércio local e resolver a vida do empresário de ponta a ponta. Veja como isso acontece na prática:</p>
+            <h1 class="headline">Você escaneou o cartaz porque quer dinheiro rápido. E aqui está a verdade nua e crua.</h1>
+            <p class="text-body">Esqueça currículo, chefe chato e salário mínimo. O dinheiro de verdade está na rua, na porta da sua casa, no comércio do seu bairro. Veja como é fácil abrir a mente e faturar alto atendendo donos de negócios locais.</p>
         </div>
 
-        <!-- BLOCO 2: STORYTELLING REAL (PET SHOP & BAR DO BIGODE) -->
+        <!-- BLOCO 2: O STORYTELLING REAL (PET SHOP & BAR DO BIGODE) -->
         <div class="block">
-            <h2 class="headline" style="color: #FFF;">Duas histórias reais de <span style="color: var(--highlight);">como o dinheiro entra no bolso:</span></h2>
-
-            <!-- HISTÓRIA 1: PET SHOP FOCHINHOS AMADOS -->
-            <div class="story-card">
-                <span class="story-tag">Caso 1: Pet Shop Fochinhos Amados</span>
-                <h3 class="story-title">O Combo que Nasceu de um Olhar Atento</h3>
-                <p class="story-text">
-                    Você entra no pet shop para vender mil panfletos de divulgação. Mas, conversando com o dono, você repara que eles fazem entregas em domicílio. 
-                    <strong>Sacada:</strong> Se tem delivery, precisa de <em>ímãs de geladeira</em> para colar na casa dos clientes. 
-                </p>
-                <p class="story-text">
-                    Você olha para a dona e diz: <em>"Você merece algo mais sofisticado"</em>, e já sugere um <strong>copo metálico cuia personalizado</strong> para o uso dela. 
-                    Indo até a área de banho e tosa, você percebe um problema: os banhistas molham a roupa inteira trabalhando. 
-                    <strong>Solução imediata:</strong> Venda de aventais personalizados para a equipe. E para completar, um cartão fidelidade para o cliente ganhar uma hidratação a cada 10 banhos.
-                </p>
-                <div class="story-highlight">
-                    💡 <strong>Resultado:</strong> Em vez de vender um papelzinho de R$ 300, você fecha um pacote completo de centenas de reais e comissão gorda!
-                </div>
+            <h2 class="headline" style="color: #FFF;">Como fechar <span style="color: var(--highlight);">um combo gigante</span> num único cliente:</h2>
+            
+            <!-- História 1: Pet Shop -->
+            <div class="story-box">
+                <h3>🐶 O Caso do Pet Shop Fochinhos Amados</h3>
+                <p>Você entra para vender um simples pacote de panfletos. Mas você observa o negócio: <em>Eles fazem delivery?</em> Oferece logo o <strong>ímã de geladeira</strong> para colar na casa do cliente. Vê a dona do pet shop e pensa: ela merece algo mais, e fecha o <strong>copo metálico personalizado</strong> exclusivo dela.</p>
+                <p style="margin-bottom: 0;">Olha para a área de banho e tosa e nota o problema: <em>os banhistas molham a roupa inteira!</em> Vende os <strong>aventais novos</strong> para a equipe. E para completar, coloca o <strong>cartão fidelidade</strong> para o cliente dar 10 banhos e ganhar uma hidratação. Pronto: você entrou vendendo um papel e saiu com um faturamento monstruoso.</p>
             </div>
 
-            <!-- HISTÓRIA 2: BAR DO BIGODE -->
-            <div class="story-card">
-                <span class="story-tag" style="background: rgba(0, 191, 255, 0.15); color: var(--neon-cyan);">Caso 2: Bar do Bigode (O Bar do Avô)</span>
-                <h3 class="story-title">Do Banner Simples ao Sistema Digital</h3>
-                <p class="story-text">
-                    Meu avô me pediu um banner simples para colocar na rua avisando que o bar sacava dinheiro no cartão ou via Pix. 
-                    Eu olhei e pensei: <em>"Se vai ter saque Pix, o cliente precisa ver o QR Code direto no balcão"</em>. Fizemos o upsell para uma <strong>placa acrílica de QR Code</strong>.
-                </p>
-                <p class="story-text">
-                    Depois, notei que ele passava a senha do Wi-Fi o dia todo para todo mundo. Como entendo de tecnologia, desenvolvi uma <strong>interface inteligente via ESP32</strong> para organizar o acesso Wi-Fi e os cardápios do bar. 
-                    Resultado? Ele adorou e agora já me encomendou adesivos BOPP impermeáveis para colar nos copões de whisky do bar!
-                </p>
-                <div class="story-highlight" style="border-left-color: var(--neon-cyan);">
-                    🚀 <strong>O Segredo:</strong> Quem tem visão técnica e criativa nunca passa fome. O cliente confia em você para tudo.
-                </div>
+            <!-- História 2: Bar do Bigode -->
+            <div class="story-box" style="border-color: var(--neon-pink);">
+                <h3>🍺 O Caso do Bar do Bigode (Do Meu Avô!)</h3>
+                <p>Meu avô me chamou pedindo um banner simples para colocar na calçada avisando que o bar saca dinheiro no cartão ou via Pix. Na hora eu pensei: <em>se vai ter saque via Pix, tem que ter a placa acrílica com o QR Code no balcão!</em> Upsell feito na hora.</p>
+                <p style="margin-bottom: 0;">Olhei em volta e vi o Wi-Fi dele totalmente desprotegido, passando senha para todo mundo. Como entendo de tecnologia, já instalei uma interface inteligente com ESP32 para organizar a rede de visitantes. Resultado? O velho adorou, resolveu o problema de segurança e agora já encomendou os <strong>adesivos BOPP</strong> para colar nos copões de whisky do bar!</p>
             </div>
         </div>
 
-        <!-- BLOCO 3: SIMULADOR DE PEDIDO REAL (PET SHOP) -->
+        <!-- BLOCO 3: SIMULADOR DE PEDIDO REAL -->
         <div class="block" id="secao-engenharia">
-            <h2 class="headline">Monte o seu Primeiro Pacote Real</h2>
-            <p class="text-body">Veja quanto você fatura quando enxerga essas oportunidades e fecha um kit completo com um único lojista:</p>
+            <h2 class="headline">Simule o Combo do Pet Shop na Prática</h2>
+            <p class="text-body">Marque abaixo o que você vai oferecer para o lojista e veja o dinheiro limpo que vai cair direto no seu bolso:</p>
             
             <div class="calculator-card">
-                <div class="badge">SIMULADOR DE GANHOS RDESK</div>
-                <div class="calc-header">Marque os itens vendidos no Pet Shop:</div>
+                <div class="badge">SIMULADOR DE VENDAS</div>
+                <div class="calc-header">Monte o pedido do lojista:</div>
                 
                 <!-- Item 1 -->
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="48.09" data-sale="184.95" checked>
                     <div class="product-info">
-                        <div class="product-name">1. Copo Metálico Cuia (1 unidade)</div>
-                        <div class="product-desc">Presente especial pedido pela dona para uso próprio.</div>
+                        <div class="product-name">1. Copo Metálico Cuia (Para a patroa)</div>
+                        <div class="product-desc">Presente especial com gravação personalizada.</div>
                     </div>
                     <div class="product-price">R$ 184,95</div>
                 </label>
@@ -221,8 +197,8 @@
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="71.49" data-sale="274.95" checked>
                     <div class="product-info">
-                        <div class="product-name">2. Cartões de Visita / Fidelidade (1.000 un)</div>
-                        <div class="product-desc">Para os clientes voltarem sempre ao pet shop.</div>
+                        <div class="product-name">2. Cartões de Fidelidade (1.000 un)</div>
+                        <div class="product-desc">Para o cliente voltar para o 10º banho grátis.</div>
                     </div>
                     <div class="product-price">R$ 274,95</div>
                 </label>
@@ -241,8 +217,8 @@
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="114.39" data-sale="439.95">
                     <div class="product-info">
-                        <div class="product-name">4. Aventais Personalizados (5 unidades)</div>
-                        <div class="product-desc">Uniformes novos para a equipe de banhistas.</div>
+                        <div class="product-name">4. Aventais para os Banhistas (5 un)</div>
+                        <div class="product-desc">Proteção e uniformidade para a equipe.</div>
                     </div>
                     <div class="product-price">R$ 439,95</div>
                 </label>
@@ -251,8 +227,8 @@
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="270.39" data-sale="1039.95">
                     <div class="product-info">
-                        <div class="product-name">5. Ímãs de Geladeira (1.000 unidades)</div>
-                        <div class="product-desc">Para colar na geladeira dos clientes com o delivery.</div>
+                        <div class="product-name">5. Ímãs de Geladeira com Delivery (1.000 un)</div>
+                        <div class="product-desc">Para colar na geladeira da vizinhança inteira.</div>
                     </div>
                     <div class="product-price">R$ 1.039,95</div>
                 </label>
@@ -260,11 +236,11 @@
                 <!-- PAINEL DE RESULTADOS -->
                 <div class="result-panel">
                     <div class="result-row">
-                        <span>Valor pago pelo lojista:</span>
+                        <span>Valor cobrado do lojista:</span>
                         <span class="val-highlight" id="res-venda">R$ 769,85</span>
                     </div>
                     <div class="result-row">
-                        <span>Lucro bruto gerado:</span>
+                        <span>Lucro bruto da venda:</span>
                         <span class="val-highlight" id="res-margem">R$ 569,68</span>
                     </div>
                     <div class="result-row">
@@ -281,16 +257,15 @@
                         <span class="pix-total" id="res-total">R$ 196,54</span>
                     </div>
                 </div>
-                <p style="font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-top: 12px;">*Fechando 1 ou 2 pacotes assim por semana, você muda sua renda de forma real.</p>
+                <p style="font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-top: 12px;">*Fechando 1 ou 2 pacotes assim por semana, sua vida financeira muda completamente.</p>
             </div>
         </div>
 
-        <!-- BLOCO 4: CHAMADA FINAL PARA O WHATSAPP -->
+        <!-- BLOCO 4: PASSO A PASSO SIMPLES E CTA -->
         <div class="block" id="secao-compromisso">
-            <h2 class="headline" style="color: #FFF;">Pronto para Começar sua História de Sucesso?</h2>
+            <h2 class="headline" style="color: #FFF;">Como você começa agora mesmo?</h2>
             <div class="highlight-box" style="border-color: var(--success);">
-                <p class="text-body">O treinamento é 100% gratuito e você aprende do zero. Tudo o que exigimos é vontade de aprender e dedicação.</p>
-                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Clique no botão abaixo para ir direto ao WhatsApp e receber o seu passo a passo de onboarding.</p>
+                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">1. Clique no botão abaixo para ir direto ao WhatsApp do Robert.<br>2. Receba o treinamento gratuito para aprender a criar as artes.<br>3. Coloque a mão na massa e comece a faturar.</p>
             </div>
 
             <!-- VÍDEO 2: FECHAMENTO -->
@@ -305,17 +280,16 @@
             </div>
 
             <!-- CTA WHATSAPP -->
-            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20saber%20mais%20como%20funciona%20a%20RDESK.%20Quero%20transformar%20minha%20vida%20e%20estou%20cansado%20de%20ganhar%20pouco." class="cta-btn">
-                [ QUERO COMEÇAR MINHA JORNADA ]
+            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20faturar%20alto%20com%20a%20RDESK.%20Quero%20receber%20minhas%20instru%C3%A7%C3%B5es!" class="cta-btn">
+                [ QUERO COMEÇAR A FATURAR AGORA ]
             </a>
-            <p style="text-align: center; font-size: 0.9rem; color: #9CA3AF; margin-top: 15px;">Ao clicar, você vai direto para o WhatsApp do Robert receber as instruções.</p>
+            <p style="text-align: center; font-size: 0.9rem; color: #9CA3AF; margin-top: 15px;">Ao clicar, você será enviado à central do WhatsApp para gerar sua pasta corporativa.</p>
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT DE SUPORTE -->
+    <!-- JAVASCRIPT DO SIMULADOR -->
     <script>
-        // Barra de Progresso Suave
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -323,12 +297,11 @@
             document.getElementById("progress-bar").style.width = scrolled + "%";
 
             let statusText = document.getElementById("status-text");
-            if(scrolled < 30) { statusText.innerText = "HISTÓRIAS REAIS"; }
-            else if(scrolled < 70) { statusText.innerText = "SIMULADOR DE GANHOS"; }
-            else { statusText.innerText = "CHAME NO WHATSAPP"; statusText.style.color = "#00FF66"; }
+            if(scrolled < 30) { statusText.innerText = "PASSO 1: A OPORTUNIDADE"; }
+            else if(scrolled < 70) { statusText.innerText = "PASSO 2: SIMULE OS GANHOS"; }
+            else { statusText.innerText = "PASSO 3: CHAME NO WHATSAPP"; statusText.style.color = "#00FF66"; }
         };
 
-        // Simulador de Pedido Comercial
         const checkboxes = document.querySelectorAll('.calc-item');
         const elVenda = document.getElementById('res-venda');
         const elMargem = document.getElementById('res-margem');
