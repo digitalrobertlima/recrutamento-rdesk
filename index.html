@@ -4,21 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RDESK DESIGN | O Desafio das 5 Semanas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-           SISTEMA DE DESIGN: BRUTALIST NEON INDUSTRIAL
-           ========================================= */
         :root {
             --bg-carbon: #0F1115;
             --surface: #181B22;
             --text-white: #FFFFFF;
+            --text-muted: #94A3B8;
             --highlight: #FFEA00;
             --success: #00FF66;
             --neon-pink: #FF007F;
             --neon-cyan: #00BFFF;
-            --border-glow: 0 0 10px rgba(255, 0, 127, 0.3), inset 0 0 10px rgba(0, 191, 255, 0.1);
+            --border-glow: 0 0 15px rgba(255, 0, 127, 0.2), inset 0 0 10px rgba(0, 191, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,16 +28,16 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
             background-size: 30px 30px;
         }
 
         h1, h2, h3 { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* BARRA DE PROGRESSO */
+        /* BARRA DE PROGRESSO DO LEITOR */
         #progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: #222; z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: #111; z-index: 9999;
         }
         #progress-bar {
             height: 100%; width: 0%;
@@ -48,89 +46,93 @@
         }
         #status-text {
             position: fixed; top: 5px; left: 50%; transform: translateX(-50%);
-            font-size: 10px; font-weight: 900; color: #FFF; z-index: 9999;
-            background: rgba(0,0,0,0.8); padding: 3px 12px; border-radius: 0 0 5px 5px; letter-spacing: 2px;
+            font-size: 9px; font-weight: 900; color: #FFF; z-index: 9999;
+            background: rgba(0,0,0,0.85); padding: 3px 12px; border-radius: 0 0 6px 6px; letter-spacing: 2px;
+            border: 1px solid #333; border-top: none;
         }
 
-        /* CONTAINER BASE (MOBILE) */
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; transition: all 0.3s ease; }
-        .block { margin-bottom: 60px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+        .block { margin-bottom: 50px; }
         
+        /* LOGO IMPACTO */
         .logo {
-            font-family: 'Anton', sans-serif; font-size: 3.5rem; text-align: center;
+            font-family: 'Anton', sans-serif; font-size: 3.2rem; text-align: center;
             background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 30px; line-height: 1.1; text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+            margin-bottom: 25px; line-height: 1; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
         }
 
-        .headline { font-size: 2.2rem; color: var(--highlight); line-height: 1.1; margin-bottom: 15px; }
-        .text-body { font-size: 1.1rem; color: #CCC; margin-bottom: 20px; }
-        .highlight-box { border-left: 4px solid var(--neon-cyan); padding-left: 15px; margin: 20px 0; background: rgba(0, 191, 255, 0.05); padding: 15px; }
-
-        /* SIMULADOR FINANCEIRO */
-        .calculator-card {
-            background: var(--surface); border: 1px solid #333; padding: 25px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; transition: all 0.3s ease;
+        /* VÍDEO RESPONSIVO LIMPO */
+        .video-box {
+            position: relative; width: 100%; aspect-ratio: 16/9; background: #000; 
+            border: 2px solid #333; box-shadow: var(--border-glow); border-radius: 8px; 
+            margin-bottom: 25px; overflow: hidden;
         }
-        .calc-header { font-size: 1.5rem; color: #FFF; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 10px;}
+        .video-box iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        .headline { font-size: 2rem; color: var(--highlight); line-height: 1.15; margin-bottom: 15px; }
+        .text-body { font-size: 1.050rem; color: var(--text-muted); margin-bottom: 15px; }
         
-        input[type=range] { width: 100%; margin: 20px 0; appearance: none; background: transparent; }
+        .highlight-box { 
+            border-left: 4px solid var(--neon-cyan); background: rgba(0, 191, 255, 0.04); 
+            padding: 18px; border-radius: 0 8px 8px 0; margin: 20px 0; 
+        }
+
+        /* SIMULADOR FINANCEIRO TÁTIL PARA CELULAR */
+        .calculator-card {
+            background: var(--surface); border: 1px solid #2A2F3D; border-radius: 12px; 
+            padding: 24px 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative;
+        }
+        .calc-header { font-size: 1.3rem; color: #FFF; margin-bottom: 15px; border-bottom: 1px solid #2A2F3D; padding-bottom: 10px; }
+        
+        input[type=range] { width: 100%; margin: 25px 0 15px 0; appearance: none; background: transparent; }
         input[type=range]::-webkit-slider-thumb {
-            appearance: none; height: 35px; width: 35px; border-radius: 0;
-            background: var(--neon-cyan); cursor: pointer; box-shadow: 0 0 15px var(--neon-cyan); transition: transform 0.1s;
+            appearance: none; height: 38px; width: 38px; border-radius: 50%;
+            background: var(--neon-cyan); cursor: pointer; box-shadow: 0 0 15px var(--neon-cyan);
+            border: 3px solid #FFF; transition: transform 0.1s;
         }
-        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; background: #333; }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 10px; background: #222; border-radius: 5px; }
 
-        .result-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 700; color: #AAA;}
-        .val-highlight { color: #FFF; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: 0.95rem; color: var(--text-muted); }
+        .val-highlight { color: #FFF; font-weight: 800; }
+        
         .pix-total {
-            background: #000; border: 2px dashed var(--success); padding: 15px; text-align: center; margin-top: 20px;
+            background: #0A0C10; border: 2px dashed var(--success); border-radius: 8px; padding: 16px; text-align: center; margin-top: 20px;
         }
-        .pix-total span { display: block; font-family: 'Anton'; font-size: 2.8rem; color: var(--success); }
+        .pix-total span { display: block; font-family: 'Anton'; font-size: 2.5rem; color: var(--success); }
 
-        /* TIMELINE ACADEMIA */
-        .timeline { border-left: 3px solid #333; padding-left: 20px; margin-top: 30px; }
-        .timeline-item { position: relative; margin-bottom: 30px; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -27px; top: 5px; width: 10px; height: 10px;
-            background: var(--neon-pink); border-radius: 50%; box-shadow: 0 0 10px var(--neon-pink);
+        /* PASSOS SIMPLIFICADOS (Substituindo a timeline fria por caixas claras) */
+        .step-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .step-mini-card {
+            background: var(--surface); border: 1px solid #2A2F3D; border-radius: 8px; padding: 16px;
+            display: flex; gap: 15px; align-items: flex-start;
         }
-        .timeline-title { font-weight: 900; font-size: 1.2rem; color: #FFF; }
-        .timeline-desc { font-size: 0.95rem; color: #999; margin-top: 5px; }
+        .step-number {
+            background: var(--neon-pink); color: #FFF; font-family: 'Anton'; font-size: 1.2rem;
+            width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+            border-radius: 6px; flex-shrink: 0; box-shadow: 0 0 10px rgba(255,0,127,0.4);
+        }
+        .step-content h3 { font-size: 1.1rem; color: #FFF; margin-bottom: 4px; }
+        .step-content p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
 
-        /* BOTÃO CTA */
+        /* BOTÃO CTA GIGANTE */
         .cta-btn {
             display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            color: #FFF; text-align: center; padding: 22px; font-family: 'Anton'; font-size: 1.6rem;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-            box-shadow: 0 10px 20px rgba(255, 0, 127, 0.4); transition: all 0.2s ease; margin-top: 20px; cursor: pointer;
+            color: #FFF; text-align: center; padding: 20px; font-family: 'Anton'; font-size: 1.5rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4); transition: transform 0.1s ease, filter 0.2s ease; margin-top: 25px;
         }
         .cta-btn:active { transform: scale(0.98); }
 
-        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 4px 10px; font-size: 0.8rem; font-weight: 900; margin-bottom: 10px;}
+        .badge { display: inline-block; background: #222; color: var(--highlight); padding: 4px 10px; font-size: 0.75rem; font-weight: 800; border-radius: 4px; margin-bottom: 10px; }
 
-        /* =========================================
-           MEDIA QUERIES - EXPERIÊNCIA DESKTOP (PC)
-           ========================================= */
         @media (min-width: 768px) {
-            .container { max-width: 850px; padding: 60px 20px; }
-            .block { margin-bottom: 80px; }
-            .logo { font-size: 5rem; margin-bottom: 40px; }
-            .headline { font-size: 3.5rem; line-height: 1.05; }
-            .text-body { font-size: 1.25rem; }
-            
-            /* Efeitos de Hover para PC */
-            .calculator-card:hover { border-color: rgba(0, 191, 255, 0.5); box-shadow: 0 15px 40px rgba(0, 191, 255, 0.15); }
-            .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 0, 127, 0.6); filter: brightness(1.1); }
-            
-            .timeline { margin-left: 20px; border-width: 4px; }
-            .timeline-item::before { left: -30px; width: 14px; height: 14px; }
-            .timeline-title { font-size: 1.4rem; }
-            .timeline-desc { font-size: 1.1rem; }
-            
-            .result-row { font-size: 1.2rem; margin-bottom: 15px; }
-            .pix-total span { font-size: 3.5rem; }
+            .container { max-width: 750px; padding: 60px 20px; }
+            .logo { font-size: 4.5rem; }
+            .headline { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -139,123 +141,122 @@
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
-    <div id="status-text">IMPACTO INICIAL</div>
+    <div id="status-text">INÍCIO DA JORNADA</div>
 
     <div class="container">
         
-        <!-- BLOCO 1: GANCHO -->
-        <div class="block" id="secao-impacto">
+        <!-- BLOCO 1: GANCHO VISUAL + VÍDEO -->
+        <div class="block">
             <div class="logo">RDESK DESIGN</div>
             
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-bottom: 30px; overflow: hidden;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-                    src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" 
-                    title="YouTube video player" 
+            <div class="video-box">
+                <iframe src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" 
+                    title="Vídeo de Apresentação" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
                     allowfullscreen>
                 </iframe>
             </div>
             
-            <h1 class="headline">Você passou no primeiro filtro. Bem-vindo à parte de trás da Matrix.</h1>
-            <p class="text-body">Se você escaneou o cartaz, seu cérebro busca quebrar o teto tradicional. Esqueça processos seletivos cinzas e currículos falsos. Aqui, a esteira só aceita torque puro e execução real.</p>
+            <h1 class="headline">Você escaneou o cartaz. Agora vai virar a chave da sua vida.</h1>
+            <p class="text-body">Chega de processos seletivos engessados e salários baixos. Na RDESK, o seu ganho depende exclusivamente da sua execução prática.</p>
         </div>
 
+        <!-- BLOCO 2: A PROMESSA SIMPLIFICADA -->
         <div class="block">
-            <h2 class="headline" style="color: #FFF;">Quem disse que você não pode ganhar <span style="color: var(--highlight);">R$ 15 MIL no mês?</span></h2>
+            <h2 class="headline" style="color: #FFF;">Trabalhe com o que dá lucro real</h2>
             <div class="highlight-box">
-                <p class="text-body" style="margin: 0;">A sociedade te treinou para aceitar o salário mínimo porque lucram com a sua limitação. O mercado local digital precisa de agilidade. Na RDESK, você é o próprio dono do seu limite.</p>
+                <p class="text-body" style="margin: 0; color: #FFF;">O comércio local precisa desesperadamente de design rápido e ágil. Nós te damos o treinamento completo do zero para você faturar forte.</p>
             </div>
         </div>
 
-        <div class="block" id="secao-engenharia">
-            <h2 class="headline">A Engenharia do Pix: O Dinheiro na Mesa</h2>
-            <p class="text-body">Ninguém te larga sozinho. Na 1ª semana eu pego na sua mão em reuniões ao vivo. Veja a matemática indiscutível usando nosso campeão de vendas: <strong>1.000 Panfletos Couché 70g (PA65G6)</strong> vendido a R$ 324,95 (Custo nosso: R$ 85,00).</p>
+        <!-- BLOCO 3: SIMULADOR FINANCEIRO (INTUITIVO E FÁCIL DE MEXIAR) -->
+        <div class="block">
+            <h2 class="headline">Simulador de Ganhos</h2>
+            <p class="text-body">Veja quanto você pode faturar semanalmente vendendo nosso produto campeão (<strong>1.000 Panfletos</strong>):</p>
             
             <div class="calculator-card">
-                <div class="badge">SIMULADOR DE TORQUE RDESK</div>
-                <div class="calc-header">Arraste para definir sua meta: <span id="client-count" style="color: var(--neon-cyan);">3 Clientes</span>/semana</div>
+                <div class="badge">SIMULADOR INTERATIVO</div>
+                <div class="calc-header">Quantos clientes por semana? <span id="client-count" style="color: var(--neon-cyan); font-weight: 800;">3 Clientes</span></div>
                 
                 <input type="range" id="client-slider" min="1" max="10" value="3">
                 
                 <div class="result-row">
-                    <span>Margem Gerada (Total):</span>
+                    <span>Margem Total Gerada:</span>
                     <span class="val-highlight" id="val-margin">R$ 719,85</span>
                 </div>
                 <div class="result-row">
-                    <span>Seu Tier Alcançado:</span>
+                    <span>Sua Comissão por Tier:</span>
                     <span class="val-highlight" id="val-tier" style="color: var(--highlight);">30%</span>
                 </div>
                 <div class="result-row">
-                    <span>Sua Comissão Base:</span>
-                    <span class="val-highlight" id="val-base">R$ 215,96</span>
-                </div>
-                <div class="result-row" style="border-top: 1px solid #333; padding-top: 15px;">
                     <span>Bônus de Criação Canva (+15%):</span>
                     <span class="val-highlight" id="val-bonus">R$ 32,39</span>
                 </div>
                 
                 <div class="pix-total">
-                    <p style="font-weight: 900; font-size: 1rem; color: #FFF; text-transform: uppercase;">Total Líquido no seu Bolso:</p>
+                    <p style="font-weight: 800; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Total Líquido no Seu Bolso:</p>
                     <span id="val-total">R$ 248,35</span>
                 </div>
-                <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 15px;">*Cálculo matemático real. Não existe teto de ganho.</p>
             </div>
         </div>
 
-        <div class="block" id="secao-arsenal">
-            <h2 class="headline" style="font-size: 2.2rem;">Academia de Elite: A Rampa de Alta Renda</h2>
-            <p class="text-body">Você não será um mero "digitador". Nós vamos te transformar em uma máquina corporativa.</p>
+        <!-- BLOCO 4: COMO FUNCIONA (ACADEMIA DE ELITE EXPLICADA PARA LEIGOS) -->
+        <div class="block">
+            <h2 class="headline">Como funciona a sua evolução?</h2>
+            <p class="text-body">Você vai aprender no seu ritmo, escolhendo se quer ler, ouvir ou ver os materiais, e vai executar criando artes reais:</p>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 1: Canva (Web/Mobile)</div>
-                    <div class="timeline-desc">O Músculo Inicial. Treinamento básico acompanhado para dominar margens, sangrias e gerar caixa no mesmo dia, até dentro do ônibus.</div>
+            <div class="step-grid">
+                <div class="step-mini-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Treinamento Prático (Canva)</h3>
+                        <p>Você escolhe o formato ideal (texto, áudio ou vídeo) e aprende a criar artes perfeitas no celular ou PC.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 2: O Combate Vetorial</div>
-                    <div class="timeline-desc">Inkscape (Open Source) vs CorelDRAW. Entenda porque o Corel comanda as plotters e prensas industriais de todo o mundo.</div>
+                <div class="step-mini-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>O Teste das 3 Marcas</h3>
+                        <p>Você vai criar panfletos reais para o <strong>Pet Shop Focinhos Amados</strong>, para a <strong>RDESK</strong> e para uma <strong>Sorveteria</strong> criada por você.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 3: A Guerra dos Pixels</div>
-                    <div class="timeline-desc">GIMP (Cirúrgico e Leve) vs Photoshop. Domínio da imagem pura sem travar o seu PC.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 4: Interfaces e O Seu Império</div>
-                    <div class="timeline-desc">Sistemas de agendamento para comércios locais. O código de ouro: Nos produtos puramente digitais, <strong>100% do lucro vai para você</strong>. Zero taxas.</div>
+                <div class="step-mini-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Liberação de Caixa</h3>
+                        <p>Enviou os arquivos validados na sua pasta do Drive, você já está apto a faturar no mercado com zero teto salarial.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="block" id="secao-compromisso">
-            <h2 class="headline" style="color: #FFF;">O Peso do Compromisso</h2>
+        <!-- BLOCO 5: FECHAMENTO E CHAMADA PARA O WHATSAPP -->
+        <div class="block">
+            <h2 class="headline" style="color: #FFF;">Pronto para virar o jogo?</h2>
             <div class="highlight-box" style="border-color: var(--success);">
-                <p class="text-body">A entrada é gratuita. O treinamento inicial é gratuito. Mas blindamos o sistema contra preguiçosos.</p>
-                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Você assinará um contrato experimental de 5 semanas usando a criptografia do GOV.BR, com exigência de 1 a 3 testemunhas (familiares ou amigos). O preço que você paga é o seu compromisso social de não desistir.</p>
+                <p class="text-body" style="margin: 0; color: #FFF;">O acesso inicial é totalmente gratuito para quem tem garra e compromisso com o próprio sucesso.</p>
             </div>
 
-            <!-- VÍDEO 2: FECHAMENTO -->
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-top: 40px; margin-bottom: 30px; overflow: hidden;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-                    src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" 
-                    title="YouTube video player" 
+            <!-- VÍDEO DE FECHAMENTO -->
+            <div class="video-box" style="margin-top: 25px;">
+                <iframe src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" 
+                    title="Vídeo de Fechamento" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
                     allowfullscreen>
                 </iframe>
             </div>
 
-            <!-- LINK DO WHATSAPP ATUALIZADO -->
-            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20saber%20mais%20como%20funciona%20a%20RDESK.%20Quero%20transformar%20minha%20vida%20e%20estou%20cansado%20de%20ganhar%20pouco." class="cta-btn">
-                [ QUERO COMEÇAR HOJE ]
+            <!-- BOTÃO DO WHATSAPP DIRETÃO -->
+            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20vi%20o%20cartaz%20e%20quero%20come%C3%A7ar%20agora%20mesmo%20minha%20jornada%20na%20RDESK." class="cta-btn">
+                ⚡ QUERO COMEÇAR AGORA NO WHATSAPP
             </a>
-            <p style="text-align: center; font-size: 0.9rem; color: #555; margin-top: 20px;">Ao clicar, você será enviado à central do WhatsApp para gerar sua pasta corporativa no Drive.</p>
+            <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 15px;">Ao clicar, você será direcionado para o meu WhatsApp para receber as orientações.</p>
         </div>
 
     </div>
 
     <script>
-        // --- 1. Efeito Zeigarnik (Barra de Progresso) ---
+        // Barra de progresso inteligente
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -263,24 +264,21 @@
             document.getElementById("progress-bar").style.width = scrolled + "%";
 
             let statusText = document.getElementById("status-text");
-            if(scrolled < 25) { statusText.innerText = "IMPACTO INICIAL"; }
-            else if(scrolled < 60) { statusText.innerText = "ENGENHARIA DE GANHOS"; }
-            else if(scrolled < 85) { statusText.innerText = "ARSENAL TÉCNICO"; }
-            else { statusText.innerText = "COMPROMISSO SOCIAL"; statusText.style.color = "#00FF66"; }
+            if(scrolled < 20) { statusText.innerText = "INÍCIO DA JORNADA"; }
+            else if(scrolled < 50) { statusText.innerText = "SIMULADOR DE LUCROS"; }
+            else if(scrolled < 80) { statusText.innerText = "COMO FUNCIONA"; }
+            else { statusText.innerText = "HORA DA AÇÃO"; statusText.style.color = "#00FF66"; }
         };
 
-        // --- 2. Lógica Matemática Bruta (M.E.S.A) ---
+        // Simulador Matemático Simples e Direto
         const slider = document.getElementById('client-slider');
         const txtClients = document.getElementById('client-count');
         const txtMargin = document.getElementById('val-margin');
         const txtTier = document.getElementById('val-tier');
-        const txtBase = document.getElementById('val-base');
         const txtBonus = document.getElementById('val-bonus');
         const txtTotal = document.getElementById('val-total');
 
-        const costPA65G6 = 85.00;
-        const salePA65G6 = 324.95;
-        const netMarginPerSale = salePA65G6 - costPA65G6; // R$ 239.95
+        const netMarginPerSale = 324.95 - 85.00; // R$ 239.95
 
         function updateCalculator() {
             let clients = parseInt(slider.value);
@@ -298,7 +296,6 @@
 
             txtMargin.innerText = "R$ " + totalMargin.toFixed(2).replace('.', ',');
             txtTier.innerText = tierText;
-            txtBase.innerText = "R$ " + baseCommission.toFixed(2).replace('.', ',');
             txtBonus.innerText = "R$ " + designBonus.toFixed(2).replace('.', ',');
             txtTotal.innerText = "R$ " + totalInPocket.toFixed(2).replace('.', ',');
         }
