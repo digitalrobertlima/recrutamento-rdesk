@@ -57,7 +57,7 @@
             font-size: 1.8rem; color: var(--highlight); text-align: center; margin-bottom: 20px; line-height: 1.2;
         }
 
-        /* CARDS DE HISTÓRIA EM FORMATO VISUAL */
+        /* CARDS DE HISTÓRIA */
         .story-grid {
             display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;
         }
@@ -69,12 +69,36 @@
         .story-text h4 { color: #FFF; font-size: 1.05rem; margin-bottom: 4px; }
         .story-text p { color: #9CA3AF; font-size: 0.9rem; line-height: 1.4; }
 
-        /* SIMULADOR INTERATIVO RÁPIDO COM IMPACTO EMOCIONAL */
+        /* CAIXA DE MENTALIDADE (3 A 4 CLIENTES) */
+        .mindset-box {
+            background: linear-gradient(145deg, #181B22 0%, #1c2636 100%);
+            border: 2px solid var(--highlight); border-radius: 12px; padding: 22px 18px; margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(255, 234, 0, 0.1); text-align: center;
+        }
+        .mindset-box h3 { color: var(--highlight); font-size: 1.3rem; margin-bottom: 8px; }
+        .mindset-box p { color: #E5E7EB; font-size: 0.95rem; line-height: 1.5; }
+        .mindset-highlight { color: var(--success); font-weight: 900; }
+
+        /* SIMULADOR INTERATIVO */
         .calculator-card {
             background: var(--surface); border: 2px solid var(--neon-pink); border-radius: 14px;
             padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 30px;
         }
         .calc-title { font-size: 1.2rem; color: #FFF; text-align: center; margin-bottom: 15px; }
+
+        /* SLIDER DE CLIENTES POR SEMANA */
+        .slider-section {
+            background: rgba(0,0,0,0.4); border: 1px solid #333; padding: 15px; border-radius: 10px; margin-bottom: 15px;
+        }
+        .slider-label { font-size: 0.9rem; color: #D1D5DB; margin-bottom: 8px; text-align: center; font-weight: 700; }
+        .slider-label span { color: var(--neon-cyan); font-family: 'Anton'; font-size: 1.2rem; }
+        
+        input[type=range] { width: 100%; margin: 10px 0; appearance: none; background: transparent; cursor: pointer; }
+        input[type=range]::-webkit-slider-thumb {
+            appearance: none; height: 30px; width: 30px; border-radius: 50%;
+            background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan);
+        }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: #333; border-radius: 3px; }
 
         .product-option {
             display: flex; align-items: center; justify-content: space-between;
@@ -85,14 +109,13 @@
         .product-label { flex: 1; margin-left: 12px; font-weight: 700; font-size: 0.9rem; color: #E5E7EB; }
         .product-price { font-family: 'Anton'; font-size: 1.1rem; color: var(--highlight); }
 
-        /* PAINEL DE DINHEIRO NO BOLSO + EMOCIONAL */
+        /* PAINEL DE DINHEIRO NO BOLSO */
         .money-box {
             background: #000; border: 2px dashed var(--success); border-radius: 10px; padding: 15px; text-align: center; margin-top: 15px;
         }
         .money-box p { font-size: 0.85rem; color: #9CA3AF; text-transform: uppercase; font-weight: bold; }
-        .money-value { font-family: 'Anton'; font-size: 2.5rem; color: var(--success); display: block; margin-top: 2px; }
+        .money-value { font-family: 'Anton'; font-size: 2.6rem; color: var(--success); display: block; margin-top: 2px; }
         
-        /* MENSAGEM EMOCIONAL DINÂMICA */
         .emotional-feedback {
             background: rgba(0, 255, 102, 0.08); border-left: 4px solid var(--success);
             padding: 12px; border-radius: 0 8px 8px 0; margin-top: 15px; font-size: 0.9rem; color: #E5E7EB; text-align: left;
@@ -125,7 +148,7 @@
 
         <h1 class="main-title">Quer ganhar dinheiro rápido atendendo o comércio local? Veja como é fácil:</h1>
 
-        <!-- HISTÓRIAS REAIS (TEXTOS EXATOS SOLICITADOS) -->
+        <!-- HISTÓRIAS REAIS -->
         <div class="story-grid">
             <div class="story-pill">
                 <div class="story-icon">🐶</div>
@@ -144,10 +167,24 @@
             </div>
         </div>
 
-        <!-- SIMULADOR INTERATIVO COM IMPACTO EMOCIONAL -->
+        <!-- NOVA CAIXA DE MENTALIDADE (3 A 4 CLIENTES POR SEMANA) -->
+        <div class="mindset-box">
+            <h3>🎯 O SEGREDO: 3 A 4 CLIENTES POR SEMANA</h3>
+            <p>Esqueça a ideia maluca de atender 10 ou 20 pessoas por semana (isso é coisa de agência gigante). O segredo para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É totalmente possível, está na sua rua e não exige nada do outro mundo!</p>
+        </div>
+
+        <!-- SIMULADOR INTERATIVO COM MULTIPLICADOR SEMANAL -->
         <div class="calculator-card">
-            <div class="calc-title">⚡ Monte o combo do lojista e veja seu lucro:</div>
+            <div class="calc-title">⚡ Simulador de Faturamento Real:</div>
             
+            <!-- SELETOR DE CLIENTES POR SEMANA -->
+            <div class="slider-section">
+                <div class="slider-label">Quantos lojistas você vai fechar na semana? <span id="client-count">3 Clientes</span></div>
+                <input type="range" id="client-slider" min="1" max="5" value="3">
+            </div>
+
+            <div style="font-size: 0.8rem; color: #9CA3AF; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">Marque os produtos do combo fechado:</div>
+
             <label class="product-option">
                 <input type="checkbox" class="calc-item" data-sale="184.95" data-cost="48.09" checked>
                 <span class="product-label">Copão Metálico (Patroa)</span>
@@ -180,12 +217,12 @@
 
             <!-- CAIXA DE RESULTADO -->
             <div class="money-box">
-                <p>Dinheiro limpo no seu bolso com 1 cliente:</p>
-                <span class="money-value" id="res-total">R$ 196,54</span>
+                <p>Dinheiro limpo no seu bolso por semana:</p>
+                <span class="money-value" id="res-total">R$ 589,62</span>
                 
                 <!-- TERMÔMETRO EMOCIONAL DINÂMICO -->
                 <div class="emotional-feedback" id="emotional-msg">
-                    🔥 Sensacional! Com esse valor você já garante o mercado da semana ou paga aquela conta chata, conversando com apenas um lojista!
+                    🔥 Sensacional! Fechando essa meta realista por semana, você fatura mais de R$ 2.300 limpos no mês trabalhando com o comércio local!
                 </div>
             </div>
         </div>
@@ -203,9 +240,11 @@
 
     </div>
 
-    <!-- SCRIPT DO SIMULADOR E IMPACTO EMOCIONAL -->
+    <!-- SCRIPT DO SIMULADOR E MULTIPLICADOR -->
     <script>
         const checkboxes = document.querySelectorAll('.calc-item');
+        const slider = document.getElementById('client-slider');
+        const clientCountText = document.getElementById('client-count');
         const elTotal = document.getElementById('res-total');
         const emotionalMsg = document.getElementById('emotional-msg');
 
@@ -225,25 +264,31 @@
 
             let comissaoBase = totalMargem * 0.30;
             let bonusCanva = comissaoBase * 0.15;
-            let totalLiquido = comissaoBase + bonusCanva;
+            let comboLiquidoUnit = comissaoBase + bonusCanva;
 
-            elTotal.innerText = "R$ " + totalLiquido.toFixed(2).replace('.', ',');
+            let numClients = parseInt(slider.value);
+            clientCountText.innerText = numClients + (numClients === 1 ? " Cliente" : " Clientes");
 
-            // MUDANÇA EMOCIONAL DINÂMICA BASEADA NO VALOR
-            if (totalLiquido < 100) {
-                emotionalMsg.innerHTML = "💡 Opa! Selecione mais alguns itens do combo para ver a mágica do lucro acontecer com apenas 1 cliente.";
-            } else if (totalLiquido <= 250) {
-                emotionalMsg.innerHTML = "🚀 Pura realidade! Com esse valor você já bota dinheiro limpo no bolso para pagar contas ou sair no fim de semana, com apenas 1 atendimento!";
-            } else if (totalLiquido <= 500) {
-                emotionalMsg.innerHTML = "💥 Jogo virado! Quase meio salário mínimo ganho na conversa com um único lojista. É o poder do cross-selling real!";
+            let totalSemanal = comboLiquidoUnit * numClients;
+            let totalMensal = totalSemanal * 4;
+
+            elTotal.innerText = "R$ " + totalSemanal.toFixed(2).replace('.', ',');
+
+            // FEEDBACK EMOCIONAL BASEADO NO VOLUME SEMANAL
+            if (numClients === 1) {
+                emotionalMsg.innerHTML = "💡 Com apenas 1 cliente na semana você já faz um dinheiro bacana. Mas veja o que acontece quando você atinge a meta ideal de 3 a 4 clientes!";
+            } else if (numClients <= 3) {
+                emotionalMsg.innerHTML = `🚀 Perfeito! Fechando ${numClients} lojistas por semana com o combo, você bota cerca de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no mês. Meta totalmente alcançável!`;
             } else {
-                emotionalMsg.innerHTML = "🔥 EXPLOSÃO DE CAIXA! Mais de R$ 500 limpos no seu bolso com um único cliente fechando o pacote completo. Imagina fechar dois desses na semana?!";
+                emotionalMsg.innerHTML = `🔥 NÍVEL MASTER! Atendendo ${numClients} clientes por semana, você ultrapassa <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> por mês. É a virada de chave total na sua vida!`;
             }
         }
 
         checkboxes.forEach(cb => {
             cb.addEventListener('change', updateCalculator);
         });
+
+        slider.addEventListener('input', updateCalculator);
 
         updateCalculator();
     </script>
