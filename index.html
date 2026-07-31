@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK DESIGN | O Poder do Varejo Real</title>
+    <title>RDESK DESIGN | O Jogo do Dinheiro Rápido</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* =========================================
-            SISTEMA DE DESIGN: NEON INDUSTRIAL HUMANO
-            ========================================= */
         :root {
             --bg-carbon: #0F1115;
             --surface: #181B22;
@@ -18,7 +15,7 @@
             --success: #00FF66;
             --neon-pink: #FF007F;
             --neon-cyan: #00BFFF;
-            --border-glow: 0 0 15px rgba(255, 0, 127, 0.3), inset 0 0 10px rgba(0, 191, 255, 0.1);
+            --border-glow: 0 0 20px rgba(255, 0, 127, 0.3);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,286 +24,176 @@
             background-color: var(--bg-carbon);
             color: var(--text-white);
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
             background-image: 
                 linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-size: 25px 25px;
         }
 
         h1, h2, h3 { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* BARRA DE PROGRESSO */
-        #progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: #222; z-index: 9999;
-        }
-        #progress-bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            box-shadow: 0 0 10px var(--neon-pink); transition: width 0.1s ease-out;
-        }
-        #status-text {
-            position: fixed; top: 6px; left: 50%; transform: translateX(-50%);
-            font-size: 11px; font-weight: 900; color: #FFF; z-index: 9999;
-            background: rgba(0,0,0,0.9); padding: 4px 16px; border-radius: 0 0 6px 6px; letter-spacing: 1.5px;
-            border: 1px solid #333; border-top: none;
-        }
+        .container { max-width: 550px; margin: 0 auto; padding: 25px 15px; }
 
-        /* CONTAINER BASE */
-        .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
-        .block { margin-bottom: 60px; }
-        
+        /* LOGO E TOPO */
         .logo {
-            font-family: 'Anton', sans-serif; font-size: 3.2rem; text-align: center;
+            font-family: 'Anton', sans-serif; font-size: 3rem; text-align: center;
             background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 25px; line-height: 1.1; text-shadow: 0px 4px 15px rgba(0,0,0,0.6);
+            margin-bottom: 20px; line-height: 1;
         }
 
-        .headline { font-size: 2.1rem; color: var(--highlight); line-height: 1.15; margin-bottom: 15px; }
-        .text-body { font-size: 1.1rem; color: #D1D5DB; margin-bottom: 20px; }
-        
-        .highlight-box { 
-            border-left: 4px solid var(--neon-cyan); 
-            background: rgba(0, 191, 255, 0.06); 
-            padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; 
+        /* VÍDEO DESTACADO */
+        .video-box {
+            position: relative; width: 100%; aspect-ratio: 16/9; background: #000;
+            border: 2px solid var(--neon-cyan); border-radius: 12px; overflow: hidden;
+            box-shadow: var(--border-glow); margin-bottom: 25px;
+        }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0; }
+
+        /* HEADLINE DE ALTO IMPACTO */
+        .main-title {
+            font-size: 1.8rem; color: var(--highlight); text-align: center; margin-bottom: 20px; line-height: 1.2;
         }
 
-        .story-box {
-            background: var(--surface); border: 1px solid #333; border-radius: 12px; padding: 22px; margin-bottom: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        /* CARDS DE HISTÓRIA EM FORMATO VISUAL (ZERO TEXTÃO) */
+        .story-grid {
+            display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;
         }
-        .story-box h3 { color: var(--neon-cyan); font-size: 1.3rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .story-box p { font-size: 0.95rem; color: #C5CBD3; margin-bottom: 12px; }
+        .story-pill {
+            background: var(--surface); border: 1px solid #2A303C; border-radius: 10px; padding: 15px;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .story-icon { font-size: 2rem; background: rgba(0,191,255,0.1); padding: 10px; border-radius: 8px; }
+        .story-text h4 { color: #FFF; font-size: 1.05rem; margin-bottom: 2px; }
+        .story-text p { color: #9CA3AF; font-size: 0.85rem; }
 
-        /* SIMULADOR DE PEDIDO REAL */
+        /* SIMULADOR INTERATIVO RÁPIDO */
         .calculator-card {
-            background: var(--surface); border: 1px solid #333; padding: 25px 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; border-radius: 12px;
+            background: var(--surface); border: 2px solid var(--neon-pink); border-radius: 14px;
+            padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 30px;
         }
-        .calc-header { font-size: 1.25rem; color: #FFF; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;}
-        
+        .calc-title { font-size: 1.2rem; color: #FFF; text-align: center; margin-bottom: 15px; }
+
         .product-option {
-            display: flex; align-items: flex-start; gap: 14px; background: rgba(255,255,255,0.03);
-            border: 1px solid #262B37; padding: 16px; margin-bottom: 12px; border-radius: 8px; cursor: pointer;
-            transition: all 0.2s ease;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,255,255,0.03); border: 1px solid #262B37; padding: 12px;
+            margin-bottom: 8px; border-radius: 8px; cursor: pointer;
         }
-        .product-option:hover { border-color: var(--neon-cyan); background: rgba(0, 191, 255, 0.04); }
-        .product-option input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--neon-pink); margin-top: 2px; cursor: pointer; }
-        .product-info { flex: 1; }
-        .product-name { font-weight: 700; font-size: 1rem; color: #FFF; }
-        .product-desc { font-size: 0.85rem; color: #9CA3AF; margin-top: 4px; }
-        .product-price { font-family: 'Anton'; font-size: 1.15rem; color: var(--highlight); text-align: right; }
+        .product-option input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--neon-pink); cursor: pointer; }
+        .product-label { flex: 1; margin-left: 12px; font-weight: 700; font-size: 0.9rem; color: #E5E7EB; }
+        .product-price { font-family: 'Anton'; font-size: 1.1rem; color: var(--highlight); }
 
-        .result-panel {
-            background: #000; border: 2px dashed var(--success); padding: 22px; text-align: center; margin-top: 25px; border-radius: 8px;
+        /* PAINEL DE DINHEIRO NO BOLSO */
+        .money-box {
+            background: #000; border: 2px dashed var(--success); border-radius: 10px; padding: 15px; text-align: center; margin-top: 15px;
         }
-        .result-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; color: #9CA3AF; }
-        .val-highlight { color: #FFF; font-weight: bold; }
-        .pix-total { font-family: 'Anton'; font-size: 2.8rem; color: var(--success); display: block; margin-top: 5px; }
+        .money-box p { font-size: 0.85rem; color: #9CA3AF; text-transform: uppercase; font-weight: bold; }
+        .money-value { font-family: 'Anton'; font-size: 2.5rem; color: var(--success); display: block; margin-top: 5px; }
 
-        /* CTA DE IMPACTO */
+        /* BOTÃO GIGANTE DE AÇÃO (CTA) */
         .cta-btn {
             display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            color: #FFF; text-align: center; padding: 24px; font-family: 'Anton'; font-size: 1.6rem;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4); transition: all 0.2s ease; margin-top: 25px; cursor: pointer;
+            color: #FFF; text-align: center; padding: 20px; font-family: 'Anton'; font-size: 1.4rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.5); transition: transform 0.1s; cursor: pointer;
         }
-        .cta-btn:active { transform: scale(0.98); }
+        .cta-btn:active { transform: scale(0.97); }
 
-        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 5px 12px; font-size: 0.8rem; font-weight: 900; margin-bottom: 12px; border-radius: 4px; }
-
-        /* DESKTOP */
-        @media (min-width: 768px) {
-            .container { max-width: 850px; padding: 60px 20px; }
-            .block { margin-bottom: 80px; }
-            .logo { font-size: 4.5rem; margin-bottom: 40px; }
-            .headline { font-size: 3.2rem; line-height: 1.05; }
-            .text-body { font-size: 1.2rem; }
-            .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 0, 127, 0.6); filter: brightness(1.1); }
-        }
+        .footer-note { text-align: center; font-size: 0.8rem; color: #6B7280; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-    <div id="progress-container">
-        <div id="progress-bar"></div>
-    </div>
-    <div id="status-text">LEIA ESTA HISTÓRIA</div>
-
     <div class="container">
         
-        <!-- BLOCO 1: VÍDEO E GANCHO HUMANO -->
-        <div class="block" id="secao-impacto">
-            <div class="logo">RDESK DESIGN</div>
-            
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-bottom: 30px; border-radius: 12px; overflow: hidden;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-                    src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" 
-                    title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
-            <h1 class="headline">Você escaneou o cartaz porque quer dinheiro rápido. E aqui está a verdade nua e crua.</h1>
-            <p class="text-body">Esqueça currículo, chefe chato e salário mínimo. O dinheiro de verdade está na rua, na porta da sua casa, no comércio do seu bairro. Veja como é fácil abrir a mente e faturar alto atendendo donos de negócios locais.</p>
+        <!-- LOGO -->
+        <div class="logo">RDESK DESIGN</div>
+
+        <!-- VÍDEO PRINCIPAL DE IMPACTO -->
+        <div class="video-box">
+            <iframe src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" title="Video" allowfullscreen></iframe>
         </div>
 
-        <!-- BLOCO 2: O STORYTELLING REAL (PET SHOP & BAR DO BIGODE) -->
-        <div class="block">
-            <h2 class="headline" style="color: #FFF;">Como fechar <span style="color: var(--highlight);">um combo gigante</span> num único cliente:</h2>
-            
-            <!-- História 1: Pet Shop -->
-            <div class="story-box">
-                <h3>🐶 O Caso do Pet Shop Fochinhos Amados</h3>
-                <p>Você entra para vender um simples pacote de panfletos. Mas você observa o negócio: <em>Eles fazem delivery?</em> Oferece logo o <strong>ímã de geladeira</strong> para colar na casa do cliente. Vê a dona do pet shop e pensa: ela merece algo mais, e fecha o <strong>copo metálico personalizado</strong> exclusivo dela.</p>
-                <p style="margin-bottom: 0;">Olha para a área de banho e tosa e nota o problema: <em>os banhistas molham a roupa inteira!</em> Vende os <strong>aventais novos</strong> para a equipe. E para completar, coloca o <strong>cartão fidelidade</strong> para o cliente dar 10 banhos e ganhar uma hidratação. Pronto: você entrou vendendo um papel e saiu com um faturamento monstruoso.</p>
-            </div>
+        <h1 class="main-title">Quer ganhar dinheiro rápido atendendo o comércio local? Veja como é fácil:</h1>
 
-            <!-- História 2: Bar do Bigode -->
-            <div class="story-box" style="border-color: var(--neon-pink);">
-                <h3>🍺 O Caso do Bar do Bigode (Do Meu Avô!)</h3>
-                <p>Meu avô me chamou pedindo um banner simples para colocar na calçada avisando que o bar saca dinheiro no cartão ou via Pix. Na hora eu pensei: <em>se vai ter saque via Pix, tem que ter a placa acrílica com o QR Code no balcão!</em> Upsell feito na hora.</p>
-                <p style="margin-bottom: 0;">Olhei em volta e vi o Wi-Fi dele totalmente desprotegido, passando senha para todo mundo. Como entendo de tecnologia, já instalei uma interface inteligente com ESP32 para organizar a rede de visitantes. Resultado? O velho adorou, resolveu o problema de segurança e agora já encomendou os <strong>adesivos BOPP</strong> para colar nos copões de whisky do bar!</p>
-            </div>
-        </div>
-
-        <!-- BLOCO 3: SIMULADOR DE PEDIDO REAL -->
-        <div class="block" id="secao-engenharia">
-            <h2 class="headline">Simule o Combo do Pet Shop na Prática</h2>
-            <p class="text-body">Marque abaixo o que você vai oferecer para o lojista e veja o dinheiro limpo que vai cair direto no seu bolso:</p>
-            
-            <div class="calculator-card">
-                <div class="badge">SIMULADOR DE VENDAS</div>
-                <div class="calc-header">Monte o pedido do lojista:</div>
-                
-                <!-- Item 1 -->
-                <label class="product-option">
-                    <input type="checkbox" class="calc-item" data-cost="48.09" data-sale="184.95" checked>
-                    <div class="product-info">
-                        <div class="product-name">1. Copo Metálico Cuia (Para a patroa)</div>
-                        <div class="product-desc">Presente especial com gravação personalizada.</div>
-                    </div>
-                    <div class="product-price">R$ 184,95</div>
-                </label>
-
-                <!-- Item 2 -->
-                <label class="product-option">
-                    <input type="checkbox" class="calc-item" data-cost="71.49" data-sale="274.95" checked>
-                    <div class="product-info">
-                        <div class="product-name">2. Cartões de Fidelidade (1.000 un)</div>
-                        <div class="product-desc">Para o cliente voltar para o 10º banho grátis.</div>
-                    </div>
-                    <div class="product-price">R$ 274,95</div>
-                </label>
-
-                <!-- Item 3 -->
-                <label class="product-option">
-                    <input type="checkbox" class="calc-item" data-cost="80.59" data-sale="309.95" checked>
-                    <div class="product-info">
-                        <div class="product-name">3. Panfletos de Divulgação (1.000 un)</div>
-                        <div class="product-desc">Para panfletagem nas ruas do bairro.</div>
-                    </div>
-                    <div class="product-price">R$ 309,95</div>
-                </label>
-
-                <!-- Item 4 -->
-                <label class="product-option">
-                    <input type="checkbox" class="calc-item" data-cost="114.39" data-sale="439.95">
-                    <div class="product-info">
-                        <div class="product-name">4. Aventais para os Banhistas (5 un)</div>
-                        <div class="product-desc">Proteção e uniformidade para a equipe.</div>
-                    </div>
-                    <div class="product-price">R$ 439,95</div>
-                </label>
-
-                <!-- Item 5 -->
-                <label class="product-option">
-                    <input type="checkbox" class="calc-item" data-cost="270.39" data-sale="1039.95">
-                    <div class="product-info">
-                        <div class="product-name">5. Ímãs de Geladeira com Delivery (1.000 un)</div>
-                        <div class="product-desc">Para colar na geladeira da vizinhança inteira.</div>
-                    </div>
-                    <div class="product-price">R$ 1.039,95</div>
-                </label>
-
-                <!-- PAINEL DE RESULTADOS -->
-                <div class="result-panel">
-                    <div class="result-row">
-                        <span>Valor cobrado do lojista:</span>
-                        <span class="val-highlight" id="res-venda">R$ 769,85</span>
-                    </div>
-                    <div class="result-row">
-                        <span>Lucro bruto da venda:</span>
-                        <span class="val-highlight" id="res-margem">R$ 569,68</span>
-                    </div>
-                    <div class="result-row">
-                        <span>Sua comissão direta:</span>
-                        <span class="val-highlight" id="res-comissao">R$ 170,90</span>
-                    </div>
-                    <div class="result-row" style="border-top: 1px solid #222; padding-top: 8px; margin-top: 4px;">
-                        <span>Bônus por criar as artes (+15%):</span>
-                        <span class="val-highlight" id="res-bonus">R$ 25,64</span>
-                    </div>
-                    
-                    <div style="margin-top: 15px;">
-                        <p style="font-weight: 900; font-size: 0.9rem; color: #FFF; text-transform: uppercase;">Dinheiro limpo no seu bolso com 1 cliente:</p>
-                        <span class="pix-total" id="res-total">R$ 196,54</span>
-                    </div>
+        <!-- HISTÓRIAS EM FORMATO DE CARDS RÁPIDOS (SEM TEXTÃO) -->
+        <div class="story-grid">
+            <div class="story-pill">
+                <div class="story-icon">🐶</div>
+                <div class="story-text">
+                    <h4>O Caso do Pet Shop</h4>
+                    <p>Entrou para vender panfletos, observou o delivery e vendeu ímãs, avental para os banhistas e copo térmico para a dona!</p>
                 </div>
-                <p style="font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-top: 12px;">*Fechando 1 ou 2 pacotes assim por semana, sua vida financeira muda completamente.</p>
+            </div>
+
+            <div class="story-pill" style="border-color: var(--neon-pink);">
+                <div class="story-icon">🍺</div>
+                <div class="story-text">
+                    <h4>O Caso do Bar do Bigode</h4>
+                    <p>O avô pediu um banner de Pix. Você colocou a placa de acrílico, organizou o Wi-Fi com ESP32 e vendeu adesivos para copão!</p>
+                </div>
             </div>
         </div>
 
-        <!-- BLOCO 4: PASSO A PASSO SIMPLES E CTA -->
-        <div class="block" id="secao-compromisso">
-            <h2 class="headline" style="color: #FFF;">Como você começa agora mesmo?</h2>
-            <div class="highlight-box" style="border-color: var(--success);">
-                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">1. Clique no botão abaixo para ir direto ao WhatsApp do Robert.<br>2. Receba o treinamento gratuito para aprender a criar as artes.<br>3. Coloque a mão na massa e comece a faturar.</p>
-            </div>
+        <!-- SIMULADOR INTERATIVO -->
+        <div class="calculator-card">
+            <div class="calc-title">⚡ Monte o combo do lojista e veja seu lucro:</div>
+            
+            <label class="product-option">
+                <input type="checkbox" class="calc-item" data-sale="184.95" data-cost="48.09" checked>
+                <span class="product-label">Copão Metálico (Patroa)</span>
+                <span class="product-price">R$ 184,95</span>
+            </label>
 
-            <!-- VÍDEO 2: FECHAMENTO -->
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-top: 30px; margin-bottom: 25px; border-radius: 12px; overflow: hidden;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
-                    src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" 
-                    title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+            <label class="product-option">
+                <input type="checkbox" class="calc-item" data-sale="274.95" data-cost="71.49" checked>
+                <span class="product-label">1.000 Cartões Fidelidade</span>
+                <span class="product-price">R$ 274,95</span>
+            </label>
 
-            <!-- CTA WHATSAPP -->
-            <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20faturar%20alto%20com%20a%20RDESK.%20Quero%20receber%20minhas%20instru%C3%A7%C3%B5es!" class="cta-btn">
-                [ QUERO COMEÇAR A FATURAR AGORA ]
-            </a>
-            <p style="text-align: center; font-size: 0.9rem; color: #9CA3AF; margin-top: 15px;">Ao clicar, você será enviado à central do WhatsApp para gerar sua pasta corporativa.</p>
+            <label class="product-option">
+                <input type="checkbox" class="calc-item" data-sale="309.95" data-cost="80.59" checked>
+                <span class="product-label">1.000 Panfletos de Rua</span>
+                <span class="product-price">R$ 309,95</span>
+            </label>
+
+            <label class="product-option">
+                <input type="checkbox" class="calc-item" data-sale="439.95" data-cost="114.39">
+                <span class="product-label">5 Aventais para Banhistas</span>
+                <span class="product-price">R$ 439,95</span>
+            </label>
+
+            <label class="product-option">
+                <input type="checkbox" class="calc-item" data-sale="1039.95" data-cost="270.39">
+                <span class="product-label">1.000 Ímãs de Geladeira</span>
+                <span class="product-price">R$ 1.039,95</span>
+            </label>
+
+            <!-- CAIXA DE RESULTADO -->
+            <div class="money-box">
+                <p>Dinheiro limpo no seu bolso com 1 cliente:</p>
+                <span class="money-value" id="res-total">R$ 196,54</span>
+            </div>
         </div>
+
+        <!-- SEGUNDO VÍDEO DE FECHAMENTO -->
+        <div class="video-box" style="margin-top: 20px; border-color: var(--success);">
+            <iframe src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" title="Video 2" allowfullscreen></iframe>
+        </div>
+
+        <!-- BOTÃO DE WHATSAPP -->
+        <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20vi%20o%20cartaz%20e%20quero%20faturar%20alto%20com%20a%20RDESK.%20Quero%20receber%20minhas%20instru%C3%A7%C3%B5es!" class="cta-btn">
+            [ QUERO COMEÇAR AGORA ]
+        </a>
+        <p class="footer-note">Toque no botão para falar direto com o Robert no WhatsApp.</p>
 
     </div>
 
-    <!-- JAVASCRIPT DO SIMULADOR -->
+    <!-- SCRIPT DO SIMULADOR -->
     <script>
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("progress-bar").style.width = scrolled + "%";
-
-            let statusText = document.getElementById("status-text");
-            if(scrolled < 30) { statusText.innerText = "PASSO 1: A OPORTUNIDADE"; }
-            else if(scrolled < 70) { statusText.innerText = "PASSO 2: SIMULE OS GANHOS"; }
-            else { statusText.innerText = "PASSO 3: CHAME NO WHATSAPP"; statusText.style.color = "#00FF66"; }
-        };
-
         const checkboxes = document.querySelectorAll('.calc-item');
-        const elVenda = document.getElementById('res-venda');
-        const elMargem = document.getElementById('res-margem');
-        const elComissao = document.getElementById('res-comissao');
-        const elBonus = document.getElementById('res-bonus');
         const elTotal = document.getElementById('res-total');
 
         function updateCalculator() {
@@ -327,10 +214,6 @@
             let bonusCanva = comissaoBase * 0.15;
             let totalLiquido = comissaoBase + bonusCanva;
 
-            elVenda.innerText = "R$ " + totalVenda.toFixed(2).replace('.', ',');
-            elMargem.innerText = "R$ " + totalMargem.toFixed(2).replace('.', ',');
-            elComissao.innerText = "R$ " + comissaoBase.toFixed(2).replace('.', ',');
-            elBonus.innerText = "R$ " + bonusCanva.toFixed(2).replace('.', ',');
             elTotal.innerText = "R$ " + totalLiquido.toFixed(2).replace('.', ',');
         }
 
