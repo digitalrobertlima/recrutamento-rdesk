@@ -57,19 +57,19 @@
             font-size: 1.8rem; color: var(--highlight); text-align: center; margin-bottom: 20px; line-height: 1.2;
         }
 
-        /* CARDS DE HISTÓRIA EM FORMATO VISUAL (ZERO TEXTÃO) */
+        /* CARDS DE HISTÓRIA EM FORMATO VISUAL */
         .story-grid {
             display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;
         }
         .story-pill {
             background: var(--surface); border: 1px solid #2A303C; border-radius: 10px; padding: 15px;
-            display: flex; align-items: center; gap: 15px;
+            display: flex; align-items: flex-start; gap: 15px;
         }
-        .story-icon { font-size: 2rem; background: rgba(0,191,255,0.1); padding: 10px; border-radius: 8px; }
-        .story-text h4 { color: #FFF; font-size: 1.05rem; margin-bottom: 2px; }
-        .story-text p { color: #9CA3AF; font-size: 0.85rem; }
+        .story-icon { font-size: 2rem; background: rgba(0,191,255,0.1); padding: 8px 12px; border-radius: 8px; flex-shrink: 0; }
+        .story-text h4 { color: #FFF; font-size: 1.05rem; margin-bottom: 4px; }
+        .story-text p { color: #9CA3AF; font-size: 0.9rem; line-height: 1.4; }
 
-        /* SIMULADOR INTERATIVO RÁPIDO */
+        /* SIMULADOR INTERATIVO RÁPIDO COM IMPACTO EMOCIONAL */
         .calculator-card {
             background: var(--surface); border: 2px solid var(--neon-pink); border-radius: 14px;
             padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 30px;
@@ -85,12 +85,19 @@
         .product-label { flex: 1; margin-left: 12px; font-weight: 700; font-size: 0.9rem; color: #E5E7EB; }
         .product-price { font-family: 'Anton'; font-size: 1.1rem; color: var(--highlight); }
 
-        /* PAINEL DE DINHEIRO NO BOLSO */
+        /* PAINEL DE DINHEIRO NO BOLSO + EMOCIONAL */
         .money-box {
             background: #000; border: 2px dashed var(--success); border-radius: 10px; padding: 15px; text-align: center; margin-top: 15px;
         }
         .money-box p { font-size: 0.85rem; color: #9CA3AF; text-transform: uppercase; font-weight: bold; }
-        .money-value { font-family: 'Anton'; font-size: 2.5rem; color: var(--success); display: block; margin-top: 5px; }
+        .money-value { font-family: 'Anton'; font-size: 2.5rem; color: var(--success); display: block; margin-top: 2px; }
+        
+        /* MENSAGEM EMOCIONAL DINÂMICA */
+        .emotional-feedback {
+            background: rgba(0, 255, 102, 0.08); border-left: 4px solid var(--success);
+            padding: 12px; border-radius: 0 8px 8px 0; margin-top: 15px; font-size: 0.9rem; color: #E5E7EB; text-align: left;
+            font-weight: 600; line-height: 1.4;
+        }
 
         /* BOTÃO GIGANTE DE AÇÃO (CTA) */
         .cta-btn {
@@ -118,13 +125,13 @@
 
         <h1 class="main-title">Quer ganhar dinheiro rápido atendendo o comércio local? Veja como é fácil:</h1>
 
-        <!-- HISTÓRIAS EM FORMATO DE CARDS RÁPIDOS (SEM TEXTÃO) -->
+        <!-- HISTÓRIAS REAIS (TEXTOS EXATOS SOLICITADOS) -->
         <div class="story-grid">
             <div class="story-pill">
                 <div class="story-icon">🐶</div>
                 <div class="story-text">
                     <h4>O Caso do Pet Shop</h4>
-                    <p>Você entra para vender panfletos, observou o delivery e vendeu ímãs, avental para os banhistas e copo térmico para a dona!</p>
+                    <p>Você entra para vender panfletos, observou que tem delivery e vendeu ímãs, avental para os banhistas e copo térmico para a dona!</p>
                 </div>
             </div>
 
@@ -132,12 +139,12 @@
                 <div class="story-icon">🍺</div>
                 <div class="story-text">
                     <h4>O Caso do Bar do Bigode</h4>
-                    <p>O dono pediu um banner de Saque. O vendedor colocou a placa de acrílico pro PIX, organizou o Wi-Fi com ESP32 e vendeu adesivos para copão!</p>
+                    <p>O dono pediu um banner de Saque. O vendedor colocou a placa de acrílico pro PIX, organizou o Wi-Fi para VISITANTES e ainda vendeu adesivos para copão!</p>
                 </div>
             </div>
         </div>
 
-        <!-- SIMULADOR INTERATIVO -->
+        <!-- SIMULADOR INTERATIVO COM IMPACTO EMOCIONAL -->
         <div class="calculator-card">
             <div class="calc-title">⚡ Monte o combo do lojista e veja seu lucro:</div>
             
@@ -175,6 +182,11 @@
             <div class="money-box">
                 <p>Dinheiro limpo no seu bolso com 1 cliente:</p>
                 <span class="money-value" id="res-total">R$ 196,54</span>
+                
+                <!-- TERMÔMETRO EMOCIONAL DINÂMICO -->
+                <div class="emotional-feedback" id="emotional-msg">
+                    🔥 Sensacional! Com esse valor você já garante o mercado da semana ou paga aquela conta chata, conversando com apenas um lojista!
+                </div>
             </div>
         </div>
 
@@ -191,10 +203,11 @@
 
     </div>
 
-    <!-- SCRIPT DO SIMULADOR -->
+    <!-- SCRIPT DO SIMULADOR E IMPACTO EMOCIONAL -->
     <script>
         const checkboxes = document.querySelectorAll('.calc-item');
         const elTotal = document.getElementById('res-total');
+        const emotionalMsg = document.getElementById('emotional-msg');
 
         function updateCalculator() {
             let totalVenda = 0;
@@ -215,6 +228,17 @@
             let totalLiquido = comissaoBase + bonusCanva;
 
             elTotal.innerText = "R$ " + totalLiquido.toFixed(2).replace('.', ',');
+
+            // MUDANÇA EMOCIONAL DINÂMICA BASEADA NO VALOR
+            if (totalLiquido < 100) {
+                emotionalMsg.innerHTML = "💡 Opa! Selecione mais alguns itens do combo para ver a mágica do lucro acontecer com apenas 1 cliente.";
+            } else if (totalLiquido <= 250) {
+                emotionalMsg.innerHTML = "🚀 Pura realidade! Com esse valor você já bota dinheiro limpo no bolso para pagar contas ou sair no fim de semana, com apenas 1 atendimento!";
+            } else if (totalLiquido <= 500) {
+                emotionalMsg.innerHTML = "💥 Jogo virado! Quase meio salário mínimo ganho na conversa com um único lojista. É o poder do cross-selling real!";
+            } else {
+                emotionalMsg.innerHTML = "🔥 EXPLOSÃO DE CAIXA! Mais de R$ 500 limpos no seu bolso com um único cliente fechando o pacote completo. Imagina fechar dois desses na semana?!";
+            }
         }
 
         checkboxes.forEach(cb => {
