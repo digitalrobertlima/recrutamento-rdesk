@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK DESIGN | O Desafio das 5 Semanas</title>
+    <title>RDESK DESIGN | Transforme Sua Vida em 5 Semanas</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================
-            SISTEMA DE DESIGN: BRUTALIST NEON INDUSTRIAL
+            SISTEMA DE DESIGN: NEON INDUSTRIAL HUMANO
             ========================================= */
         :root {
             --bg-carbon: #0F1115;
@@ -39,7 +39,7 @@
 
         /* BARRA DE PROGRESSO */
         #progress-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: #222; z-index: 9999;
+            position: fixed; top: 0; left: 0; width: 100%; height: 6px; background: #222; z-index: 9999;
         }
         #progress-bar {
             height: 100%; width: 0%;
@@ -47,9 +47,9 @@
             box-shadow: 0 0 10px var(--neon-pink); transition: width 0.1s ease-out;
         }
         #status-text {
-            position: fixed; top: 5px; left: 50%; transform: translateX(-50%);
-            font-size: 10px; font-weight: 900; color: #FFF; z-index: 9999;
-            background: rgba(0,0,0,0.85); padding: 3px 14px; border-radius: 0 0 6px 6px; letter-spacing: 2px;
+            position: fixed; top: 6px; left: 50%; transform: translateX(-50%);
+            font-size: 11px; font-weight: 900; color: #FFF; z-index: 9999;
+            background: rgba(0,0,0,0.9); padding: 4px 16px; border-radius: 0 0 6px 6px; letter-spacing: 1.5px;
             border: 1px solid #333; border-top: none;
         }
 
@@ -58,80 +58,79 @@
         .block { margin-bottom: 60px; }
         
         .logo {
-            font-family: 'Anton', sans-serif; font-size: 3.5rem; text-align: center;
+            font-family: 'Anton', sans-serif; font-size: 3.2rem; text-align: center;
             background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 30px; line-height: 1.1; text-shadow: 0px 4px 15px rgba(0,0,0,0.6);
+            margin-bottom: 25px; line-height: 1.1; text-shadow: 0px 4px 15px rgba(0,0,0,0.6);
         }
 
-        .headline { font-size: 2.2rem; color: var(--highlight); line-height: 1.1; margin-bottom: 15px; }
-        .text-body { font-size: 1.1rem; color: #CCC; margin-bottom: 20px; }
-        .highlight-box { border-left: 4px solid var(--neon-cyan); background: rgba(0, 191, 255, 0.05); padding: 18px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .headline { font-size: 2.1rem; color: var(--highlight); line-height: 1.15; margin-bottom: 15px; }
+        .text-body { font-size: 1.1rem; color: #D1D5DB; margin-bottom: 20px; }
+        .highlight-box { border-left: 4px solid var(--neon-cyan); background: rgba(0, 191, 255, 0.06); padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
 
-        /* SIMULADOR DE PACOTES REAIS (PET SHOP) */
+        /* SIMULADOR DE PACOTES COMERCIAIS */
         .calculator-card {
             background: var(--surface); border: 1px solid #333; padding: 25px 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8); position: relative; border-radius: 12px;
         }
-        .calc-header { font-size: 1.3rem; color: #FFF; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;}
+        .calc-header { font-size: 1.25rem; color: #FFF; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px;}
         
         .product-option {
-            display: flex; align-items: flex-start; gap: 12px; background: rgba(255,255,255,0.03);
-            border: 1px solid #262B37; padding: 14px; margin-bottom: 12px; border-radius: 8px; cursor: pointer;
+            display: flex; align-items: flex-start; gap: 14px; background: rgba(255,255,255,0.03);
+            border: 1px solid #262B37; padding: 16px; margin-bottom: 12px; border-radius: 8px; cursor: pointer;
             transition: all 0.2s ease;
         }
-        .product-option:hover { border-color: var(--neon-cyan); background: rgba(0, 191, 255, 0.03); }
-        .product-option input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--neon-pink); margin-top: 2px; cursor: pointer; }
+        .product-option:hover { border-color: var(--neon-cyan); background: rgba(0, 191, 255, 0.04); }
+        .product-option input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--neon-pink); margin-top: 2px; cursor: pointer; }
         .product-info { flex: 1; }
-        .product-name { font-weight: 700; font-size: 0.95rem; color: #FFF; }
-        .product-desc { font-size: 0.8rem; color: #8A94A6; margin-top: 2px; }
-        .product-price { font-family: 'Anton'; font-size: 1.1rem; color: var(--highlight); text-align: right; }
+        .product-name { font-weight: 700; font-size: 1rem; color: #FFF; }
+        .product-desc { font-size: 0.85rem; color: #9CA3AF; margin-top: 4px; }
+        .product-price { font-family: 'Anton'; font-size: 1.15rem; color: var(--highlight); text-align: right; }
 
         .result-panel {
-            background: #000; border: 2px dashed var(--success); padding: 20px; text-align: center; margin-top: 25px; border-radius: 8px;
+            background: #000; border: 2px dashed var(--success); padding: 22px; text-align: center; margin-top: 25px; border-radius: 8px;
         }
-        .result-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; color: #AAA; }
+        .result-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; color: #9CA3AF; }
         .val-highlight { color: #FFF; font-weight: bold; }
         .pix-total { font-family: 'Anton'; font-size: 2.8rem; color: var(--success); display: block; margin-top: 5px; }
 
-        /* TIMELINE ACADEMIA */
-        .timeline { border-left: 3px solid #333; padding-left: 20px; margin-top: 30px; }
-        .timeline-item { position: relative; margin-bottom: 30px; }
-        .timeline-item::before {
-            content: ''; position: absolute; left: -27px; top: 5px; width: 10px; height: 10px;
-            background: var(--neon-pink); border-radius: 50%; box-shadow: 0 0 10px var(--neon-pink);
+        /* PASSO A PASSO VISUAL */
+        .steps-box {
+            background: var(--surface); border: 1px solid #333; border-radius: 12px; padding: 25px 20px; margin-top: 20px;
         }
-        .timeline-title { font-weight: 900; font-size: 1.2rem; color: #FFF; }
-        .timeline-desc { font-size: 0.95rem; color: #999; margin-top: 5px; }
+        .step-item {
+            display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start;
+        }
+        .step-item:last-child { margin-bottom: 0; }
+        .step-num {
+            background: var(--neon-cyan); color: #000; font-family: 'Anton'; font-size: 1.2rem;
+            width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 10px rgba(0,191,255,0.4);
+        }
+        .step-text h3 { font-size: 1.1rem; color: #FFF; margin-bottom: 4px; }
+        .step-text p { font-size: 0.9rem; color: #9CA3AF; }
 
-        /* BOTÃO CTA */
+        /* BOTÃO CTA DE IMPACTO */
         .cta-btn {
             display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            color: #FFF; text-align: center; padding: 22px; font-family: 'Anton'; font-size: 1.5rem;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4); transition: all 0.2s ease; margin-top: 20px; cursor: pointer;
+            color: #FFF; text-align: center; padding: 24px; font-family: 'Anton'; font-size: 1.6rem;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4); transition: all 0.2s ease; margin-top: 25px; cursor: pointer;
         }
         .cta-btn:active { transform: scale(0.98); }
 
-        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 4px 10px; font-size: 0.8rem; font-weight: 900; margin-bottom: 12px; border-radius: 4px; }
+        .badge { display: inline-block; background: #333; color: var(--highlight); padding: 5px 12px; font-size: 0.8rem; font-weight: 900; margin-bottom: 12px; border-radius: 4px; }
 
         /* =========================================
-            MEDIA QUERIES - DESKTOP (PC)
+            DESKTOP (PC)
             ========================================= */
         @media (min-width: 768px) {
             .container { max-width: 850px; padding: 60px 20px; }
             .block { margin-bottom: 80px; }
-            .logo { font-size: 5rem; margin-bottom: 40px; }
-            .headline { font-size: 3.5rem; line-height: 1.05; }
-            .text-body { font-size: 1.25rem; }
-            
-            .calculator-card:hover { border-color: rgba(0, 191, 255, 0.4); box-shadow: 0 15px 40px rgba(0, 191, 255, 0.1); }
+            .logo { font-size: 4.5rem; margin-bottom: 40px; }
+            .headline { font-size: 3.2rem; line-height: 1.05; }
+            .text-body { font-size: 1.2rem; }
             .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 0, 127, 0.6); filter: brightness(1.1); }
-            
-            .timeline { margin-left: 20px; border-width: 4px; }
-            .timeline-item::before { left: -30px; width: 14px; height: 14px; }
-            .timeline-title { font-size: 1.4rem; }
-            .timeline-desc { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -140,11 +139,11 @@
     <div id="progress-container">
         <div id="progress-bar"></div>
     </div>
-    <div id="status-text">IMPACTO INICIAL</div>
+    <div id="status-text">LEIA COM ATENÇÃO</div>
 
     <div class="container">
         
-        <!-- BLOCO 1: GANCHO & VÍDEO 1 -->
+        <!-- BLOCO 1: VÍDEO E BOAS-VINDAS SIMPLES -->
         <div class="block" id="secao-impacto">
             <div class="logo">RDESK DESIGN</div>
             
@@ -158,31 +157,31 @@
                 </iframe>
             </div>
             
-            <h1 class="headline">Você passou no primeiro filtro. Bem-vindo à parte de trás da Matrix.</h1>
-            <p class="text-body">Se você escaneou o cartaz, seu cérebro busca quebrar o teto tradicional. Esqueça processos seletivos cinzas e currículos falsos. Aqui, a esteira só aceita torque puro e execução real.</p>
+            <h1 class="headline">Cansado de trabalhar muito e ganhar pouco? Você encontrou o lugar certo.</h1>
+            <p class="text-body">Se você escaneou o nosso cartaz na rua, esqueça currículos tradicionais e empregos que pagam o mínimo. Aqui você aprende na prática a criar materiais para empresas reais e ganha comissão forte por isso.</p>
         </div>
 
         <div class="block">
-            <h2 class="headline" style="color: #FFF;">Quem disse que você não pode faturar <span style="color: var(--highlight);">R$ 15 MIL no mês?</span></h2>
+            <h2 class="headline" style="color: #FFF;">Como você vai ganhar dinheiro <span style="color: var(--highlight);">ajudando o comércio local?</span></h2>
             <div class="highlight-box">
-                <p class="text-body" style="margin: 0;">A sociedade te treinou para aceitar o salário mínimo porque lucram com a sua limitação. O comércio local precisa de velocidade. Na RDESK, você atende uma empresa como o <strong>Pet Shop Fochinhos Amados</strong> e fecha um pacote inteiro de soluções de uma só vez.</p>
+                <p class="text-body" style="margin: 0;">Pequenas empresas (como um Pet Shop) precisam de divulgação constante. Em vez de vender apenas um papelzinho isolado, você fecha um <strong>combo completo</strong> de produtos para o lojista de uma só vez!</p>
             </div>
         </div>
 
-        <!-- BLOCO 2: SIMULADOR DE PACOTE COMPLETO (CROSS-SELLING COMERCIAL) -->
+        <!-- BLOCO 2: SIMULADOR DE PEDIDO REAL -->
         <div class="block" id="secao-engenharia">
-            <h2 class="headline">A Engenharia do Caixa: O Combo do Pet Shop</h2>
-            <p class="text-body">Veja o que acontece na mente do comerciante quando você oferece soluções completas. Marque os itens abaixo para simular o fechamento de um único cliente (Ex: Pet Shop Fochinhos Amados):</p>
+            <h2 class="headline">Simule um Pedido Real de um Lojista</h2>
+            <p class="text-body">Veja o que acontece quando você atende um único cliente (ex: o <em>Pet Shop Fochinhos Amados</em>) e monta o pacote dele. Clique nas caixas abaixo para somar:</p>
             
             <div class="calculator-card">
-                <div class="badge">SIMULADOR DE PACOTE COMERCIAL RDESK</div>
-                <div class="calc-header">Monte o pedido fechado com o lojista:</div>
+                <div class="badge">SIMULADOR FÁCIL DE GANHOS</div>
+                <div class="calc-header">Marque o que o lojista comprou:</div>
                 
                 <!-- Item 1 -->
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="48.09" data-sale="184.95" checked>
                     <div class="product-info">
-                        <div class="product-name">1. Copo Metálico Cuia (1 un)</div>
+                        <div class="product-name">1. Copo Metálico Cuia (1 unidade)</div>
                         <div class="product-desc">Presente especial pedido pela dona para uso próprio.</div>
                     </div>
                     <div class="product-price">R$ 184,95</div>
@@ -193,7 +192,7 @@
                     <input type="checkbox" class="calc-item" data-cost="71.49" data-sale="274.95" checked>
                     <div class="product-info">
                         <div class="product-name">2. Cartões de Visita / Fidelidade (1.000 un)</div>
-                        <div class="product-desc">Couchê brilho 250g (4x1) para indicação dos clientes.</div>
+                        <div class="product-desc">Para os clientes voltarem sempre ao pet shop.</div>
                     </div>
                     <div class="product-price">R$ 274,95</div>
                 </label>
@@ -203,7 +202,7 @@
                     <input type="checkbox" class="calc-item" data-cost="80.59" data-sale="309.95" checked>
                     <div class="product-info">
                         <div class="product-name">3. Panfletos de Divulgação (1.000 un)</div>
-                        <div class="product-desc">Couchê 70g (PA65G6C) para panfletagem no bairro.</div>
+                        <div class="product-desc">Para panfletagem nas ruas do bairro.</div>
                     </div>
                     <div class="product-price">R$ 309,95</div>
                 </label>
@@ -212,8 +211,8 @@
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="114.39" data-sale="439.95">
                     <div class="product-info">
-                        <div class="product-name">4. Aventais Personalizados (5 un - ATO05)</div>
-                        <div class="product-desc">Uniformes novos para a equipe dos banhistas.</div>
+                        <div class="product-name">4. Aventais Personalizados (5 unidades)</div>
+                        <div class="product-desc">Uniformes novos para a equipe que dá banho nos cães.</div>
                     </div>
                     <div class="product-price">R$ 439,95</div>
                 </label>
@@ -222,8 +221,8 @@
                 <label class="product-option">
                     <input type="checkbox" class="calc-item" data-cost="270.39" data-sale="1039.95">
                     <div class="product-info">
-                        <div class="product-name">5. Ímãs de Geladeira (1.000 un)</div>
-                        <div class="product-desc">Para fixar na geladeira dos clientes com o delivery do pet.</div>
+                        <div class="product-name">5. Ímãs de Geladeira (1.000 unidades)</div>
+                        <div class="product-desc">Para colar na geladeira dos clientes com o telefone do delivery.</div>
                     </div>
                     <div class="product-price">R$ 1.039,95</div>
                 </label>
@@ -231,66 +230,71 @@
                 <!-- PAINEL DE RESULTADOS -->
                 <div class="result-panel">
                     <div class="result-row">
-                        <span>Valor Total do Pedido no Lojista:</span>
+                        <span>Valor pago pelo lojista:</span>
                         <span class="val-highlight" id="res-venda">R$ 769,85</span>
                     </div>
                     <div class="result-row">
-                        <span>Margem Gerada (Venda - Custo):</span>
+                        <span>Lucro bruto gerado:</span>
                         <span class="val-highlight" id="res-margem">R$ 569,68</span>
                     </div>
                     <div class="result-row">
-                        <span>Sua Comissão (Tier 30%):</span>
+                        <span>Sua comissão direta:</span>
                         <span class="val-highlight" id="res-comissao">R$ 170,90</span>
                     </div>
-                    <div class="result-row" style="border-top: 1px solid #222; padding-top: 10px; margin-top: 5px;">
-                        <span>Bônus de Criação no Canva (+15%):</span>
+                    <div class="result-row" style="border-top: 1px solid #222; padding-top: 8px; margin-top: 4px;">
+                        <span>Bônus por criar as artes (+15%):</span>
                         <span class="val-highlight" id="res-bonus">R$ 25,64</span>
                     </div>
                     
                     <div style="margin-top: 15px;">
-                        <p style="font-weight: 900; font-size: 0.9rem; color: #FFF; text-transform: uppercase;">Total Líquido no seu Bolso com 1 Cliente:</p>
+                        <p style="font-weight: 900; font-size: 0.9rem; color: #FFF; text-transform: uppercase;">Dinheiro limpo no seu bolso com 1 cliente:</p>
                         <span class="pix-total" id="res-total">R$ 196,54</span>
                     </div>
                 </div>
-                <p style="font-size: 0.85rem; color: #777; text-align: center; margin-top: 12px;">*Basta fechar 1 ou 2 pacotes assim por semana para mudar sua realidade financeira.</p>
+                <p style="font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-top: 12px;">*Fechando 1 ou 2 pacotes assim por semana, você muda sua renda de forma real.</p>
             </div>
         </div>
 
-        <!-- BLOCO 3: ACADEMIA DE ELITE -->
-        <div class="block" id="secao-arsenal">
-            <h2 class="headline" style="font-size: 2.2rem;">Academia de Elite: A Rampa de Alta Renda</h2>
-            <p class="text-body">Você não será um mero "digitador". Nós vamos te transformar em uma máquina corporativa.</p>
+        <!-- BLOCO 3: COMO FUNCIONA O PASSO A PASSO -->
+        <div class="block">
+            <h2 class="headline" style="font-size: 2rem;">Como você começa do zero?</h2>
+            <p class="text-body">Não precisa ter experiência anterior. Nós te pegamos pela mão:</p>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 1: Canva (Web/Mobile)</div>
-                    <div class="timeline-desc">O Músculo Inicial. Treinamento acompanhado para dominar margens, sangrias e criar artes para o Pet Shop, Rdesk e Sorveteria, gerando caixa rápido até pelo celular.</div>
+            <div class="steps-box">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        <h3>Você fala com o Robert no WhatsApp</h3>
+                        <p>Clique no botão abaixo para nos avisar que quer começar sua jornada.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 2: O Combate Vetorial</div>
-                    <div class="timeline-desc">Inkscape (Open Source) vs CorelDRAW. Entenda porque o Corel comanda as plotters e prensas industriais de todo o mundo.</div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        <h3>Você recebe o treinamento gratuito</h3>
+                        <p>Aprende de forma simples (lendo, ouvindo ou vendo vídeos) a criar as artes no celular ou no computador.</p>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 3: A Guerra dos Pixels</div>
-                    <div class="timeline-desc">GIMP (Cirúrgico e Leve) vs Photoshop. Domínio da imagem pura sem travar o seu PC.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-title">Fase 4: Interfaces e O Seu Império</div>
-                    <div class="timeline-desc">Sistemas de agendamento para comércios locais. O código de ouro: Nos produtos puramente digitais, <strong>100% do lucro vai para você</strong>.</div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        <h3>Cria os primeiros modelos práticos</h3>
+                        <p>Faz os panfletos de teste para o Pet Shop, para a Rdesk e para uma sorveteria fictícia.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- BLOCO 4: COMPROMISSO E VÍDEO 2 -->
+        <!-- BLOCO 4: COMPROMISSO E FECHAMENTO -->
         <div class="block" id="secao-compromisso">
-            <h2 class="headline" style="color: #FFF;">O Peso do Compromisso</h2>
+            <h2 class="headline" style="color: #FFF;">O Nosso Acordo de Compromisso</h2>
             <div class="highlight-box" style="border-color: var(--success);">
-                <p class="text-body">A entrada é gratuita. O treinamento inicial é gratuito. Mas blindamos o sistema contra preguiçosos.</p>
-                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Você assinará um contrato experimental de 5 semanas usando a criptografia do GOV.BR, com exigência de testemunhas (familiares ou amigos). O preço que você paga é o seu compromisso social de não desistir.</p>
+                <p class="text-body">O treinamento é totalmente gratuito e você não paga nada para entrar. Mas exigimos dedicação e vontade real de vencer.</p>
+                <p class="text-body" style="margin: 0; font-weight: bold; color: #FFF;">Você assinará um contrato simples de 5 semanas para garantir que vai levar o aprendizado a sério e não vai desistir no meio do caminho.</p>
             </div>
 
             <!-- VÍDEO 2: FECHAMENTO -->
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-top: 40px; margin-bottom: 30px; border-radius: 12px; overflow: hidden;">
+            <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border: 2px solid #333; box-shadow: var(--border-glow); margin-top: 30px; margin-bottom: 25px; border-radius: 12px; overflow: hidden;">
                 <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
                     src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" 
                     title="YouTube video player" 
@@ -302,16 +306,16 @@
 
             <!-- CTA WHATSAPP -->
             <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20acabei%20de%20ler%20o%20cartaz%20na%20rua%20e%20quero%20saber%20mais%20como%20funciona%20a%20RDESK.%20Quero%20transformar%20minha%20vida%20e%20estou%20cansado%20de%20ganhar%20pouco." class="cta-btn">
-                [ QUERO COMEÇAR HOJE ]
+                [ QUERO COMEÇAR MINHA JORNADA ]
             </a>
-            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 20px;">Ao clicar, você será enviado à central do WhatsApp para receber as instruções do Onboarding e liberar sua esteira.</p>
+            <p style="text-align: center; font-size: 0.9rem; color: #9CA3AF; margin-top: 15px;">Ao clicar, você vai direto para o WhatsApp do Robert receber as instruções.</p>
         </div>
 
     </div>
 
-    <!-- JAVASCRIPT DE ROLAGEM E CÁLCULO COMERCIAL DINÂMICO -->
+    <!-- JAVASCRIPT SIMPLES E EFICIENTE -->
     <script>
-        // 1. Barra de Progresso Inteligente
+        // Barra de Progresso Suave
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -319,13 +323,12 @@
             document.getElementById("progress-bar").style.width = scrolled + "%";
 
             let statusText = document.getElementById("status-text");
-            if(scrolled < 25) { statusText.innerText = "IMPACTO INICIAL"; }
-            else if(scrolled < 60) { statusText.innerText = "ENGENHARIA DE GANHOS"; }
-            else if(scrolled < 85) { statusText.innerText = "ARSENAL TÉCNICO"; }
-            else { statusText.innerText = "COMPROMISSO SOCIAL"; statusText.style.color = "#00FF66"; }
+            if(scrolled < 30) { statusText.innerText = "PASSO 1: CONHEÇA A OPORTUNIDADE"; }
+            else if(scrolled < 70) { statusText.innerText = "PASSO 2: SIMULE SEUS GANHOS"; }
+            else { statusText.innerText = "PASSO 3: CHAME NO WHATSAPP"; statusText.style.color = "#00FF66"; }
         };
 
-        // 2. Simulador Comercial Dinâmico (Combo Produtos)
+        // Simulador de Pedido Comercial
         const checkboxes = document.querySelectorAll('.calc-item');
         const elVenda = document.getElementById('res-venda');
         const elMargem = document.getElementById('res-margem');
@@ -347,7 +350,6 @@
             let totalMargem = totalVenda - totalCusto;
             if(totalMargem < 0) totalMargem = 0;
 
-            // Tier de comissão de 30% para pacotes completos
             let comissaoBase = totalMargem * 0.30;
             let bonusCanva = comissaoBase * 0.15;
             let totalLiquido = comissaoBase + bonusCanva;
