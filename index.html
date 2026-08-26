@@ -3,183 +3,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK DESIGN | O Jogo do Dinheiro Rápido</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>RDESK DESIGN × CASA DE OFÍCIOS | O Caminho do Coelho</title>
+    
+    <!-- Fonts de Alto Impacto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-carbon: #0F1115;
-            --surface: #181B22;
-            --text-white: #FFFFFF;
-            --highlight: #FFEA00;
-            --success: #00FF66;
+            --bg-carbon: #0B0D11;
+            --surface-card: #141822;
+            --surface-hover: #1D2331;
+            --border-color: #2A3245;
+            --text-main: #FFFFFF;
+            --text-muted: #9CA3AF;
+            
             --neon-pink: #FF007F;
-            --neon-cyan: #00BFFF;
-            --border-glow: 0 0 20px rgba(255, 0, 127, 0.3);
+            --neon-cyan: #00F0FF;
+            --success-green: #00FF66;
+            --gold-yellow: #FFD700;
+            
+            --glow-pink: 0 0 25px rgba(255, 0, 127, 0.4);
+            --glow-cyan: 0 0 25px rgba(0, 240, 255, 0.3);
+            --glow-green: 0 0 30px rgba(0, 255, 102, 0.35);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-carbon);
-            color: var(--text-white);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
             background-image: 
+                radial-gradient(circle at 50% 0%, rgba(255, 0, 127, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
                 linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 25px 25px;
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
         }
 
-        h1, h2, h3 { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-
-        .container { max-width: 550px; margin: 0 auto; padding: 25px 15px; }
-
-        /* LOGO E TOPO */
-        .logo {
-            font-family: 'Anton', sans-serif; font-size: 3rem; text-align: center;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            margin-bottom: 20px; line-height: 1;
+        h1, h2, h3, h4 { 
+            font-family: 'Anton', sans-serif; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
         }
 
-        /* VÍDEO DESTACADO */
+        .container { 
+            max-width: 580px; 
+            margin: 0 auto; 
+            padding: 30px 18px 50px 18px; 
+        }
+
+        /* HEADER & RABBIT BADGE */
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 0, 127, 0.12);
+            border: 1px solid var(--neon-pink);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #FF80BF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 auto 15px auto;
+            box-shadow: var(--glow-pink);
+        }
+
+        .logo-title {
+            font-size: 3.2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #FFFFFF 0%, #00F0FF 50%, #FF007F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 0.95;
+            margin-bottom: 8px;
+        }
+
+        .sub-tagline {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .sub-tagline strong { color: var(--gold-yellow); }
+
+        /* HERO CARD: O CAMINHO DO COELHO */
+        .story-hero-card {
+            background: linear-gradient(160deg, #1A1F2C 0%, #11141C 100%);
+            border: 1.5px solid var(--neon-cyan);
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 25px;
+            box-shadow: var(--glow-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-hero-card::before {
+            content: "🐇";
+            position: absolute;
+            right: -10px;
+            bottom: -15px;
+            font-size: 5.5rem;
+            opacity: 0.12;
+            transform: rotate(-15deg);
+        }
+
+        .story-hero-card h2 {
+            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .story-hero-card p {
+            font-size: 0.92rem;
+            color: #E2E8F0;
+            line-height: 1.5;
+        }
+
+        /* VIDEO CONTAINER */
         .video-box {
-            position: relative; width: 100%; aspect-ratio: 16/9; background: #000;
-            border: 2px solid var(--neon-cyan); border-radius: 12px; overflow: hidden;
-            box-shadow: var(--border-glow); margin-bottom: 25px;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 2px solid var(--neon-pink);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--glow-pink);
+            margin-bottom: 25px;
         }
-        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0; }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* HEADLINE DE ALTO IMPACTO */
-        .main-title {
-            font-size: 1.8rem; color: var(--highlight); text-align: center; margin-bottom: 20px; line-height: 1.2;
+        /* HEADLINE PRINCIPAL */
+        .main-headline {
+            font-size: 1.8rem;
+            color: var(--gold-yellow);
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
         }
 
-        /* CARDS DE HISTÓRIA */
+        /* GRID DE CASOS PRÁTICOS */
         .story-grid {
-            display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 30px;
         }
-        .story-pill {
-            background: var(--surface); border: 1px solid #2A303C; border-radius: 10px; padding: 15px;
-            display: flex; align-items: flex-start; gap: 15px;
+
+        .story-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: transform 0.2s, border-color 0.2s;
         }
-        .story-icon { font-size: 2rem; background: rgba(0,191,255,0.1); padding: 8px 12px; border-radius: 8px; flex-shrink: 0; }
-        .story-text h4 { color: #FFF; font-size: 1.05rem; margin-bottom: 4px; }
-        .story-text p { color: #9CA3AF; font-size: 0.9rem; line-height: 1.4; }
+
+        .story-card:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        .story-icon {
+            font-size: 2.2rem;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 10px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-content h4 {
+            color: #FFF;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .story-content p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.45;
+        }
 
         /* CAIXA DE MENTALIDADE */
         .mindset-box {
-            background: linear-gradient(145deg, #181B22 0%, #1c2636 100%);
-            border: 2px solid var(--highlight); border-radius: 12px; padding: 22px 18px; margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(255, 234, 0, 0.1); text-align: center;
+            background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(24,27,34,1) 100%);
+            border: 2px solid var(--gold-yellow);
+            border-radius: 16px;
+            padding: 22px 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.12);
         }
-        .mindset-box h3 { color: var(--highlight); font-size: 1.3rem; margin-bottom: 8px; }
-        .mindset-box p { color: #E5E7EB; font-size: 0.95rem; line-height: 1.5; }
-        .mindset-highlight { color: var(--success); font-weight: 900; }
+
+        .mindset-box h3 { color: var(--gold-yellow); font-size: 1.35rem; margin-bottom: 8px; }
+        .mindset-box p { color: #E2E8F0; font-size: 0.92rem; }
+        .mindset-highlight { color: var(--success-green); font-weight: 800; }
 
         /* SIMULADOR INTERATIVO */
         .calculator-card {
-            background: var(--surface); border: 2px solid var(--neon-pink); border-radius: 14px;
-            padding: 20px 15px; box-shadow: 0 10px 30px rgba(255,0,127,0.15); margin-bottom: 25px;
+            background: var(--surface-card);
+            border: 2px solid var(--neon-pink);
+            border-radius: 20px;
+            padding: 24px 18px;
+            box-shadow: 0 10px 35px rgba(255, 0, 127, 0.18);
+            margin-bottom: 30px;
         }
-        .calc-title { font-size: 1.2rem; color: #FFF; text-align: center; margin-bottom: 5px; }
-        .calc-subtitle { font-size: 0.85rem; color: #9CA3AF; text-align: center; margin-bottom: 15px; }
 
-        /* SLIDER DE CLIENTES (ATÉ 12) */
-        .slider-section {
-            background: rgba(0,0,0,0.4); border: 1px solid #333; padding: 15px; border-radius: 10px; margin-bottom: 15px;
+        .calc-header-title { font-size: 1.4rem; color: #FFF; text-align: center; margin-bottom: 4px; }
+        .calc-header-sub { font-size: 0.88rem; color: var(--text-muted); text-align: center; margin-bottom: 20px; }
+
+        /* SLIDER DE CLIENTES */
+        .slider-box {
+            background: rgba(0,0,0,0.45);
+            border: 1px solid var(--border-color);
+            padding: 18px;
+            border-radius: 14px;
+            margin-bottom: 20px;
         }
-        .slider-label { font-size: 0.9rem; color: #D1D5DB; margin-bottom: 8px; text-align: center; font-weight: 700; }
-        .slider-label span { color: var(--neon-cyan); font-family: 'Anton'; font-size: 1.2rem; }
-        
-        input[type=range] { width: 100%; margin: 10px 0; appearance: none; background: transparent; cursor: pointer; }
+
+        .slider-title {
+            font-size: 0.92rem;
+            color: #D1D5DB;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .slider-title span {
+            color: var(--neon-cyan);
+            font-family: 'Anton';
+            font-size: 1.35rem;
+            margin-left: 4px;
+        }
+
+        input[type=range] {
+            width: 100%;
+            margin: 10px 0;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
         input[type=range]::-webkit-slider-thumb {
-            appearance: none; height: 30px; width: 30px; border-radius: 50%;
-            background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan);
-        }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: #333; border-radius: 3px; }
-
-        .product-option {
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(255,255,255,0.03); border: 1px solid #262B37; padding: 12px;
-            margin-bottom: 8px; border-radius: 8px; cursor: pointer; transition: all 0.2s;
-        }
-        .product-option:hover { border-color: var(--neon-cyan); }
-        .product-option input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--neon-pink); cursor: pointer; }
-        .product-label { flex: 1; margin-left: 12px; font-weight: 700; font-size: 0.9rem; color: #E5E7EB; }
-        .product-price { font-family: 'Anton'; font-size: 1.1rem; color: var(--highlight); }
-
-        /* PAINEL DE DINHEIRO NO BOLSO */
-        .money-box {
-            background: #000; border: 2px dashed var(--success); border-radius: 10px; padding: 15px; text-align: center; margin-top: 15px;
-        }
-        .money-box p { font-size: 0.85rem; color: #9CA3AF; text-transform: uppercase; font-weight: bold; }
-        .money-value { font-family: 'Anton'; font-size: 2.6rem; color: var(--success); display: block; margin-top: 2px; }
-        
-        .emotional-feedback {
-            background: rgba(0, 255, 102, 0.08); border-left: 4px solid var(--success);
-            padding: 12px; border-radius: 0 8px 8px 0; margin-top: 15px; font-size: 0.9rem; color: #E5E7EB; text-align: left;
-            font-weight: 600; line-height: 1.4;
+            appearance: none;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+            cursor: pointer;
+            margin-top: -12px;
         }
 
-        /* NOVA CAIXA DE REVELAÇÃO DO SALÁRIO MÍNIMO (ENTRE O SIMULADOR E O VÍDEO) */
-        .salary-insight-box {
-            background: linear-gradient(135deg, rgba(0,255,102,0.1) 0%, rgba(0,191,255,0.08) 100%);
-            border: 2px solid var(--success); border-radius: 12px; padding: 22px 18px; margin-bottom: 30px;
-            box-shadow: 0 0 25px rgba(0,255,102,0.15); text-align: center;
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            background: #252B3B;
+            border-radius: 4px;
         }
-        .salary-insight-box h3 { color: var(--success); font-size: 1.35rem; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0,255,102,0.3); }
-        .salary-insight-box p { color: #E5E7EB; font-size: 0.95rem; line-height: 1.6; margin-bottom: 12px; }
-        .salary-insight-box p strong { color: var(--highlight); }
+
+        /* LISTA DE PRODUTOS SELECIONÁVEIS */
+        .section-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+        }
+
+        .product-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.025);
+            border: 1px solid var(--border-color);
+            padding: 14px 14px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .product-item:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 240, 255, 0.03);
+        }
+
+        .product-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--neon-pink);
+            cursor: pointer;
+        }
+
+        .product-name {
+            flex: 1;
+            margin-left: 12px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: #E2E8F0;
+        }
+
+        .product-val {
+            font-family: 'Anton';
+            font-size: 1.15rem;
+            color: var(--gold-yellow);
+        }
+
+        /* RESULTADO / PAINEL */
+        .money-panel {
+            background: #080A0E;
+            border: 2px dashed var(--success-green);
+            border-radius: 14px;
+            padding: 18px 15px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0,255,102,0.08);
+        }
+
+        .money-panel p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .money-val {
+            font-family: 'Anton';
+            font-size: 2.8rem;
+            color: var(--success-green);
+            display: block;
+            margin-top: 2px;
+            text-shadow: 0 0 15px rgba(0,255,102,0.4);
+        }
+
+        .emotional-box {
+            background: rgba(0, 255, 102, 0.08);
+            border-left: 4px solid var(--success-green);
+            padding: 14px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #E2E8F0;
+            text-align: left;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+
+        /* INSIGHT SALÁRIO MÍNIMO */
+        .salary-box {
+            background: linear-gradient(135deg, rgba(0,255,102,0.12) 0%, rgba(0,240,255,0.08) 100%);
+            border: 2px solid var(--success-green);
+            border-radius: 16px;
+            padding: 24px 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: var(--glow-green);
+        }
+
+        .salary-box h3 {
+            color: var(--success-green);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0,255,102,0.3);
+        }
+
+        .salary-box p {
+            color: #E2E8F0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .salary-box p strong { color: var(--gold-yellow); }
+
         .salary-badge {
-            display: inline-block; background: var(--success); color: #000; font-family: 'Anton';
-            font-size: 1rem; padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(0,255,102,0.4);
+            display: inline-block;
+            background: var(--success-green);
+            color: #000;
+            font-family: 'Anton';
+            font-size: 1.05rem;
+            padding: 6px 18px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0,255,102,0.5);
         }
 
-        /* BOTÃO GIGANTE DE AÇÃO (CTA) */
+        /* BOTÃO CTA WHATSAPP */
         .cta-btn {
-            display: block; width: 100%; background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            color: #FFF; text-align: center; padding: 20px; font-family: 'Anton'; font-size: 1.4rem;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 1px; border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.5); transition: transform 0.1s; cursor: pointer;
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+            color: #FFF;
+            text-align: center;
+            padding: 22px;
+            font-family: 'Anton';
+            font-size: 1.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 14px;
+            box-shadow: 0 12px 30px rgba(255, 0, 127, 0.45);
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .cta-btn:active { transform: scale(0.97); }
 
-        .footer-note { text-align: center; font-size: 0.8rem; color: #6B7280; margin-top: 15px; }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.5);
+        }
+
+        .cta-btn:active { transform: scale(0.98); }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 16px;
+            font-weight: 600;
+        }
+
+        .footer-note strong { color: #FFF; }
     </style>
 </head>
 <body>
 
     <div class="container">
         
-        <!-- LOGO -->
-        <div class="logo">RDESK DESIGN</div>
+        <!-- HEADER SOCIAL & BRAND -->
+        <div style="text-align: center;">
+            <div class="header-badge">
+                <span>🐇 O CAMINHO DO COELHO</span> • <span>CASA DE OFÍCIOS</span>
+            </div>
+            <h1 class="logo-title">RDESK DESIGN</h1>
+            <p class="sub-tagline">Transformando a Força do Comércio Local & do Design Social em <strong>Autonomia Financeira</strong></p>
+        </div>
+
+        <!-- HERO CARD: O QUE É O CARTÃO DO COELHO -->
+        <div class="story-hero-card">
+            <h2>🎯 VOCÊ SEGUIU O COELHO!</h2>
+            <p>Se você chegou até aqui através do <strong>cartão kraft do coelho</strong>, você está diante da porta de entrada da nossa ativação espacial. O segredo não é trabalhar mais, é aplicar a estratégia certa nos comércios e ateliês da sua região.</p>
+        </div>
 
         <!-- VÍDEO PRINCIPAL DE IMPACTO -->
         <div class="video-box">
-            <iframe src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" title="Video" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" title="Vídeo Principal RDESK" allowfullscreen></iframe>
         </div>
 
-        <h1 class="main-title">Quer ganhar dinheiro rápido atendendo o comércio local? Veja como é fácil:</h1>
+        <h1 class="main-headline">Quer faturar rápido atendendo o comércio e artesãos locais? Veja como é simples:</h1>
 
-        <!-- HISTÓRIAS REAIS -->
+        <!-- HISTÓRIAS REAIS E PRÁTICAS -->
         <div class="story-grid">
-            <div class="story-pill">
+            <div class="story-card">
                 <div class="story-icon">🐶</div>
-                <div class="story-text">
+                <div class="story-content">
                     <h4>O Caso do Pet Shop</h4>
-                    <p>Você entra para vender panfletos, observou que tem delivery e vendeu ímãs, avental para os banhistas e copo térmico para a dona!</p>
+                    <p>Você entra para oferecer panfletos, percebe o serviço de delivery e fecha o combo: ímãs de geladeira, avental para os banhistas e copo térmico para a dona!</p>
                 </div>
             </div>
 
-            <div class="story-pill" style="border-color: var(--neon-pink);">
+            <div class="story-card" style="border-color: var(--neon-pink);">
                 <div class="story-icon">🍺</div>
-                <div class="story-text">
+                <div class="story-content">
                     <h4>O Caso do Bar do Bigode</h4>
-                    <p>O dono pediu um banner de Saque. O vendedor colocou a placa de acrílico pro PIX, organizou o Wi-Fi para VISITANTES e ainda vendeu adesivos para copão!</p>
+                    <p>O dono pediu apenas um banner de Saque. O vendedor instalou a placa de acrílico pro PIX, organizou o Wi-Fi para Visitantes e vendeu adesivos para copão!</p>
+                </div>
+            </div>
+
+            <div class="story-card" style="border-color: var(--success-green);">
+                <div class="story-icon">🧵</div>
+                <div class="story-content">
+                    <h4>O Ateliê e Mães da Cabana</h4>
+                    <p>Conectando produtos artesanais à comunicação visual moderna, permitindo geração de renda direta e autonomia para quem produz no aglomerado.</p>
                 </div>
             </div>
         </div>
@@ -187,87 +505,85 @@
         <!-- CAIXA DE MENTALIDADE -->
         <div class="mindset-box">
             <h3>🎯 O SEGREDO: 3 A 4 CLIENTES POR SEMANA</h3>
-            <p>Esqueça a ideia maluca de atender 10 ou 20 pessoas por semana. O segredo para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É totalmente possível, está na sua rua e começa com a nossa força motriz: o panfleto!</p>
+            <p>Esqueça a ideia maluca de tentar atender dezenas de clientes sem foco. A chave para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É simples, realista e começa com a força do panfleto!</p>
         </div>
 
         <!-- SIMULADOR INTERATIVO -->
         <div class="calculator-card">
-            <div class="calc-title">⚡ Simulador de Faturamento Real:</div>
-            <div class="calc-subtitle">Começa com o panfleto. Selecione os outros itens e veja o combo crescer!</div>
+            <div class="calc-header-title">⚡ Simulador de Faturamento Real</div>
+            <div class="calc-header-sub">Monte o pacote do cliente e veja o dinheiro limpo no seu bolso por semana!</div>
             
-            <!-- SELETOR DE CLIENTES (ATÉ 12, PADRÃO 3) -->
-            <div class="slider-section">
-                <div class="slider-label">Quantos lojistas você vai fechar na semana? <span id="client-count">3 Clientes</span></div>
+            <!-- SELETOR DE CLIENTES -->
+            <div class="slider-box">
+                <div class="slider-title">Quantos lojistas vai fechar na semana? <span id="client-count">3 Clientes</span></div>
                 <input type="range" id="client-slider" min="1" max="12" value="3">
             </div>
 
-            <div style="font-size: 0.8rem; color: #9CA3AF; margin-bottom: 10px; text-transform: uppercase; font-weight: bold;">Monte o pacote do lojista:</div>
+            <div class="section-label">Monte o pacote do lojista / artesão:</div>
 
-            <label class="product-option">
+            <label class="product-item">
                 <input type="checkbox" class="calc-item" data-sale="184.95" data-cost="48.09">
-                <span class="product-label">Copão Metálico (Patroa)</span>
-                <span class="product-price">R$ 184,95</span>
+                <span class="product-name">Copão Metálico (Patroa)</span>
+                <span class="product-val">R$ 184,95</span>
             </label>
 
-            <label class="product-option">
+            <label class="product-item">
                 <input type="checkbox" class="calc-item" data-sale="274.95" data-cost="71.49">
-                <span class="product-label">1.000 Cartões Fidelidade</span>
-                <span class="product-price">R$ 274,95</span>
+                <span class="product-name">1.000 Cartões Fidelidade</span>
+                <span class="product-val">R$ 274,95</span>
             </label>
 
-            <!-- TORQUE INICIAL (MARCADO POR PADRÃO) -->
-            <label class="product-option" style="border-color: var(--success); background: rgba(0,255,102,0.03);">
+            <label class="product-item" style="border-color: var(--success-green); background: rgba(0,255,102,0.04);">
                 <input type="checkbox" class="calc-item" data-sale="309.95" data-cost="80.59" checked>
-                <span class="product-label">📄 1.000 Panfletos de Rua (Inicial)</span>
-                <span class="product-price">R$ 309,95</span>
+                <span class="product-name">📄 1.000 Panfletos de Rua (Torque Inicial)</span>
+                <span class="product-val">R$ 309,95</span>
             </label>
 
-            <label class="product-option">
+            <label class="product-item">
                 <input type="checkbox" class="calc-item" data-sale="439.95" data-cost="114.39">
-                <span class="product-label">5 Aventais para Banhistas</span>
-                <span class="product-price">R$ 439,95</span>
+                <span class="product-name">5 Aventais Personalizados</span>
+                <span class="product-val">R$ 439,95</span>
             </label>
 
-            <label class="product-option">
+            <label class="product-item">
                 <input type="checkbox" class="calc-item" data-sale="1039.95" data-cost="270.39">
-                <span class="product-label">1.000 Ímãs de Geladeira</span>
-                <span class="product-price">R$ 1.039,95</span>
+                <span class="product-name">1.000 Ímãs de Geladeira</span>
+                <span class="product-val">R$ 1.039,95</span>
             </label>
 
             <!-- CAIXA DE RESULTADO -->
-            <div class="money-box">
+            <div class="money-panel">
                 <p>Dinheiro limpo no seu bolso por semana:</p>
-                <span class="money-value" id="res-total">R$ 0,00</span>
+                <span class="money-val" id="res-total">R$ 237,39</span>
                 
-                <!-- TERMÔMETRO EMOCIONAL DINÂMICO -->
-                <div class="emotional-feedback" id="emotional-msg">
-                    🔥 Vamos lá! Marque os produtos e veja o poder do torque inicial na sua esteira de ganhos.
+                <div class="emotional-box" id="emotional-msg">
+                    🚀 Perfeito! Fechando 3 lojistas por semana com o combo, você coloca cerca de <strong>R$ 949,55</strong> limpos no mês. Meta realista e totalmente alcançável!
                 </div>
             </div>
         </div>
 
-        <!-- 🚀 AQUI ENTRA A NOVA CAIXA MAGNÉTICA: O PODER DOS 2 PRODUTOS -->
-        <div class="salary-insight-box">
+        <!-- MÁGICA DOS 2 PRODUTOS -->
+        <div class="salary-box">
             <h3>⚡ A MÁGICA DOS 2 PRODUTOS POR CLIENTE</h3>
-            <p>Olha que loucura: se você mantiver os mesmos <strong>3 clientes na semana</strong> e adicionar apenas <strong>1 produto a mais</strong> (marcando o <strong>Panfleto de Rua</strong> para atrair o cliente + o <strong>Cartão Fidelidade</strong> para ele reter o público)...</p>
-            <p>Você já fatura <strong>mais de um salário mínimo limpo</strong> no mês trabalhando com pouquíssimos lojistas!</p>
-            <div class="salary-badge">🔥 O Salário Mínimo Superado com Apenas 2 Itens!</div>
+            <p>Se você mantiver os mesmos <strong>3 clientes na semana</strong> e adicionar apenas <strong>1 produto a mais</strong> (ex: Panfleto para atrair + Cartão Fidelidade para reter)...</p>
+            <p>Você ultrapassa <strong>um salário mínimo limpo por mês</strong> trabalhando com pouquíssimos estabelecimentos!</p>
+            <div class="salary-badge">🔥 Salário Mínimo Superado com Apenas 2 Itens!</div>
         </div>
 
-        <!-- SEGUNDO VÍDEO DE FECHAMENTO -->
-        <div class="video-box" style="border-color: var(--success);">
-            <iframe src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" title="Video 2" allowfullscreen></iframe>
+        <!-- SEGUNDO VÍDEO -->
+        <div class="video-box" style="border-color: var(--success-green);">
+            <iframe src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" title="Vídeo 2 RDESK" allowfullscreen></iframe>
         </div>
 
-        <!-- BOTÃO DE WHATSAPP -->
-        <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20vi%20o%20cartaz%20e%20quero%20faturar%20alto%20com%20a%20RDESK.%20Quero%20receber%20minhas%20instru%C3%A7%C3%B5es!" class="cta-btn">
+        <!-- BOTÃO CTA PRINCIPAL -->
+        <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20vi%20o%20cart%C3%A3o%20do%20coelho%20e%20quero%20come%C3%A7ar%20com%20a%20RDESK!" class="cta-btn">
             [ QUERO COMEÇAR AGORA ]
         </a>
-        <p class="footer-note">Toque no botão para falar direto com o Robert no WhatsApp.</p>
+        <p class="footer-note">Toque no botão para falar direto com o <strong>Robert</strong> no WhatsApp e garantir suas instruções do estande.</p>
 
     </div>
 
-    <!-- SCRIPT DO SIMULADOR -->
+    <!-- SCRIPT DO SIMULADOR REATIVO -->
     <script>
         const checkboxes = document.querySelectorAll('.calc-item');
         const slider = document.getElementById('client-slider');
@@ -301,27 +617,23 @@
 
             elTotal.innerText = "R$ " + totalSemanal.toFixed(2).replace('.', ',');
 
-            // FEEDBACK EMOCIONAL AJUSTADO PARA O RITMO DE ATÉ 12 CLIENTES
             if (totalSemanal === 0) {
-                emotionalMsg.innerHTML = "💡 Selecione pelo menos o panfleto de entrada ou outro item para acionar a força motriz e calcular seus ganhos!";
+                emotionalMsg.innerHTML = "💡 Selecione pelo menos o panfleto de entrada para acionar os cálculos e ver seu potencial de ganho!";
             } else if (numClients <= 2) {
-                emotionalMsg.innerHTML = "💡 Ritmo leve! Fechando 1 ou 2 lojistas por semana com os combos você já fatura uma graninha excelente.";
+                emotionalMsg.innerHTML = `💡 Ritmo leve! Fechando ${numClients} cliente(s) por semana, você já garante <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> extras no mês.`;
             } else if (numClients <= 4) {
-                emotionalMsg.innerHTML = `🚀 Perfeito! Fechando ${numClients} lojistas por semana com o combo, você bota cerca de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no mês. Meta realista e totalmente alcançável!`;
+                emotionalMsg.innerHTML = `🚀 Perfeito! Fechando ${numClients} lojistas por semana com o combo, você bota cerca de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no mês. Meta realista!`;
             } else if (numClients <= 8) {
                 emotionalMsg.innerHTML = `💥 ACELERANDO FORTE! Com ${numClients} clientes na semana, seu faturamento mensal passa de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong>. Você está voando alto!`;
             } else {
-                emotionalMsg.innerHTML = `🔥 NÍVEL MÁXIMO (2 POR DIA)! Chegar a ${numClients} clientes na semana é para quem quer destruir a meta e faturar mais de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> por mês! O céu é o limite!`;
+                emotionalMsg.innerHTML = `🔥 NÍVEL MÁXIMO! Chegar a ${numClients} clientes na semana vai te colocar com mais de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no bolso por mês!`;
             }
         }
 
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', updateCalculator);
-        });
-
+        checkboxes.forEach(cb => cb.addEventListener('change', updateCalculator));
         slider.addEventListener('input', updateCalculator);
-
         updateCalculator();
     </script>
+
 </body>
 </html>
