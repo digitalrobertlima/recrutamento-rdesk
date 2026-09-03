@@ -1,639 +1,499 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK DESIGN × CASA DE OFÍCIOS | O Caminho do Coelho</title>
-    
-    <!-- Fonts de Alto Impacto -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-carbon: #0B0D11;
-            --surface-card: #141822;
-            --surface-hover: #1D2331;
-            --border-color: #2A3245;
-            --text-main: #FFFFFF;
-            --text-muted: #9CA3AF;
-            
-            --neon-pink: #FF007F;
-            --neon-cyan: #00F0FF;
-            --success-green: #00FF66;
-            --gold-yellow: #FFD700;
-            
-            --glow-pink: 0 0 25px rgba(255, 0, 127, 0.4);
-            --glow-cyan: 0 0 25px rgba(0, 240, 255, 0.3);
-            --glow-green: 0 0 30px rgba(0, 255, 102, 0.35);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RDESK DESIGN × Cabana de Ofícios</title>
+  <style>
+    :root {
+      --bg: #0A0A0C;
+      --card-bg: rgba(22, 22, 26, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --copper: #E07A3F;
+      --gold: #D4A373;
+      --gold-glow: rgba(212, 163, 115, 0.25);
+      --text-main: #F4F4F5;
+      --text-muted: #A1A1AA;
+      --whatsapp: #25D366;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        body {
-            background-color: var(--bg-carbon);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 0, 127, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 80% 60%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
-        }
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(224, 122, 63, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(212, 163, 115, 0.06) 0%, transparent 50%);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px 16px 80px;
+    }
 
-        h1, h2, h3, h4 { 
-            font-family: 'Anton', sans-serif; 
-            text-transform: uppercase; 
-            letter-spacing: 1.2px; 
-        }
+    .wrapper {
+      max-width: 460px;
+      width: 100%;
+    }
 
-        .container { 
-            max-width: 580px; 
-            margin: 0 auto; 
-            padding: 30px 18px 50px 18px; 
-        }
+    /* HEADER / BADGE */
+    .brand-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
 
-        /* HEADER & RABBIT BADGE */
-        .header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 0, 127, 0.12);
-            border: 1px solid var(--neon-pink);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: #FF80BF;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 auto 15px auto;
-            box-shadow: var(--glow-pink);
-        }
+    .brand-title {
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--copper);
+    }
 
-        .logo-title {
-            font-size: 3.2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #FFFFFF 0%, #00F0FF 50%, #FF007F 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 0.95;
-            margin-bottom: 8px;
-        }
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .sub-tagline {
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
+    /* HERO BLOCK */
+    .hero {
+      text-align: left;
+      margin-bottom: 28px;
+    }
 
-        .sub-tagline strong { color: var(--gold-yellow); }
+    .hero-tag {
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(224,122,63,0.2), rgba(212,163,115,0.1));
+      border: 1px solid rgba(224,122,63,0.4);
+      color: var(--copper);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 6px 12px;
+      border-radius: 30px;
+      margin-bottom: 14px;
+    }
 
-        /* HERO CARD: O CAMINHO DO COELHO */
-        .story-hero-card {
-            background: linear-gradient(160deg, #1A1F2C 0%, #11141C 100%);
-            border: 1.5px solid var(--neon-cyan);
-            border-radius: 18px;
-            padding: 22px;
-            margin-bottom: 25px;
-            box-shadow: var(--glow-cyan);
-            position: relative;
-            overflow: hidden;
-        }
+    .hero h1 {
+      font-size: 2.2rem;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .story-hero-card::before {
-            content: "🐇";
-            position: absolute;
-            right: -10px;
-            bottom: -15px;
-            font-size: 5.5rem;
-            opacity: 0.12;
-            transform: rotate(-15deg);
-        }
+    .hero p {
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
 
-        .story-hero-card h2 {
-            color: var(--neon-cyan);
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
+    .hero p strong {
+      color: var(--text-main);
+    }
 
-        .story-hero-card p {
-            font-size: 0.92rem;
-            color: #E2E8F0;
-            line-height: 1.5;
-        }
+    /* EXPOSURE CARDS (3 TOTEMS) */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        /* VIDEO CONTAINER */
-        .video-box {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #000;
-            border: 2px solid var(--neon-pink);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--glow-pink);
-            margin-bottom: 25px;
-        }
-        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--card-border);
+    }
 
-        /* HEADLINE PRINCIPAL */
-        .main-headline {
-            font-size: 1.8rem;
-            color: var(--gold-yellow);
-            text-align: center;
-            margin-bottom: 25px;
-            line-height: 1.15;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-        }
+    .totems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
 
-        /* GRID DE CASOS PRÁTICOS */
-        .story-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 30px;
-        }
+    .totem-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
 
-        .story-card {
-            background: var(--surface-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 16px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            transition: transform 0.2s, border-color 0.2s;
-        }
+    .totem-card:hover {
+      border-color: rgba(224, 122, 63, 0.4);
+      transform: translateY(-2px);
+    }
 
-        .story-card:hover {
-            border-color: var(--neon-cyan);
-            transform: translateY(-2px);
-        }
+    .totem-icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      display: block;
+    }
 
-        .story-icon {
-            font-size: 2.2rem;
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 10px;
-            border-radius: 12px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .totem-num {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--copper);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .story-content h4 {
-            color: #FFF;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-        }
+    .totem-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 2px 0 4px;
+    }
 
-        .story-content p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.45;
-        }
+    .totem-desc {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
 
-        /* CAIXA DE MENTALIDADE */
-        .mindset-box {
-            background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, rgba(24,27,34,1) 100%);
-            border: 2px solid var(--gold-yellow);
-            border-radius: 16px;
-            padding: 22px 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.12);
-        }
+    .credit-banner {
+      background: rgba(224, 122, 63, 0.08);
+      border: 1px dashed rgba(224, 122, 63, 0.3);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.82rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
 
-        .mindset-box h3 { color: var(--gold-yellow); font-size: 1.35rem; margin-bottom: 8px; }
-        .mindset-box p { color: #E2E8F0; font-size: 0.92rem; }
-        .mindset-highlight { color: var(--success-green); font-weight: 800; }
+    .credit-banner span {
+      font-size: 1.3rem;
+    }
 
-        /* SIMULADOR INTERATIVO */
-        .calculator-card {
-            background: var(--surface-card);
-            border: 2px solid var(--neon-pink);
-            border-radius: 20px;
-            padding: 24px 18px;
-            box-shadow: 0 10px 35px rgba(255, 0, 127, 0.18);
-            margin-bottom: 30px;
-        }
+    /* CONCEPT vs BUSINESS DUALITY */
+    .duality-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(10px);
+    }
 
-        .calc-header-title { font-size: 1.4rem; color: #FFF; text-align: center; margin-bottom: 4px; }
-        .calc-header-sub { font-size: 0.88rem; color: var(--text-muted); text-align: center; margin-bottom: 20px; }
+    .duality-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
 
-        /* SLIDER DE CLIENTES */
-        .slider-box {
-            background: rgba(0,0,0,0.45);
-            border: 1px solid var(--border-color);
-            padding: 18px;
-            border-radius: 14px;
-            margin-bottom: 20px;
-        }
+    .duality-item:first-child {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 16px;
+    }
 
-        .slider-title {
-            font-size: 0.92rem;
-            color: #D1D5DB;
-            text-align: center;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+    .duality-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
 
-        .slider-title span {
-            color: var(--neon-cyan);
-            font-family: 'Anton';
-            font-size: 1.35rem;
-            margin-left: 4px;
-        }
+    .duality-badge.cabana {
+      background: rgba(212, 163, 115, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(212, 163, 115, 0.3);
+    }
 
-        input[type=range] {
-            width: 100%;
-            margin: 10px 0;
-            appearance: none;
-            background: transparent;
-            cursor: pointer;
-        }
+    .duality-badge.rdesk {
+      background: rgba(224, 122, 63, 0.15);
+      color: var(--copper);
+      border: 1px solid rgba(224, 122, 63, 0.3);
+    }
 
-        input[type=range]::-webkit-slider-thumb {
-            appearance: none;
-            height: 32px;
-            width: 32px;
-            border-radius: 50%;
-            background: var(--neon-cyan);
-            box-shadow: 0 0 15px var(--neon-cyan);
-            cursor: pointer;
-            margin-top: -12px;
-        }
+    .duality-text h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
 
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 8px;
-            background: #252B3B;
-            border-radius: 4px;
-        }
+    .duality-text p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
 
-        /* LISTA DE PRODUTOS SELECIONÁVEIS */
-        .section-label {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-        }
+    /* MENTORSHIP JOURNEY (THE OFFER) */
+    .journey-card {
+      background: linear-gradient(145deg, rgba(224,122,63,0.12) 0%, rgba(20,20,25,0.9) 100%);
+      border: 1px solid rgba(224, 122, 63, 0.3);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 32px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
 
-        .product-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255,255,255,0.025);
-            border: 1px solid var(--border-color);
-            padding: 14px 14px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    .journey-card h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #FFF;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .product-item:hover {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 240, 255, 0.03);
-        }
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-        .product-item input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
-            accent-color: var(--neon-pink);
-            cursor: pointer;
-        }
+    .step-item {
+      display: flex;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-        .product-name {
-            flex: 1;
-            margin-left: 12px;
-            font-weight: 700;
-            font-size: 0.92rem;
-            color: #E2E8F0;
-        }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--copper);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
 
-        .product-val {
-            font-family: 'Anton';
-            font-size: 1.15rem;
-            color: var(--gold-yellow);
-        }
+    .step-info h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 2px;
+    }
 
-        /* RESULTADO / PAINEL */
-        .money-panel {
-            background: #080A0E;
-            border: 2px dashed var(--success-green);
-            border-radius: 14px;
-            padding: 18px 15px;
-            text-align: center;
-            margin-top: 20px;
-            box-shadow: 0 0 20px rgba(0,255,102,0.08);
-        }
+    .step-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
 
-        .money-panel p {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
+    /* GRAND CTA BUTTON */
+    .cta-container {
+      text-align: center;
+    }
 
-        .money-val {
-            font-family: 'Anton';
-            font-size: 2.8rem;
-            color: var(--success-green);
-            display: block;
-            margin-top: 2px;
-            text-shadow: 0 0 15px rgba(0,255,102,0.4);
-        }
+    .cta-heading {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #FFF;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
 
-        .emotional-box {
-            background: rgba(0, 255, 102, 0.08);
-            border-left: 4px solid var(--success-green);
-            padding: 14px;
-            border-radius: 0 10px 10px 0;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #E2E8F0;
-            text-align: left;
-            font-weight: 600;
-            line-height: 1.45;
-        }
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 22px 20px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: #FFFFFF;
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-decoration: none;
+      border-radius: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 
+        0 12px 32px rgba(37, 211, 102, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      animation: pulse 2s infinite;
+      transition: transform 0.2s ease;
+    }
 
-        /* INSIGHT SALÁRIO MÍNIMO */
-        .salary-box {
-            background: linear-gradient(135deg, rgba(0,255,102,0.12) 0%, rgba(0,240,255,0.08) 100%);
-            border: 2px solid var(--success-green);
-            border-radius: 16px;
-            padding: 24px 20px;
-            margin-bottom: 30px;
-            text-align: center;
-            box-shadow: var(--glow-green);
-        }
+    .btn-whatsapp:active {
+      transform: scale(0.97);
+    }
 
-        .salary-box h3 {
-            color: var(--success-green);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(0,255,102,0.3);
-        }
+    .btn-whatsapp svg {
+      width: 26px;
+      height: 26px;
+      fill: currentColor;
+    }
 
-        .salary-box p {
-            color: #E2E8F0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+    .cta-subtext {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
 
-        .salary-box p strong { color: var(--gold-yellow); }
-
-        .salary-badge {
-            display: inline-block;
-            background: var(--success-green);
-            color: #000;
-            font-family: 'Anton';
-            font-size: 1.05rem;
-            padding: 6px 18px;
-            border-radius: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(0,255,102,0.5);
-        }
-
-        /* BOTÃO CTA WHATSAPP */
-        .cta-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
-            color: #FFF;
-            text-align: center;
-            padding: 22px;
-            font-family: 'Anton';
-            font-size: 1.5rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 14px;
-            box-shadow: 0 12px 30px rgba(255, 0, 127, 0.45);
-            transition: all 0.2s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.5);
-        }
-
-        .cta-btn:active { transform: scale(0.98); }
-
-        .footer-note {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 16px;
-            font-weight: 600;
-        }
-
-        .footer-note strong { color: #FFF; }
-    </style>
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+      70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- HEADER SOCIAL & BRAND -->
-        <div style="text-align: center;">
-            <div class="header-badge">
-                <span>🐇 O CAMINHO DO COELHO</span> • <span>CASA DE OFÍCIOS</span>
-            </div>
-            <h1 class="logo-title">RDESK DESIGN</h1>
-            <p class="sub-tagline">Transformando a Força do Comércio Local & do Design Social em <strong>Autonomia Financeira</strong></p>
-        </div>
+  <div class="wrapper">
+    
+    <!-- HEADER -->
+    <header class="brand-header">
+      <div class="brand-title">CABANA DE OFÍCIOS</div>
+      <div class="brand-sub">Escola de Design UEMG</div>
+    </header>
 
-        <!-- HERO CARD: O QUE É O CARTÃO DO COELHO -->
-        <div class="story-hero-card">
-            <h2>🎯 VOCÊ SEGUIU O COELHO!</h2>
-            <p>Se você chegou até aqui através do <strong>cartão kraft do coelho</strong>, você está diante da porta de entrada da nossa ativação espacial. O segredo não é trabalhar mais, é aplicar a estratégia certa nos comércios e ateliês da sua região.</p>
-        </div>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <span class="hero-tag">Encontro Físico × Futuro Profissional</span>
+      <h1>Viu o coelho?<br>Entenda o que está exposto aqui!</h1>
+      <p>Você não encontrou um estande comum. Você encontrou a fusão entre o <strong>fazer artesanal sem limites</strong> e a <strong>estratégia comercial de alto nível</strong>.</p>
+    </section>
 
-        <!-- VÍDEO PRINCIPAL DE IMPACTO -->
-        <div class="video-box">
-            <iframe src="https://www.youtube.com/embed/NsxP9sgPRZY?si=6ho4yamXMHInyiaA" title="Vídeo Principal RDESK" allowfullscreen></iframe>
-        </div>
+    <!-- SECTION 1: OS 3 TOTENS DA VÂNIA -->
+    <div class="section-label">O que você está vendo agora no estande</div>
 
-        <h1 class="main-headline">Quer faturar rápido atendendo o comércio e artesãos locais? Veja como é simples:</h1>
+    <div class="totems-grid">
+      <div class="totem-card">
+        <span class="totem-icon">📿</span>
+        <div class="totem-num">Totem 01</div>
+        <div class="totem-title">Colar Artesanal</div>
+        <div class="totem-desc">Design tátil & autoral</div>
+      </div>
 
-        <!-- HISTÓRIAS REAIS E PRÁTICAS -->
-        <div class="story-grid">
-            <div class="story-card">
-                <div class="story-icon">🐶</div>
-                <div class="story-content">
-                    <h4>O Caso do Pet Shop</h4>
-                    <p>Você entra para oferecer panfletos, percebe o serviço de delivery e fecha o combo: ímãs de geladeira, avental para os banhistas e copo térmico para a dona!</p>
-                </div>
-            </div>
+      <div class="totem-card">
+        <span class="totem-icon">📿</span>
+        <div class="totem-num">Totem 02</div>
+        <div class="totem-title">Colar Artesanal em couríno</div>
+        <div class="totem-desc">Conceito e textura</div>
+      </div>
 
-            <div class="story-card" style="border-color: var(--neon-pink);">
-                <div class="story-icon">🍺</div>
-                <div class="story-content">
-                    <h4>O Caso do Bar do Bigode</h4>
-                    <p>O dono pediu apenas um banner de Saque. O vendedor instalou a placa de acrílico pro PIX, organizou o Wi-Fi para Visitantes e vendeu adesivos para copão!</p>
-                </div>
-            </div>
-
-            <div class="story-card" style="border-color: var(--success-green);">
-                <div class="story-icon">🧵</div>
-                <div class="story-content">
-                    <h4>O Ateliê e Mães da Cabana</h4>
-                    <p>Conectando produtos artesanais à comunicação visual moderna, permitindo geração de renda direta e autonomia para quem produz no aglomerado.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- CAIXA DE MENTALIDADE -->
-        <div class="mindset-box">
-            <h3>🎯 O SEGREDO: 3 A 4 CLIENTES POR SEMANA</h3>
-            <p>Esqueça a ideia maluca de tentar atender dezenas de clientes sem foco. A chave para mudar de vida é fechar com apenas <span class="mindset-highlight">3 a 4 lojistas por semana</span> aplicando o combo completo. É simples, realista e começa com a força do panfleto!</p>
-        </div>
-
-        <!-- SIMULADOR INTERATIVO -->
-        <div class="calculator-card">
-            <div class="calc-header-title">⚡ Simulador de Faturamento Real</div>
-            <div class="calc-header-sub">Monte o pacote do cliente e veja o dinheiro limpo no seu bolso por semana!</div>
-            
-            <!-- SELETOR DE CLIENTES -->
-            <div class="slider-box">
-                <div class="slider-title">Quantos lojistas vai fechar na semana? <span id="client-count">3 Clientes</span></div>
-                <input type="range" id="client-slider" min="1" max="12" value="3">
-            </div>
-
-            <div class="section-label">Monte o pacote do lojista / artesão:</div>
-
-            <label class="product-item">
-                <input type="checkbox" class="calc-item" data-sale="184.95" data-cost="48.09">
-                <span class="product-name">Copão Metálico (Patroa)</span>
-                <span class="product-val">R$ 184,95</span>
-            </label>
-
-            <label class="product-item">
-                <input type="checkbox" class="calc-item" data-sale="274.95" data-cost="71.49">
-                <span class="product-name">1.000 Cartões Fidelidade</span>
-                <span class="product-val">R$ 274,95</span>
-            </label>
-
-            <label class="product-item" style="border-color: var(--success-green); background: rgba(0,255,102,0.04);">
-                <input type="checkbox" class="calc-item" data-sale="309.95" data-cost="80.59" checked>
-                <span class="product-name">📄 1.000 Panfletos de Rua (Torque Inicial)</span>
-                <span class="product-val">R$ 309,95</span>
-            </label>
-
-            <label class="product-item">
-                <input type="checkbox" class="calc-item" data-sale="439.95" data-cost="114.39">
-                <span class="product-name">5 Aventais Personalizados</span>
-                <span class="product-val">R$ 439,95</span>
-            </label>
-
-            <label class="product-item">
-                <input type="checkbox" class="calc-item" data-sale="1039.95" data-cost="270.39">
-                <span class="product-name">1.000 Ímãs de Geladeira</span>
-                <span class="product-val">R$ 1.039,95</span>
-            </label>
-
-            <!-- CAIXA DE RESULTADO -->
-            <div class="money-panel">
-                <p>Dinheiro limpo no seu bolso por semana:</p>
-                <span class="money-val" id="res-total">R$ 237,39</span>
-                
-                <div class="emotional-box" id="emotional-msg">
-                    🚀 Perfeito! Fechando 3 lojistas por semana com o combo, você coloca cerca de <strong>R$ 949,55</strong> limpos no mês. Meta realista e totalmente alcançável!
-                </div>
-            </div>
-        </div>
-
-        <!-- MÁGICA DOS 2 PRODUTOS -->
-        <div class="salary-box">
-            <h3>⚡ A MÁGICA DOS 2 PRODUTOS POR CLIENTE</h3>
-            <p>Se você mantiver os mesmos <strong>3 clientes na semana</strong> e adicionar apenas <strong>1 produto a mais</strong> (ex: Panfleto para atrair + Cartão Fidelidade para reter)...</p>
-            <p>Você ultrapassa <strong>um salário mínimo limpo por mês</strong> trabalhando com pouquíssimos estabelecimentos!</p>
-            <div class="salary-badge">🔥 Salário Mínimo Superado com Apenas 2 Itens!</div>
-        </div>
-
-        <!-- SEGUNDO VÍDEO -->
-        <div class="video-box" style="border-color: var(--success-green);">
-            <iframe src="https://www.youtube.com/embed/VRs7H5ZF1-Y?si=oSUHFhv75XvvAjLf" title="Vídeo 2 RDESK" allowfullscreen></iframe>
-        </div>
-
-        <!-- BOTÃO CTA PRINCIPAL -->
-        <a href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert%2C%20eu%20vi%20o%20cart%C3%A3o%20do%20coelho%20e%20quero%20come%C3%A7ar%20com%20a%20RDESK!" class="cta-btn">
-            [ QUERO COMEÇAR AGORA ]
-        </a>
-        <p class="footer-note">Toque no botão para falar direto com o <strong>Robert</strong> no WhatsApp e garantir suas instruções do estande.</p>
-
+      <div class="totem-card">
+        <span class="totem-icon">✨</span>
+        <div class="totem-num">Totem 03</div>
+        <div class="totem-title">2 Pulseiras artesanais</div>
+        <div class="totem-desc">Exposição dupla</div>
+      </div>
     </div>
 
-    <!-- SCRIPT DO SIMULADOR REATIVO -->
-    <script>
-        const checkboxes = document.querySelectorAll('.calc-item');
-        const slider = document.getElementById('client-slider');
-        const clientCountText = document.getElementById('client-count');
-        const elTotal = document.getElementById('res-total');
-        const emotionalMsg = document.getElementById('emotional-msg');
+    <div class="credit-banner">
+      <span>🔨</span>
+      <div>
+        <strong>Cada totem foi feito à mão pela designer Vânia Hypolito.</strong><br>
+        Isso prova que na <em>Cabana de Ofícios</em> o design não tem barreiras.
+      </div>
+    </div>
 
-        function updateCalculator() {
-            let totalVenda = 0;
-            let totalCusto = 0;
+    <!-- SECTION 2: DUALIDADE CONCEITO VS EMPRESA -->
+    <div class="duality-box">
+      <div class="duality-item">
+        <div class="duality-badge cabana">🏛️</div>
+        <div class="duality-text">
+          <h3>Cabana de Ofícios (O Foco Aqui)</h3>
+          <p>Nossa alma criativa. O espaço onde o artesanal, a matéria-prima e a cultura ganham forma sem freios.</p>
+        </div>
+      </div>
 
-            checkboxes.forEach(cb => {
-                if(cb.checked) {
-                    totalVenda += parseFloat(cb.getAttribute('data-sale'));
-                    totalCusto += parseFloat(cb.getAttribute('data-cost'));
-                }
-            });
+      <div class="duality-item">
+        <div class="duality-badge rdesk">🚀</div>
+        <div class="duality-text">
+          <h3>RDESK DESIGN (A Empresa)</h3>
+          <p>O ecossistema estratégico que pega essa energia criativa e transforma em autoridade, mercado e clientes reais.</p>
+        </div>
+      </div>
+    </div>
 
-            let totalMargem = totalVenda - totalCusto;
-            if(totalMargem < 0) totalMargem = 0;
+    <!-- SECTION 3: A MENTORIA / CONVITE -->
+    <section class="journey-card">
+      <h2>🔥 O Convite: Sua Jornada na RDESK</h2>
+      <p style="font-size: 0.85rem; color: #E4E4E7; margin-bottom: 16px; line-height: 1.4;">
+        Não queremos pessoas para preencher vagas genéricas. Queremos criar novos talentos na prática, lado a lado.
+      </p>
 
-            let comissaoBase = totalMargem * 0.30;
-            let bonusCanva = comissaoBase * 0.15;
-            let comboLiquidoUnit = comissaoBase + bonusCanva;
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-info">
+            <h4>Seu 1º Projeto: 1.000 Panfletos</h4>
+            <p>Vou acompanhar você pessoalmente na criação da arte, alinhando estética, impressão e estratégia</p>
+          </div>
+        </div>
 
-            let numClients = parseInt(slider.value);
-            clientCountText.innerText = numClients + (numClients === 1 ? " Cliente" : " Clientes");
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-info">
+            <h4>Garantia dos Primeiros Clientes</h4>
+            <p>Não paramos no arquivo digital. Nós vamos juntos para o mercado e fecharemos seus primeiros clientes reais</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            let totalSemanal = comboLiquidoUnit * numClients;
-            let totalMensal = totalSemanal * 4;
+    <!-- SECTION 4: GRAND CTA -->
+    <div class="cta-container">
+      <div class="cta-heading">
+        Pronto para criar sem limites e fechar seus primeiros clientes?
+      </div>
 
-            elTotal.innerText = "R$ " + totalSemanal.toFixed(2).replace('.', ',');
+      <a 
+        href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert!%20Vi%20o%20coelho%20e%20os%203%20totens%20da%20V%C3%A2nia%20na%20Cabana%20de%20Of%C3%ADcios.%20Quero%20iniciar%20minha%20jornada%20na%20RDESK%20DESIGN%2C%20criar%20meus%201.000%20panfletos%20e%20fechar%20meus%20primeiros%20clientes!" 
+        class="btn-whatsapp"
+        target="_blank"
+      >
+        <svg viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        INICIAR JORNADA DIRETO NO WHATSAPP
+      </a>
 
-            if (totalSemanal === 0) {
-                emotionalMsg.innerHTML = "💡 Selecione pelo menos o panfleto de entrada para acionar os cálculos e ver seu potencial de ganho!";
-            } else if (numClients <= 2) {
-                emotionalMsg.innerHTML = `💡 Ritmo leve! Fechando ${numClients} cliente(s) por semana, você já garante <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> extras no mês.`;
-            } else if (numClients <= 4) {
-                emotionalMsg.innerHTML = `🚀 Perfeito! Fechando ${numClients} lojistas por semana com o combo, você bota cerca de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no mês. Meta realista!`;
-            } else if (numClients <= 8) {
-                emotionalMsg.innerHTML = `💥 ACELERANDO FORTE! Com ${numClients} clientes na semana, seu faturamento mensal passa de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong>. Você está voando alto!`;
-            } else {
-                emotionalMsg.innerHTML = `🔥 NÍVEL MÁXIMO! Chegar a ${numClients} clientes na semana vai te colocar com mais de <strong>R$ ${totalMensal.toFixed(2).replace('.', ',')}</strong> limpos no bolso por mês!`;
-            }
-        }
+      <div class="cta-subtext">
+        Conversa direta com Robert Macedo • (31) 98231-3684
+      </div>
+    </div>
 
-        checkboxes.forEach(cb => cb.addEventListener('change', updateCalculator));
-        slider.addEventListener('input', updateCalculator);
-        updateCalculator();
-    </script>
+  </div>
 
 </body>
 </html>
