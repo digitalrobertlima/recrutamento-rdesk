@@ -1,499 +1,242 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RDESK DESIGN × Cabana de Ofícios</title>
-  <style>
-    :root {
-      --bg: #0A0A0C;
-      --card-bg: rgba(22, 22, 26, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --copper: #E07A3F;
-      --gold: #D4A373;
-      --gold-glow: rgba(212, 163, 115, 0.25);
-      --text-main: #F4F4F5;
-      --text-muted: #A1A1AA;
-      --whatsapp: #25D366;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(224, 122, 63, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(212, 163, 115, 0.06) 0%, transparent 50%);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px 16px 80px;
-    }
-
-    .wrapper {
-      max-width: 460px;
-      width: 100%;
-    }
-
-    /* HEADER / BADGE */
-    .brand-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .brand-title {
-      font-weight: 900;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--copper);
-    }
-
-    .brand-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* HERO BLOCK */
-    .hero {
-      text-align: left;
-      margin-bottom: 28px;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: linear-gradient(90deg, rgba(224,122,63,0.2), rgba(212,163,115,0.1));
-      border: 1px solid rgba(224,122,63,0.4);
-      color: var(--copper);
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 6px 12px;
-      border-radius: 30px;
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size: 2.2rem;
-      line-height: 1.15;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #FFFFFF 30%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: 0.98rem;
-      line-height: 1.5;
-      color: var(--text-muted);
-    }
-
-    .hero p strong {
-      color: var(--text-main);
-    }
-
-    /* EXPOSURE CARDS (3 TOTEMS) */
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--gold);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: var(--card-border);
-    }
-
-    .totems-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .totem-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 14px 10px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .totem-card:hover {
-      border-color: rgba(224, 122, 63, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .totem-icon {
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .totem-num {
-      font-size: 0.65rem;
-      font-weight: 800;
-      color: var(--copper);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .totem-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin: 2px 0 4px;
-    }
-
-    .totem-desc {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      line-height: 1.2;
-    }
-
-    .credit-banner {
-      background: rgba(224, 122, 63, 0.08);
-      border: 1px dashed rgba(224, 122, 63, 0.3);
-      border-radius: 12px;
-      padding: 12px 16px;
-      font-size: 0.82rem;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .credit-banner span {
-      font-size: 1.3rem;
-    }
-
-    /* CONCEPT vs BUSINESS DUALITY */
-    .duality-box {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 28px;
-      backdrop-filter: blur(10px);
-    }
-
-    .duality-item {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-
-    .duality-item:first-child {
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--card-border);
-      margin-bottom: 16px;
-    }
-
-    .duality-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .duality-badge.cabana {
-      background: rgba(212, 163, 115, 0.15);
-      color: var(--gold);
-      border: 1px solid rgba(212, 163, 115, 0.3);
-    }
-
-    .duality-badge.rdesk {
-      background: rgba(224, 122, 63, 0.15);
-      color: var(--copper);
-      border: 1px solid rgba(224, 122, 63, 0.3);
-    }
-
-    .duality-text h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 2px;
-    }
-
-    .duality-text p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-
-    /* MENTORSHIP JOURNEY (THE OFFER) */
-    .journey-card {
-      background: linear-gradient(145deg, rgba(224,122,63,0.12) 0%, rgba(20,20,25,0.9) 100%);
-      border: 1px solid rgba(224, 122, 63, 0.3);
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 32px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .journey-card h2 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #FFF;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .step-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .step-item {
-      display: flex;
-      gap: 12px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .step-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--copper);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .step-info h4 {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #FFF;
-      margin-bottom: 2px;
-    }
-
-    .step-info p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.35;
-    }
-
-    /* GRAND CTA BUTTON */
-    .cta-container {
-      text-align: center;
-    }
-
-    .cta-heading {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: #FFF;
-      margin-bottom: 16px;
-      line-height: 1.3;
-    }
-
-    .btn-whatsapp {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      padding: 22px 20px;
-      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-      color: #FFFFFF;
-      font-size: 1.05rem;
-      font-weight: 900;
-      text-decoration: none;
-      border-radius: 16px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      box-shadow: 
-        0 12px 32px rgba(37, 211, 102, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      animation: pulse 2s infinite;
-      transition: transform 0.2s ease;
-    }
-
-    .btn-whatsapp:active {
-      transform: scale(0.97);
-    }
-
-    .btn-whatsapp svg {
-      width: 26px;
-      height: 26px;
-      fill: currentColor;
-    }
-
-    .cta-subtext {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 12px;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-      70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="wrapper">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RDESK DESIGN // Terminal</title>
     
-    <!-- HEADER -->
-    <header class="brand-header">
-      <div class="brand-title">CABANA DE OFÍCIOS</div>
-      <div class="brand-sub">Escola de Design UEMG</div>
-    </header>
+    <!-- Google Fonts: Space Grotesk (Arquitetura) & JetBrains Mono (Terminal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (Framework Utilitário) -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <span class="hero-tag">Encontro Físico × Futuro Profissional</span>
-      <h1>Viu o coelho?<br>Entenda o que está exposto aqui!</h1>
-      <p>Você não encontrou um estande comum. Você encontrou a fusão entre o <strong>fazer artesanal sem limites</strong> e a <strong>estratégia comercial de alto nível</strong>.</p>
-    </section>
+    <!-- Configuração de Design Tokens & Custom CSS -->
+    <style>
+        :root {
+            --oled: #030304;
+            --kraft: #D4B28C;
+            --cyan: #00F0FF;
+            --white: #F4F4F5;
+            --muted: #27272A;
+        }
 
-    <!-- SECTION 1: OS 3 TOTENS DA VÂNIA -->
-    <div class="section-label">O que você está vendo agora no estande</div>
+        body {
+            background-color: var(--oled);
+            color: var(--white);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+        }
 
-    <div class="totems-grid">
-      <div class="totem-card">
-        <span class="totem-icon">📿</span>
-        <div class="totem-num">Totem 01</div>
-        <div class="totem-title">Colar Estrela em linha, couro e metal</div>
-        <div class="totem-desc">Design tátil & autoral</div>
-      </div>
+        /* Tipografia de Dados */
+        .font-mono-tech {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.02em;
+        }
 
-      <div class="totem-card">
-        <span class="totem-icon">📿</span>
-        <div class="totem-num">Totem 02</div>
-        <div class="totem-title">Colar Peace em couríno e metal</div>
-        <div class="totem-desc">Conceito e textura</div>
-      </div>
+        /* Malha Ortogonal (Grid de Arquitetura Digital) */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(39, 39, 42, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(39, 39, 42, 0.3) 1px, transparent 1px);
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
 
-      <div class="totem-card">
-        <span class="totem-icon">✨</span>
-        <div class="totem-num">Totem 03</div>
-        <div class="totem-title">Pulseiras revestidas em tecido</div>
-        <div class="totem-desc">Exposição dupla</div>
-      </div>
+        /* Scanlines (Efeito TRON/Terminal) */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background-size: 100% 4px;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Botões com recorte angular (Baseado no 'R' da RDESK) */
+        .btn-angular {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .btn-angular:hover {
+            background-color: var(--cyan);
+            color: var(--oled);
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        /* Efeito Hover nas Zonas */
+        .zone-card {
+            border: 1px solid var(--muted);
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .zone-card:hover {
+            border-color: var(--kraft);
+            transform: translateY(-2px);
+        }
+        .zone-card:hover .zone-id {
+            color: var(--cyan);
+        }
+
+        /* Tela de Inicialização (Boot) */
+        #boot-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: var(--oled);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#00F0FF] selection:text-black">
+
+    <!-- Camada 0: Efeitos Visuais -->
+    <div class="bg-grid"></div>
+    <div class="scanlines"></div>
+
+    <!-- Tela de Boot Sequence -->
+    <div id="boot-screen" class="font-mono-tech text-[12px] text-[#00F0FF]">
+        <div id="terminal-output"></div>
+        <div class="mt-2 animate-pulse">_</div>
     </div>
 
-    <div class="credit-banner">
-      <span>🔨</span>
-      <div>
-        <strong>Cada totem foi feito à mão pela designer Vânia Hypolito</strong><br>
-        Isso prova que na <em>Cabana de Ofícios</em> o design não tem barreiras
-      </div>
+    <!-- Camada Principal: HUD e Conteúdo -->
+    <div id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000 max-w-4xl mx-auto p-6 md:p-12 min-h-screen flex flex-col">
+        
+        <!-- HEADER (HUD) -->
+        <header class="flex justify-between items-center border-b border-[#27272A] pb-4 mb-12">
+            <div class="flex items-center gap-4">
+                <!-- LOGO RDESK -->
+                <img src="./5000x5000px_logo-nuvem-RDESK-DESIGN.jpg" alt="RDESK DESIGN Logo" class="h-10 w-10 object-contain invert mix-blend-screen opacity-90">
+                <div>
+                    <h1 class="text-sm font-bold tracking-[0.15em] text-[#D4B28C]">RDESK DESIGN</h1>
+                    <p class="font-mono-tech text-[10px] text-gray-500">ID_REG: R.MACEDO</p>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="font-mono-tech text-[10px] text-[#00F0FF] flex items-center justify-end gap-2">
+                    <span class="h-2 w-2 bg-[#00F0FF] rounded-full animate-ping"></span>
+                    [ SYS.ONLINE // LATENCY: LOW ]
+                </p>
+                <p class="font-mono-tech text-[10px] text-gray-500 mt-1">LOC: CONTAGEM_MG</p>
+            </div>
+        </header>
+
+        <!-- HERO SECTION -->
+        <section class="mb-16">
+            <p class="font-mono-tech text-xs text-[#00F0FF] mb-4">> ACESSO AUTORIZADO.</p>
+            <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight mb-2">
+                Designer de <br><span class="text-[#D4B28C]">Ambientes.</span>
+            </h2>
+            <p class="font-mono-tech text-sm text-gray-400 max-w-xl leading-relaxed mt-6">
+                Materializando conceitos através da arquitetura espacial e engenharia gráfica. Operando na interseção entre o ambiente construído (orgânico) e a interface sistêmica (brutalismo digital).
+            </p>
+        </section>
+
+        <!-- ZONAS DE ARTEFATOS (Planta Baixa Interativa) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 flex-grow">
+            
+            <!-- ZONA 01 -->
+            <div class="zone-card p-6 relative group cursor-pointer bg-black/40 backdrop-blur-sm">
+                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SEC.01</span>
+                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Escala Espacial</h3>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Projetos de Ambientes // Layouts Estratégicos // Fluxo e Ergonomia</p>
+                <div class="h-[1px] w-full bg-[#27272A] group-hover:bg-[#D4B28C] transition-colors"></div>
+                <div class="mt-4 font-mono-tech text-[10px] text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    > CARREGANDO PLANTA...
+                </div>
+            </div>
+
+            <!-- ZONA 02 -->
+            <div class="zone-card p-6 relative group cursor-pointer bg-black/40 backdrop-blur-sm">
+                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SEC.02</span>
+                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Matéria & Objeto</h3>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Engenharia de precisão // Copos metálicos personalizados // Gravação</p>
+                <div class="h-[1px] w-full bg-[#27272A] group-hover:bg-[#D4B28C] transition-colors"></div>
+                <div class="mt-4 font-mono-tech text-[10px] text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    > INSPECIONANDO LIGA METÁLICA...
+                </div>
+            </div>
+
+            <!-- ZONA 03 -->
+            <div class="zone-card p-6 relative group cursor-pointer bg-black/40 backdrop-blur-sm">
+                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SEC.03</span>
+                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Gráfica Phygital</h3>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Papel Kraft 91x51mm // Alto contraste // Enigma "Siga o Coelho"</p>
+                <div class="h-[1px] w-full bg-[#27272A] group-hover:bg-[#D4B28C] transition-colors"></div>
+                <div class="mt-4 font-mono-tech text-[10px] text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    > DECODIFICANDO QR...
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FOOTER (Protocolo de Fechamento) -->
+        <footer class="mt-auto border-t border-[#27272A] pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-mono-tech text-[10px] text-gray-500">
+                END_OF_FILE // UEMG_DESIGN_LABS // v.2026.09
+            </div>
+            
+            <a href="mailto:ofcrobertmacedo@gmail.com?subject=Iniciação%20de%20Protocolo%20-%20RDESK%20DESIGN" class="btn-angular bg-transparent border border-[#00F0FF] text-[#00F0FF] px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-[#00F0FF] hover:text-[#030304] transition-all">
+                Iniciar Protocolo de Projeto
+            </a>
+        </footer>
+
     </div>
 
-    <!-- SECTION 2: DUALIDADE CONCEITO VS EMPRESA -->
-    <div class="duality-box">
-      <div class="duality-item">
-        <div class="duality-badge cabana">🏛️</div>
-        <div class="duality-text">
-          <h3>Cabana de Ofícios (O Foco Aqui)</h3>
-          <p>Nossa alma criativa. O espaço onde o artesanal, a matéria-prima e a cultura ganham forma sem freios.</p>
-        </div>
-      </div>
+    <!-- Script de Inicialização (Boot Sequence Lógica) -->
+    <script>
+        const bootText = [
+            "Iniciando RDESK_CORE BIOS v1.0",
+            "Verificando integridade da memória...... OK",
+            "Carregando módulos de percepção espacial...... OK",
+            "Estabelecendo conexão com malha visual Kraft/Cyan...... OK",
+            "Siga o Coelho Branco...",
+            "Acesso Concedido."
+        ];
 
-      <div class="duality-item">
-        <div class="duality-badge rdesk">🚀</div>
-        <div class="duality-text">
-          <h3>RDESK DESIGN (A Empresa)</h3>
-          <p>O ecossistema estratégico que pega essa energia criativa e transforma em autoridade, mercado e clientes reais.</p>
-        </div>
-      </div>
-    </div>
+        const terminalOutput = document.getElementById('terminal-output');
+        const bootScreen = document.getElementById('boot-screen');
+        const mainContent = document.getElementById('main-content');
+        
+        let lineIndex = 0;
 
-    <!-- SECTION 3: A MENTORIA / CONVITE -->
-    <section class="journey-card">
-      <h2>🔥 O Convite: Sua Jornada na RDESK</h2>
-      <p style="font-size: 0.85rem; color: #E4E4E7; margin-bottom: 16px; line-height: 1.4;">
-        Não queremos pessoas para preencher vagas genéricas. Queremos criar novos talentos na prática, lado a lado.
-      </p>
+        function typeLine() {
+            if (lineIndex < bootText.length) {
+                const line = document.createElement('div');
+                line.textContent = `> ${bootText[lineIndex]}`;
+                terminalOutput.appendChild(line);
+                lineIndex++;
+                setTimeout(typeLine, Math.random() * 300 + 150); // Efeito de digitação irregular
+            } else {
+                setTimeout(() => {
+                    bootScreen.style.opacity = '0';
+                    bootScreen.style.transition = 'opacity 0.5s ease';
+                    setTimeout(() => {
+                        bootScreen.style.display = 'none';
+                        mainContent.classList.remove('opacity-0');
+                    }, 500);
+                }, 800);
+            }
+        }
 
-      <div class="step-list">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-info">
-            <h4>Seu 1º Projeto: 1.000 Panfletos</h4>
-            <p>Vou acompanhar você pessoalmente na criação da arte, alinhando estética, impressão e estratégia</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-info">
-            <h4>Garantia dos Primeiros Clientes</h4>
-            <p>Não paramos no arquivo digital. Nós vamos juntos para o mercado e fecharemos seus primeiros clientes reais</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: GRAND CTA -->
-    <div class="cta-container">
-      <div class="cta-heading">
-        Pronto para criar sem limites e fechar seus primeiros clientes?
-      </div>
-
-      <a 
-        href="https://wa.me/5531982313684?text=Ol%C3%A1%20Robert!%20Vi%20o%20coelho%20e%20os%203%20totens%20da%20V%C3%A2nia%20na%20Cabana%20de%20Of%C3%ADcios.%20Quero%20iniciar%20minha%20jornada%20na%20RDESK%20DESIGN%2C%20criar%20meus%201.000%20panfletos%20e%20fechar%20meus%20primeiros%20clientes!" 
-        class="btn-whatsapp"
-        target="_blank"
-      >
-        <svg viewBox="0 0 24 24">
-          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-        </svg>
-        INICIAR JORNADA DIRETO NO WHATSAPP
-      </a>
-
-      <div class="cta-subtext">
-        Conversa direta com Robert Macedo • (31) 98231-3684
-      </div>
-    </div>
-
-  </div>
-
+        // Inicia a sequência ao carregar a página
+        window.onload = () => {
+            setTimeout(typeLine, 500);
+        };
+    </script>
 </body>
 </html>
