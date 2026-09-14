@@ -106,7 +106,6 @@
         }
         .zone-card:hover .zone-id { color: var(--matrix); }
 
-        /* Overlay Inicial para liberar o Áudio */
         #init-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -124,7 +123,7 @@
             top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: var(--oled);
             z-index: 9999;
-            display: none; /* Inicia oculto, ativado pelo JS */
+            display: none;
             flex-direction: column;
             justify-content: flex-end;
             padding: 2rem;
@@ -133,7 +132,6 @@
 </head>
 <body class="antialiased selection:bg-[#00FF41] selection:text-black">
 
-    <!-- Camada de Permissão de Áudio -->
     <div id="init-overlay">
         <div class="font-mono-tech text-[#00FF41] text-sm animate-pulse tracking-widest text-center px-6">
             [ TOQUE NA TELA PARA INICIAR SESSÃO ]
@@ -225,67 +223,84 @@
     </div>
 
     <script>
-        // --- 1. SINTETIZADOR DE ÁUDIO GENERATIVO (Web Audio API) ---
+        // --- 1. SINTETIZADOR DE ÁUDIO ANALÓGICO VINTAGE (Estilo Pink Floyd) ---
         let audioCtx;
-        function initCyberAudio() {
+        function initPinkFloydAudio() {
             if (audioCtx) return;
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             
-            // Master Volume (Baixo, para ser ambiente e não incomodar)
+            // Master Volume (Baixo, imersivo)
             const masterGain = audioCtx.createGain();
-            masterGain.gain.value = 0.08; 
+            masterGain.gain.value = 0.2; 
             masterGain.connect(audioCtx.destination);
 
-            // Camada 1: Drone Psicodélico (Atmosfera densa)
-            const droneOsc = audioCtx.createOscillator();
-            droneOsc.type = 'sine';
-            droneOsc.frequency.value = 55; // Frequência Sub-Grave
+            // --- DEEP SPACE DELAY (O Eco Cavernoso) ---
+            const delay = audioCtx.createDelay(3.0);
+            delay.delayTime.value = 0.75; // Eco longo
+            const feedback = audioCtx.createGain();
+            feedback.gain.value = 0.5; // Quantidade de repetições
+            delay.connect(feedback);
+            feedback.connect(delay);
+            delay.connect(masterGain);
+
+            // --- THE "SHINE ON" ATMOSPHERIC PAD ---
+            // Frequências para um acorde sombrio/espacial (Tônica, Quinta, Oitava)
+            const freqs = [73.42, 110.00, 146.83]; // D2, A2, D3
             
-            const droneFilter = audioCtx.createBiquadFilter();
-            droneFilter.type = 'lowpass';
-            droneFilter.frequency.value = 150;
-            
-            // LFO (Oscilador de Baixa Frequência) para fazer o drone "respirar"
+            // Filtro Lowpass (O abafador analógico)
+            const padFilter = audioCtx.createBiquadFilter();
+            padFilter.type = 'lowpass';
+            padFilter.frequency.value = 200; 
+            padFilter.connect(masterGain);
+            padFilter.connect(delay); // Envia o sintetizador para o Eco também
+
+            // LFO: O pulmão do sintetizador (faz o filtro respirar)
             const lfo = audioCtx.createOscillator();
             lfo.type = 'sine';
-            lfo.frequency.value = 0.05; // Ciclo muito lento
+            lfo.frequency.value = 0.05; // Ciclo de 20 segundos
             const lfoGain = audioCtx.createGain();
-            lfoGain.gain.value = 100;
+            lfoGain.gain.value = 400; // Abre o filtro suavemente até 600Hz
             lfo.connect(lfoGain);
-            lfoGain.connect(droneFilter.frequency);
-            
-            droneOsc.connect(droneFilter);
-            droneFilter.connect(masterGain);
-            droneOsc.start();
+            lfoGain.connect(padFilter.frequency);
             lfo.start();
 
-            // Camada 2: Pulsos de Dados / Conexão (Hacker vibe)
-            const dataOsc = audioCtx.createOscillator();
-            dataOsc.type = 'square';
-            const dataGain = audioCtx.createGain();
-            dataGain.gain.value = 0; // Inicia mudo
-            
-            const dataFilter = audioCtx.createBiquadFilter();
-            dataFilter.type = 'bandpass';
-            dataFilter.frequency.value = 1500;
-            
-            dataOsc.connect(dataGain);
-            dataGain.connect(dataFilter);
-            dataFilter.connect(masterGain);
-            dataOsc.start();
+            // Inicia os osciladores do Acorde
+            freqs.forEach(freq => {
+                const osc = audioCtx.createOscillator();
+                osc.type = 'triangle'; // Onda mais quente que a senoidal pura
+                // Detune sutil para dar a "gordura" analógica vintage
+                osc.detune.value = (Math.random() - 0.5) * 10; 
+                osc.frequency.value = freq;
+                osc.connect(padFilter);
+                osc.start();
+            });
 
-            // Loop randômico gerando rajadas de dados eletrônicos
+            // --- THE "ECHOES" SONAR PING ---
             setInterval(() => {
-                if (Math.random() > 0.7) {
-                    // Frequência aleatória ciber-espacial
-                    dataOsc.frequency.setTargetAtTime(Math.random() * 1000 + 400, audioCtx.currentTime, 0.01);
-                    // Pulso rápido de volume
-                    dataGain.gain.setTargetAtTime(0.04, audioCtx.currentTime, 0.01);
+                if (Math.random() > 0.6) { // 40% de chance a cada 4 segundos
+                    const pingOsc = audioCtx.createOscillator();
+                    pingOsc.type = 'sine';
+                    // Notas etéreas altas
+                    const pingFreqs = [880, 1174.66, 1318.51]; 
+                    pingOsc.frequency.value = pingFreqs[Math.floor(Math.random() * pingFreqs.length)];
+                    
+                    const pingGain = audioCtx.createGain();
+                    pingGain.gain.value = 0;
+                    
+                    pingOsc.connect(pingGain);
+                    pingGain.connect(delay); // Ping vai direto pro Eco profundo
+                    pingGain.connect(masterGain);
+                    
+                    pingOsc.start();
+                    
+                    // Curva de volume (Sino/Sonar)
+                    pingGain.gain.setTargetAtTime(0.06, audioCtx.currentTime, 0.05); // Attack
                     setTimeout(() => {
-                        dataGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-                    }, Math.random() * 80 + 30); // Duração ultra rápida
+                        pingGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5); // Release
+                        setTimeout(() => pingOsc.stop(), 2000);
+                    }, 100);
                 }
-            }, 100);
+            }, 4000); 
         }
 
         // --- 2. CONTROLE DE FLUXO (Boot e Overlay) ---
@@ -296,7 +311,7 @@
 
         const bootText = [
             "Iniciando RDESK_CORE BIOS v1.0",
-            "Sintetizando frequências de ambiente...... OK",
+            "Sintetizando espectro analógico...... OK",
             "Buscando artefatos volumétricos...... OK",
             "Renderizando espaço arquitetônico...... OK",
             "Siga o Coelho Branco...",
@@ -323,14 +338,13 @@
             }
         }
 
-        // Evento de clique para iniciar a experiência completa
         initOverlay.addEventListener('click', () => {
-            initCyberAudio(); // Desbloqueia o áudio
+            initPinkFloydAudio(); // Dispara a síntese analógica
             initOverlay.style.opacity = '0';
             setTimeout(() => {
                 initOverlay.style.display = 'none';
                 bootScreen.style.display = 'flex';
-                setTimeout(typeLine, 300); // Inicia o texto de boot
+                setTimeout(typeLine, 300); 
             }, 500);
         });
 
