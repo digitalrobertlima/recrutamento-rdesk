@@ -54,11 +54,11 @@
             opacity: 0.4;
         }
 
-        /* Artefato 3D - Cubo visível no Mobile */
+        /* Artefato 3D */
         .scene {
             width: 120px; height: 120px;
             perspective: 600px;
-            margin: 2rem auto; /* Centraliza no mobile */
+            margin: 2rem auto; 
         }
         .cube {
             width: 100%; height: 100%;
@@ -110,6 +110,7 @@
         }
         .zone-card:hover .zone-id { color: var(--matrix); }
 
+        /* Tela de Inicialização - Agora Clicável! */
         #boot-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -117,9 +118,42 @@
             z-index: 9999;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
             padding: 2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
+        #boot-screen:hover { background-color: #050a06; }
+        
+        #terminal-output {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 50vh;
+        }
+        
+        #start-prompt {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-top: 2rem;
+            animation: pulseText 1.5s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* Botão de Áudio */
+        #audio-toggle {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        #audio-toggle:hover { opacity: 1; }
     </style>
 </head>
 <body class="antialiased selection:bg-[#00FF41] selection:text-black">
@@ -127,27 +161,31 @@
     <canvas id="matrix-canvas"></canvas>
     <div class="scanlines"></div>
 
-    <div id="boot-screen" class="font-mono-tech text-[12px] text-[#00FF41]">
-        <div id="terminal-output"></div>
-        <div class="mt-2 animate-pulse">_</div>
+    <!-- Tela de Boot (Requer Interação para liberar o áudio) -->
+    <div id="boot-screen" class="font-mono-tech text-[#00FF41]">
+        <div id="terminal-output" class="text-[12px]"></div>
+        <div id="start-prompt">[ INICIAR CONEXÃO - CLIQUE NA TELA ]</div>
     </div>
 
     <div id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000 max-w-4xl mx-auto p-6 md:p-12 min-h-screen flex flex-col">
         
         <header class="flex justify-between items-center border-b border-[#1A2E1F] pb-4 mb-8">
             <div class="flex items-center gap-4">
-                <!-- Correção do caminho da imagem -->
                 <img src="5000x5000px_logo-nuvem-RDESK-DESIGN.png" alt="RDESK DESIGN Logo" class="h-10 w-10 object-contain invert mix-blend-screen opacity-90" onerror="this.style.display='none'">
                 <div>
                     <h1 class="text-sm font-bold tracking-[0.15em] text-[#D4B28C]">RDESK DESIGN</h1>
                     <p class="font-mono-tech text-[10px] text-[#00FF41] opacity-70">ID_DESIGNER: ROBERT LIMA</p>
                 </div>
             </div>
-            <div class="text-right">
-                <p class="font-mono-tech text-[10px] text-[#00FF41] flex items-center justify-end gap-2">
+            <div class="text-right flex flex-col items-end">
+                <p class="font-mono-tech text-[10px] text-[#00FF41] flex items-center gap-2 mb-1">
                     <span class="h-2 w-2 bg-[#00FF41] rounded-full animate-ping"></span>
-                    SYSTEM.ONLINE_START
+                    SYSTEM.ONLINE
                 </p>
+                <!-- Controle de Áudio -->
+                <button id="audio-toggle" class="font-mono-tech text-[10px] text-[#D4B28C] opacity-70 border border-[#D4B28C] px-2 py-0.5">
+                    [SND: ON]
+                </button>
             </div>
         </header>
 
@@ -162,7 +200,6 @@
                 </p>
             </div>
             
-            <!-- CORREÇÃO DO CUBO: removido o 'hidden md:block' -->
             <div class="flex-shrink-0 w-full md:w-auto flex justify-center mt-6 md:mt-0">
                 <div class="scene">
                     <div class="cube">
@@ -195,7 +232,7 @@
             <div class="zone-card p-6 relative group cursor-crosshair">
                 <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SYS.03</span>
                 <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Gráfica Brutalista</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Suporte tátil em Kraft. Engenharia reversa para o plano físico. Materias impressos.</p>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Suporte tátil em Kraft. Engenharia reversa para o plano físico. Materiais impressos.</p>
                 <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
             </div>
         </section>
@@ -211,20 +248,129 @@
     </div>
 
     <script>
+        /* =========================================
+           1. AMBIÊNCIA SONORA GENERATIVA (Web Audio API)
+           ========================================= */
+        let audioCtx;
+        let masterGain;
+        let isAudioMuted = false;
+
+        function initMatrixAudio() {
+            if (audioCtx) return; // Evita criar multiplos áudios
+
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+            
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0.5; // Volume mestre
+            masterGain.connect(audioCtx.destination);
+
+            // A. DRONE DE FUNDO (Zumbido de subsolo/máquinas)
+            const drone1 = audioCtx.createOscillator();
+            const drone2 = audioCtx.createOscillator();
+            drone1.type = 'sine';
+            drone2.type = 'triangle';
+            drone1.frequency.value = 50; // Grave profundo
+            drone2.frequency.value = 52; // Levemente desafinado para criar pulsação (beating)
+            
+            const droneFilter = audioCtx.createBiquadFilter();
+            droneFilter.type = 'lowpass';
+            droneFilter.frequency.value = 150; // Abafa o som para parecer distante
+            
+            drone1.connect(droneFilter);
+            drone2.connect(droneFilter);
+            droneFilter.connect(masterGain);
+            drone1.start();
+            drone2.start();
+
+            // B. SCANNER PULMONAR (Som de varredura lenta)
+            const scannerOsc = audioCtx.createOscillator();
+            scannerOsc.type = 'sawtooth';
+            scannerOsc.frequency.value = 60;
+            
+            const scannerFilter = audioCtx.createBiquadFilter();
+            scannerFilter.type = 'lowpass';
+            
+            const lfo = audioCtx.createOscillator();
+            lfo.type = 'sine';
+            lfo.frequency.value = 0.05; // Vai e volta a cada 20 segundos
+            
+            const lfoGain = audioCtx.createGain();
+            lfoGain.gain.value = 300; // Profundidade do filtro
+            
+            lfo.connect(lfoGain);
+            lfoGain.connect(scannerFilter.frequency);
+            scannerFilter.frequency.value = 100;
+            
+            const scannerVolume = audioCtx.createGain();
+            scannerVolume.gain.value = 0.05; // Bem sutil
+            
+            scannerOsc.connect(scannerFilter);
+            scannerFilter.connect(scannerVolume);
+            scannerVolume.connect(masterGain);
+            scannerOsc.start();
+            lfo.start();
+
+            // C. PULSOS DE DADOS (Blips aleatórios)
+            setInterval(() => {
+                if(Math.random() > 0.8 && !isAudioMuted) { // 20% de chance de tocar um blip
+                    const blipOsc = audioCtx.createOscillator();
+                    const blipGain = audioCtx.createGain();
+                    blipOsc.type = 'square';
+                    blipOsc.frequency.value = 400 + Math.random() * 800; // Frequência aleatória
+                    
+                    // Envelope do blip (Ataque instantâneo, decaimento rápido)
+                    blipGain.gain.setValueAtTime(0, audioCtx.currentTime);
+                    blipGain.gain.linearRampToValueAtTime(0.015, audioCtx.currentTime + 0.01);
+                    blipGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                    
+                    const blipFilter = audioCtx.createBiquadFilter();
+                    blipFilter.type = 'bandpass';
+                    blipFilter.frequency.value = 1000 + Math.random() * 1000;
+                    
+                    blipOsc.connect(blipFilter);
+                    blipFilter.connect(blipGain);
+                    blipGain.connect(masterGain);
+                    
+                    blipOsc.start();
+                    blipOsc.stop(audioCtx.currentTime + 0.2);
+                }
+            }, 300); // Checa a cada 300ms
+        }
+
+        // Toggle Audio Button
+        const audioBtn = document.getElementById('audio-toggle');
+        audioBtn.addEventListener('click', () => {
+            if(!audioCtx) return;
+            isAudioMuted = !isAudioMuted;
+            if(isAudioMuted) {
+                masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
+                audioBtn.innerText = '[SND: OFF]';
+            } else {
+                masterGain.gain.setTargetAtTime(0.5, audioCtx.currentTime, 0.1);
+                audioBtn.innerText = '[SND: ON]';
+            }
+        });
+
+        /* =========================================
+           2. SEQUENCE DE BOOT & INICIALIZAÇÃO
+           ========================================= */
         const bootText = [
             "Iniciando RDESK_CORE BIOS v1.0",
             "Buscando artefatos volumétricos...... OK",
             "Sincronizando vetor Kraft (91x51mm)...... OK",
             "Renderizando espaço arquitetônico...... OK",
             "Siga o Coelho Branco...",
-            "Conexão Estabelecida!"
+            "Acesso Concedido."
         ];
 
         const terminalOutput = document.getElementById('terminal-output');
         const bootScreen = document.getElementById('boot-screen');
         const mainContent = document.getElementById('main-content');
+        const startPrompt = document.getElementById('start-prompt');
         
         let lineIndex = 0;
+        let bootStarted = false;
 
         function typeLine() {
             if (lineIndex < bootText.length) {
@@ -244,8 +390,20 @@
                 }, 800);
             }
         }
-        window.onload = () => setTimeout(typeLine, 500);
 
+        // Evento de clique para iniciar a experiência completa (Áudio + Visual)
+        bootScreen.addEventListener('click', () => {
+            if(bootStarted) return;
+            bootStarted = true;
+            startPrompt.style.display = 'none'; // Esconde a mensagem de clique
+            
+            initMatrixAudio(); // Liga a ambiência sonora hacker
+            setTimeout(typeLine, 300); // Começa a digitar
+        });
+
+        /* =========================================
+           3. MATRIX RAIN EFFECT (Canvas)
+           ========================================= */
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -286,6 +444,9 @@
             for(let x = 0; x < columns; x++) drops[x] = 1;
         });
 
+        /* =========================================
+           4. WHATSAPP EPIC UPLINK SCRIPT
+           ========================================= */
         const zapBtn = document.getElementById('whatsapp-btn');
         const btnText = document.getElementById('btn-text');
 
@@ -295,6 +456,21 @@
             
             btnText.innerText = '[ ALOCANDO ROTA SEGURA... ]';
             zapBtn.classList.add('bg-[#1A2E1F]', 'border-[#00FF41]');
+            
+            // Efeito Sonoro Rápido no clique do WhatsApp (Blip de confirmação)
+            if(audioCtx && !isAudioMuted) {
+                const confirmOsc = audioCtx.createOscillator();
+                const confirmGain = audioCtx.createGain();
+                confirmOsc.type = 'sine';
+                confirmOsc.frequency.setValueAtTime(800, audioCtx.currentTime);
+                confirmOsc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+                confirmGain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                confirmGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                confirmOsc.connect(confirmGain);
+                confirmGain.connect(masterGain);
+                confirmOsc.start();
+                confirmOsc.stop(audioCtx.currentTime + 0.1);
+            }
             
             setTimeout(() => {
                 btnText.innerText = '[ CRIPTOGRAFANDO CHAVE... ]';
