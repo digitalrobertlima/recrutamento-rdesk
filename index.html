@@ -3,24 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK DESIGN // Terminal</title>
+    <title>RDESK // Terminal Matrix</title>
     
-    <!-- Google Fonts: Space Grotesk (Arquitetura) & JetBrains Mono (Terminal) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS (Framework Utilitário) -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Configuração de Design Tokens & Custom CSS -->
     <style>
         :root {
             --oled: #030304;
             --kraft: #D4B28C;
-            --cyan: #00F0FF;
+            --matrix: #00FF41; /* Verde Matrix */
+            --matrix-glow: rgba(0, 255, 65, 0.5);
             --white: #F4F4F5;
-            --muted: #27272A;
+            --muted: #1A2E1F;
         }
 
         body {
@@ -29,66 +26,91 @@
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
             margin: 0;
-            padding: 0;
             cursor: crosshair;
         }
 
-        /* Tipografia de Dados */
         .font-mono-tech {
             font-family: 'JetBrains Mono', monospace;
             letter-spacing: -0.02em;
         }
 
-        /* Malha Ortogonal (Grid de Arquitetura Digital) */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(39, 39, 42, 0.3) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(39, 39, 42, 0.3) 1px, transparent 1px);
+        /* Matrix Digital Rain Canvas */
+        #matrix-canvas {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            opacity: 0.15;
         }
 
-        /* Scanlines (Efeito TRON/Terminal) */
+        /* Scanlines (Efeito Monitor CRT) */
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1));
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
             background-size: 100% 4px;
             z-index: 50;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
-        /* Botões com recorte angular (Baseado no 'R' da RDESK) */
+        /* Artefato 3D - CSS Tesseract */
+        .scene {
+            width: 120px; height: 120px;
+            perspective: 600px;
+            margin: 2rem auto;
+        }
+        .cube {
+            width: 100%; height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 15s infinite linear;
+        }
+        .cube-face {
+            position: absolute;
+            width: 120px; height: 120px;
+            border: 1px solid var(--matrix);
+            background: rgba(0, 255, 65, 0.05);
+            box-shadow: inset 0 0 15px var(--matrix-glow);
+        }
+        .cube-face.front  { transform: rotateY(  0deg) translateZ(60px); }
+        .cube-face.right  { transform: rotateY( 90deg) translateZ(60px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(60px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(60px); }
+        .cube-face.top    { transform: rotateX( 90deg) translateZ(60px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+        @keyframes rotateCube {
+            0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
+        }
+
+        /* Botão Angular com Efeito Hacker */
         .btn-angular {
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            transition: all 0.2s ease-out;
+            position: relative;
+        }
+        .btn-angular:hover {
+            background-color: var(--matrix);
+            color: var(--oled);
+            box-shadow: 0 0 25px var(--matrix-glow);
+            letter-spacing: 0.1em;
         }
         
-        .btn-angular:hover {
-            background-color: var(--cyan);
-            color: var(--oled);
-            box-shadow: 0 0 15px var(--cyan);
-        }
-
-        /* Efeito Hover nas Zonas */
+        /* Zonas */
         .zone-card {
             border: 1px solid var(--muted);
-            transition: border-color 0.3s, transform 0.3s;
+            background: linear-gradient(180deg, rgba(3,3,4,0.8) 0%, rgba(26,46,31,0.2) 100%);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
         }
         .zone-card:hover {
-            border-color: var(--kraft);
-            transform: translateY(-2px);
+            border-color: var(--matrix);
+            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.1);
         }
-        .zone-card:hover .zone-id {
-            color: var(--cyan);
-        }
+        .zone-card:hover .zone-id { color: var(--matrix); }
 
-        /* Tela de Inicialização (Boot) */
         #boot-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -101,112 +123,103 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-[#00F0FF] selection:text-black">
+<body class="antialiased selection:bg-[#00FF41] selection:text-black">
 
-    <!-- Camada 0: Efeitos Visuais -->
-    <div class="bg-grid"></div>
+    <canvas id="matrix-canvas"></canvas>
     <div class="scanlines"></div>
 
-    <!-- Tela de Boot Sequence -->
-    <div id="boot-screen" class="font-mono-tech text-[12px] text-[#00F0FF]">
+    <div id="boot-screen" class="font-mono-tech text-[12px] text-[#00FF41]">
         <div id="terminal-output"></div>
         <div class="mt-2 animate-pulse">_</div>
     </div>
 
-    <!-- Camada Principal: HUD e Conteúdo -->
     <div id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000 max-w-4xl mx-auto p-6 md:p-12 min-h-screen flex flex-col">
         
-        <!-- HEADER (HUD) -->
-        <header class="flex justify-between items-center border-b border-[#27272A] pb-4 mb-12">
+        <header class="flex justify-between items-center border-b border-[#1A2E1F] pb-4 mb-8">
             <div class="flex items-center gap-4">
-                <!-- LOGO RDESK -->
                 <img src="./5000x5000px_logo-nuvem-RDESK-DESIGN.jpg" alt="RDESK DESIGN Logo" class="h-10 w-10 object-contain invert mix-blend-screen opacity-90">
                 <div>
                     <h1 class="text-sm font-bold tracking-[0.15em] text-[#D4B28C]">RDESK DESIGN</h1>
-                    <p class="font-mono-tech text-[10px] text-gray-500">ID_REG: R.MACEDO</p>
+                    <p class="font-mono-tech text-[10px] text-[#00FF41] opacity-70">ID_REG: R.MACEDO</p>
                 </div>
             </div>
             <div class="text-right">
-                <p class="font-mono-tech text-[10px] text-[#00F0FF] flex items-center justify-end gap-2">
-                    <span class="h-2 w-2 bg-[#00F0FF] rounded-full animate-ping"></span>
-                    [ SYS.ONLINE // LATENCY: LOW ]
+                <p class="font-mono-tech text-[10px] text-[#00FF41] flex items-center justify-end gap-2">
+                    <span class="h-2 w-2 bg-[#00FF41] rounded-full animate-ping"></span>
+                    SYS.UPLINK_READY
                 </p>
-                <p class="font-mono-tech text-[10px] text-gray-500 mt-1">LOC: CONTAGEM_MG</p>
             </div>
         </header>
 
-        <!-- HERO SECTION -->
-        <section class="mb-16">
-            <p class="font-mono-tech text-xs text-[#00F0FF] mb-4">> ACESSO AUTORIZADO</p>
-            <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight mb-2">
-                Designer de <br><span class="text-[#D4B28C]">Ambientes 📐</span>
-            </h2>
-            <p class="font-mono-tech text-sm text-gray-400 max-w-xl leading-relaxed mt-6">
-                Materializando conceitos através da arquitetura espacial e engenharia gráfica. Operando na interseção entre o ambiente construído (orgânico) e a interface sistêmica (brutalismo digital).
-            </p>
+        <section class="mb-12 text-center md:text-left flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1">
+                <p class="font-mono-tech text-xs text-[#00FF41] mb-4">> WAKE UP, NEO.</p>
+                <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight mb-2">
+                    Designer de <br><span class="text-[#D4B28C]">Ambientes.</span>
+                </h2>
+                <p class="font-mono-tech text-sm text-gray-400 max-w-xl leading-relaxed mt-4">
+                    Da arquitetura volumétrica à engenharia física do objeto. Onde o bruto encontra o sofisticado. Você seguiu o coelho até aqui.
+                </p>
+            </div>
+            
+            <!-- Representação 3D do Espaço -->
+            <div class="flex-shrink-0">
+                <div class="scene hidden md:block">
+                    <div class="cube">
+                        <div class="cube-face front"></div>
+                        <div class="cube-face back"></div>
+                        <div class="cube-face right"></div>
+                        <div class="cube-face left"></div>
+                        <div class="cube-face top"></div>
+                        <div class="cube-face bottom"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- ZONAS DE ARTEFATOS (Planta Baixa Interativa) -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 flex-grow">
-            
-            <!-- ZONA 01 -->
-            <div class="zone-card p-6 relative group cursor-pointer bg-black/40 backdrop-blur-sm">
-                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SEC.01</span>
+            <div class="zone-card p-6 relative group cursor-crosshair">
+                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">VOL.01</span>
                 <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Escala Espacial</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Projetos de Ambientes // Layouts Estratégicos // Fluxo e Ergonomia</p>
-                <div class="h-[1px] w-full bg-[#27272A] group-hover:bg-[#D4B28C] transition-colors"></div>
-                <div class="mt-4 font-mono-tech text-[10px] text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    > CARREGANDO PLANTA...
-                </div>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Arquitetura de ambientes. Controle de luz, matéria e ergonomia.</p>
+                <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
             </div>
 
-            <!-- ZONA 02 -->
-            <div class="zone-card p-6 relative group cursor-pointer bg-black/40 backdrop-blur-sm">
-                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SEC.02</span>
-                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Matéria & Objeto</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Engenharia de precisão // Copos metálicos personalizados // Gravação</p>
-                <div class="h-[1px] w-full bg-[#27272A] group-hover:bg-[#D4B28C] transition-colors"></div>
-                <div class="mt-4 font-mono-tech text-[10px] text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    > INSPECIONANDO LIGA METÁLICA...
-                </div>
+            <div class="zone-card p-6 relative group cursor-crosshair">
+                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">OBJ.02</span>
+                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Matéria Aplicada</h3>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Gravação metálica de precisão. Copos Stanley Cuia de alto padrão.</p>
+                <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
             </div>
 
-            <!-- ZONA 03 -->
-            <div class="zone-card p-6 relative group cursor-pointer bg-black/40 backdrop-blur-sm">
-                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SEC.03</span>
-                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Gráfica Phygital</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Papel Kraft 91x51mm // Alto contraste // Enigma "Siga o Coelho"</p>
-                <div class="h-[1px] w-full bg-[#27272A] group-hover:bg-[#D4B28C] transition-colors"></div>
-                <div class="mt-4 font-mono-tech text-[10px] text-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    > DECODIFICANDO QR...
-                </div>
+            <div class="zone-card p-6 relative group cursor-crosshair">
+                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SYS.03</span>
+                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Gráfica Brutalista</h3>
+                <p class="font-mono-tech text-xs text-gray-500 mb-6">Suporte tátil em Kraft. Engenharia reversa para o plano físico.</p>
+                <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
             </div>
-
         </section>
 
-        <!-- FOOTER (Protocolo de Fechamento) -->
-        <footer class="mt-auto border-t border-[#27272A] pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="font-mono-tech text-[10px] text-gray-500">
-                END_OF_FILE // UEMG_DESIGN_LABS // v.2026.09
+        <footer class="mt-auto pt-8 flex flex-col justify-center items-center gap-6">
+            <!-- CTA ÉPICO - UPLINK WHATSAPP -->
+            <button id="whatsapp-btn" class="btn-angular bg-transparent border border-[#00FF41] text-[#00FF41] px-12 py-5 text-sm font-bold tracking-[0.2em] uppercase w-full md:w-auto">
+                <span id="btn-text">Iniciar Protocolo de Conexão</span>
+            </button>
+            <div class="font-mono-tech text-[10px] text-gray-500 mt-4">
+                TERMINAL_NODE // R.MACEDO_DESIGN
             </div>
-            
-            <!-- BOTAO DO WHATSAPP ATUALIZADO AQUI -->
-            <a href="https://wa.me/5531982313684?text=Sigo%20o%20coelho%20branco.%20Protocolo%20RDESK_CORE%20iniciado." target="_blank" rel="noopener noreferrer" class="btn-angular bg-transparent border border-[#00F0FF] text-[#00F0FF] px-8 py-4 text-sm font-bold tracking-widest uppercase hover:bg-[#00F0FF] hover:text-[#030304] transition-all">
-                Iniciar Protocolo de Projeto
-            </a>
         </footer>
-
     </div>
 
-    <!-- Script de Inicialização (Boot Sequence Lógica) -->
     <script>
+        // 1. SEQUENCE DE BOOT (Hacker Text)
         const bootText = [
             "Iniciando RDESK_CORE BIOS v1.0",
-            "Verificando integridade da memória...... OK",
-            "Carregando módulos de percepção espacial...... OK",
-            "Estabelecendo conexão com malha visual Kraft/Cyan...... OK",
+            "Buscando artefatos volumétricos...... OK",
+            "Sincronizando vetor Kraft (91x51mm)...... OK",
+            "Renderizando espaço arquitetônico...... OK",
             "Siga o Coelho Branco...",
-            "Acesso Concedido!"
+            "Conexão Estabelecida."
         ];
 
         const terminalOutput = document.getElementById('terminal-output');
@@ -221,7 +234,7 @@
                 line.textContent = `> ${bootText[lineIndex]}`;
                 terminalOutput.appendChild(line);
                 lineIndex++;
-                setTimeout(typeLine, Math.random() * 300 + 150); // Efeito de digitação irregular
+                setTimeout(typeLine, Math.random() * 200 + 100);
             } else {
                 setTimeout(() => {
                     bootScreen.style.opacity = '0';
@@ -233,11 +246,82 @@
                 }, 800);
             }
         }
+        window.onload = () => setTimeout(typeLine, 500);
 
-        // Inicia a sequência ao carregar a página
-        window.onload = () => {
-            setTimeout(typeLine, 500);
-        };
+        // 2. MATRIX RAIN EFFECT (Canvas)
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for(let x = 0; x < columns; x++) drops[x] = 1;
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 3, 4, 0.05)'; // Fade effect tail
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00FF41';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
+
+        // Resize Canvas on Window Resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // 3. WHATSAPP EPIC UPLINK SCRIPT
+        const zapBtn = document.getElementById('whatsapp-btn');
+        const btnText = document.getElementById('btn-text');
+
+        zapBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            zapBtn.style.pointerEvents = 'none'; // Prevent double click
+            
+            // Hacker Sequence
+            btnText.innerText = '[ ALOCANDO ROTA SEGURA... ]';
+            zapBtn.classList.add('bg-[#1A2E1F]', 'border-[#00FF41]');
+            
+            setTimeout(() => {
+                btnText.innerText = '[ CRIPTOGRAFANDO CHAVE E2EE... ]';
+            }, 800);
+            
+            setTimeout(() => {
+                btnText.innerText = '[ UPLINK WHATSAPP ESTABELECIDO ]';
+                zapBtn.classList.add('bg-[#00FF41]', 'text-[#030304]');
+            }, 1600);
+
+            setTimeout(() => {
+                // Link formatado para o seu número com mensagem pronta
+                const phone = "5531982313684";
+                const message = encodeURIComponent("Protocolo Coelho Branco iniciado. Vim pelo cartão.");
+                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+                
+                // Reset do botão após abrir a guia
+                setTimeout(() => {
+                    btnText.innerText = 'Iniciar Protocolo de Conexão';
+                    zapBtn.classList.remove('bg-[#00FF41]', 'text-[#030304]', 'bg-[#1A2E1F]');
+                    zapBtn.style.pointerEvents = 'auto';
+                }, 2000);
+            }, 2400);
+        });
     </script>
 </body>
 </html>
