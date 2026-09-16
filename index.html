@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RDESK // Terminal Matrix</title>
+    <title>RDESK // Robert Lima - Designer de Ambientes & Produto</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
             --oled: #030304;
             --kraft: #D4B28C;
             --matrix: #00FF41; 
-            --matrix-glow: rgba(0, 255, 65, 0.5);
+            --matrix-glow: rgba(0, 255, 65, 0.4);
             --white: #F4F4F5;
             --muted: #1A2E1F;
         }
@@ -45,41 +45,90 @@
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.25));
             background-size: 100% 4px;
             z-index: 50;
             pointer-events: none;
             opacity: 0.4;
         }
 
-        .scene {
-            width: 120px; height: 120px;
-            perspective: 600px;
-            margin: 2rem auto; 
-        }
-        .cube {
-            width: 100%; height: 100%;
+        /* 3D SCENE & CUBE */
+        .scene-container {
             position: relative;
-            transform-style: preserve-3d;
-            animation: rotateCube 15s infinite linear;
+            width: 160px; height: 160px;
+            perspective: 800px;
+            margin: 0 auto;
         }
+
+        .cube {
+            width: 100px; height: 100px;
+            position: absolute;
+            top: 30px; left: 30px;
+            transform-style: preserve-3d;
+            animation: rotateCube 18s infinite linear;
+        }
+
         .cube-face {
             position: absolute;
-            width: 120px; height: 120px;
+            width: 100px; height: 100px;
             border: 1px solid var(--matrix);
-            background: rgba(0, 255, 65, 0.05);
-            box-shadow: inset 0 0 15px var(--matrix-glow);
+            background: rgba(0, 255, 65, 0.04);
+            box-shadow: inset 0 0 12px var(--matrix-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--matrix);
         }
-        .cube-face.front  { transform: rotateY(  0deg) translateZ(60px); }
-        .cube-face.right  { transform: rotateY( 90deg) translateZ(60px); }
-        .cube-face.back   { transform: rotateY(180deg) translateZ(60px); }
-        .cube-face.left   { transform: rotateY(-90deg) translateZ(60px); }
-        .cube-face.top    { transform: rotateX( 90deg) translateZ(60px); }
-        .cube-face.bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+        .cube-face.front  { transform: rotateY(  0deg) translateZ(50px); }
+        .cube-face.right  { transform: rotateY( 90deg) translateZ(50px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(50px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(50px); }
+        .cube-face.top    { transform: rotateX( 90deg) translateZ(50px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+        /* 3D HOLO RING */
+        .holo-ring {
+            position: absolute;
+            top: 10px; left: 10px;
+            width: 140px; height: 140px;
+            border: 1px dashed rgba(212, 178, 140, 0.6);
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            animation: rotateRing 10s infinite linear;
+        }
 
         @keyframes rotateCube {
             0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
             100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg); }
+        }
+
+        @keyframes rotateRing {
+            0% { transform: rotateX(70deg) rotateZ(0deg); }
+            100% { transform: rotateX(70deg) rotateZ(360deg); }
+        }
+
+        /* 3D PYRAMID IN CARDS */
+        .pyramid-scene {
+            width: 60px; height: 60px;
+            perspective: 400px;
+        }
+        .pyramid {
+            width: 100%; height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 12s infinite linear;
+        }
+        .p-face {
+            position: absolute;
+            width: 0; height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid rgba(0, 255, 65, 0.15);
+            border-bottom-color: var(--matrix-glow);
+            transform-origin: 50% 100%;
         }
 
         .btn-angular {
@@ -91,20 +140,20 @@
             background-color: var(--matrix);
             color: var(--oled);
             box-shadow: 0 0 25px var(--matrix-glow);
-            letter-spacing: 0.1em;
         }
         
         .zone-card {
             border: 1px solid var(--muted);
-            background: linear-gradient(180deg, rgba(3,3,4,0.8) 0%, rgba(26,46,31,0.2) 100%);
-            backdrop-filter: blur(4px);
-            transition: all 0.3s ease;
+            background: linear-gradient(180deg, rgba(3,3,4,0.85) 0%, rgba(26,46,31,0.25) 100%);
+            backdrop-filter: blur(6px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
         }
         .zone-card:hover {
             border-color: var(--matrix);
-            box-shadow: 0 4px 20px rgba(0, 255, 65, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.15);
+            transform: translateY(-4px) rotateX(2deg) rotateY(2deg);
         }
-        .zone-card:hover .zone-id { color: var(--matrix); }
 
         #init-overlay {
             position: fixed;
@@ -132,155 +181,218 @@
 </head>
 <body class="antialiased selection:bg-[#00FF41] selection:text-black">
 
+    <!-- INITIAL TOUCH OVERLAY -->
     <div id="init-overlay">
-        <div class="font-mono-tech text-[#00FF41] text-sm animate-pulse tracking-widest text-center px-6">
-            [ TOQUE NA TELA PARA INICIAR SESSÃO ]
+        <div class="text-center px-6">
+            <div class="font-mono-tech text-[#00FF41] text-sm animate-pulse tracking-widest mb-2">
+                [ TOQUE NA TELA PARA INICIAR SESSÃO ]
+            </div>
+            <p class="font-mono-tech text-[10px] text-gray-500 uppercase tracking-widest">Acessando Terminal de Design // Robert Lima</p>
         </div>
     </div>
 
     <canvas id="matrix-canvas"></canvas>
     <div class="scanlines"></div>
 
+    <!-- BOOT TERMINAL SCREEN -->
     <div id="boot-screen" class="font-mono-tech text-[12px] text-[#00FF41]">
         <div id="terminal-output"></div>
         <div class="mt-2 animate-pulse">_</div>
     </div>
 
-    <div id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000 max-w-4xl mx-auto p-6 md:p-12 min-h-screen flex flex-col">
+    <!-- MAIN INTERFACE -->
+    <div id="main-content" class="relative z-10 opacity-0 transition-opacity duration-1000 max-w-5xl mx-auto p-4 md:p-10 min-h-screen flex flex-col">
         
+        <!-- HEADER -->
         <header class="flex justify-between items-center border-b border-[#1A2E1F] pb-4 mb-8">
             <div class="flex items-center gap-4">
-                <img src="5000x5000px_logo-nuvem-RDESK-DESIGN.png" alt="RDESK DESIGN Logo" class="h-10 w-10 object-contain invert mix-blend-screen opacity-90" onerror="this.style.display='none'">
+                <div class="h-10 w-10 border border-[#00FF41] flex items-center justify-center font-mono-tech text-[#00FF41] font-bold text-xs bg-[#00FF41]/10">
+                    RD
+                </div>
                 <div>
                     <h1 class="text-sm font-bold tracking-[0.15em] text-[#D4B28C]">RDESK DESIGN</h1>
-                    <p class="font-mono-tech text-[10px] text-[#00FF41] opacity-70">ID_DESIGNER: ROBERT LIMA</p>
+                    <p class="font-mono-tech text-[10px] text-[#00FF41] opacity-80">DESIGNER: ROBERT LIMA</p>
                 </div>
             </div>
             <div class="text-right">
                 <p class="font-mono-tech text-[10px] text-[#00FF41] flex items-center justify-end gap-2">
                     <span class="h-2 w-2 bg-[#00FF41] rounded-full animate-ping"></span>
-                    SYSTEM.ONLINE_START
+                    DISPONÍVEL PARA PROJETOS
                 </p>
             </div>
         </header>
 
-        <section class="mb-12 text-center md:text-left flex flex-col md:flex-row items-center gap-8">
-            <div class="flex-1">
-                <p class="font-mono-tech text-xs text-[#00FF41] mb-4">> WAKE UP, NEO...</p>
-                <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-tight mb-2">
-                    📐 Designer de <br><span class="text-[#D4B28C]">Ambientes</span>
-                </h2>
-                <p class="font-mono-tech text-sm text-gray-400 max-w-xl leading-relaxed mt-4">
-                    Da arquitetura volumétrica à engenharia física do objeto. Onde o bruto encontra o sofisticado. Você seguiu o coelho até aqui...
-                </p>
+        <!-- BIOGRAFIA / APRESENTAÇÃO DIRETA DE ROBERT LIMA -->
+        <section class="mb-10 p-6 border border-[#1A2E1F] bg-black/40 backdrop-blur-md rounded-sm relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-[#00FF41]/10 text-[#00FF41] font-mono-tech text-[9px] px-3 py-1 border-b border-l border-[#00FF41]">
+                PROFILE_ID // ROBERT_LIMA
             </div>
-            
-            <div class="flex-shrink-0 w-full md:w-auto flex justify-center mt-6 md:mt-0">
-                <div class="scene">
-                    <div class="cube">
-                        <div class="cube-face front"></div>
-                        <div class="cube-face back"></div>
-                        <div class="cube-face right"></div>
-                        <div class="cube-face left"></div>
-                        <div class="cube-face top"></div>
-                        <div class="cube-face bottom"></div>
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-1">
+                    <div class="inline-block px-2 py-0.5 bg-[#D4B28C]/10 border border-[#D4B28C] text-[#D4B28C] font-mono-tech text-[10px] uppercase mb-3">
+                        Designer de Interiores & Objetos
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-bold uppercase tracking-tight text-white mb-2">
+                        Olá, sou <span class="text-[#00FF41]">Robert Lima</span>.
+                    </h2>
+                    <p class="font-mono-tech text-xs text-gray-300 leading-relaxed max-w-2xl">
+                        Transformo espaços físicos e objetos brutos em **ambientes e produtos de alto padrão**. Do projeto 3D residencial/comercial à personalização metálica a laser e materiais táticos impressos.
+                    </p>
+                </div>
+                
+                <!-- 3D HOLO SCENE -->
+                <div class="flex-shrink-0">
+                    <div class="scene-container">
+                        <div class="holo-ring"></div>
+                        <div class="cube">
+                            <div class="cube-face front">INTERIORES</div>
+                            <div class="cube-face back">PRODUTO</div>
+                            <div class="cube-face right">LASER</div>
+                            <div class="cube-face left">KRAFT</div>
+                            <div class="cube-face top">3D</div>
+                            <div class="cube-face bottom">RDESK</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16 flex-grow">
-            <div class="zone-card p-6 relative group cursor-crosshair">
-                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">VOL.01</span>
-                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Escala Espacial</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Design de ambientes. Controle de luz, matéria e ergonomia.</p>
-                <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
+        <!-- ÁREAS DE ATUAÇÃO / SERVIÇOS (CLARO E OBJETIVO) -->
+        <div class="mb-4">
+            <h3 class="font-mono-tech text-xs text-[#00FF41] tracking-widest uppercase flex items-center gap-2">
+                <span>[//]</span> O QUE EU POSSO CRIAR PARA VOCÊ:
+            </h3>
+        </div>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 flex-grow">
+            
+            <!-- SERVIÇO 1 -->
+            <div class="zone-card p-6 flex flex-col justify-between relative group">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono-tech text-[10px] text-[#00FF41] bg-[#00FF41]/10 px-2 py-0.5 border border-[#00FF41]/30">PROJETOS 3D</span>
+                        <span class="font-mono-tech text-[10px] text-gray-600">VOL.01</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Design de Ambientes & Interiores</h4>
+                    <p class="font-mono-tech text-xs text-gray-400 mb-6 leading-relaxed">
+                        Projetos volumétricos completos para residências e comércios. Maquetes 3D realistas, planejamento de iluminação, ergonomia e especificação de materiais.
+                    </p>
+                </div>
+                <div>
+                    <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors mb-4"></div>
+                    <a href="#" onclick="openZapService('Design de Ambientes e Interiores')" class="font-mono-tech text-[11px] text-[#D4B28C] hover:text-[#00FF41] flex items-center justify-between font-bold">
+                        <span>SOLICITAR PROJETO 3D</span>
+                        <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="zone-card p-6 relative group cursor-crosshair">
-                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">OBJ.02</span>
-                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Matéria Aplicada</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Gravação metálica de precisão. Copos Stanley Cuia de alto padrão.</p>
-                <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
+            <!-- SERVIÇO 2 -->
+            <div class="zone-card p-6 flex flex-col justify-between relative group">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono-tech text-[10px] text-[#00FF41] bg-[#00FF41]/10 px-2 py-0.5 border border-[#00FF41]/30">GRAVAÇÃO LASER</span>
+                        <span class="font-mono-tech text-[10px] text-gray-600">OBJ.02</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Matéria Aplicada & Personalização</h4>
+                    <p class="font-mono-tech text-xs text-gray-400 mb-6 leading-relaxed">
+                        Gravação metálica de altíssima precisão a laser. Personalização exclusiva de Copos Stanley, Cuias térmicas, facas e artigos metálicos corporativos ou pessoais.
+                    </p>
+                </div>
+                <div>
+                    <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors mb-4"></div>
+                    <a href="#" onclick="openZapService('Gravação a Laser e Copos/Cuias')" class="font-mono-tech text-[11px] text-[#D4B28C] hover:text-[#00FF41] flex items-center justify-between font-bold">
+                        <span>ORÇAR PERSONALIZAÇÃO</span>
+                        <span>→</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="zone-card p-6 relative group cursor-crosshair">
-                <span class="zone-id font-mono-tech text-[10px] text-gray-600 absolute top-4 right-4 transition-colors">SYS.03</span>
-                <h3 class="text-lg font-bold text-[#F4F4F5] mb-2 mt-4">Gráfica Brutalista</h3>
-                <p class="font-mono-tech text-xs text-gray-500 mb-6">Suporte tátil em Kraft. Engenharia reversa para o plano físico. Materias impressos.</p>
-                <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors"></div>
+            <!-- SERVIÇO 3 -->
+            <div class="zone-card p-6 flex flex-col justify-between relative group">
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-mono-tech text-[10px] text-[#00FF41] bg-[#00FF41]/10 px-2 py-0.5 border border-[#00FF41]/30">IMPRESSOS</span>
+                        <span class="font-mono-tech text-[10px] text-gray-600">SYS.03</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Gráfica Brutalista & Papel Kraft</h4>
+                    <p class="font-mono-tech text-xs text-gray-400 mb-6 leading-relaxed">
+                        Desenvolvimento de identidade tátil sofisticada em papel Kraft e materiais especiais. Cartões de visita brutais, embalagens e impressos de alto impacto visual.
+                    </p>
+                </div>
+                <div>
+                    <div class="h-[1px] w-full bg-[#1A2E1F] group-hover:bg-[#00FF41] transition-colors mb-4"></div>
+                    <a href="#" onclick="openZapService('Gráfica e Impressos em Kraft')" class="font-mono-tech text-[11px] text-[#D4B28C] hover:text-[#00FF41] flex items-center justify-between font-bold">
+                        <span>PEDIR MATERIAIS KRAFT</span>
+                        <span>→</span>
+                    </a>
+                </div>
             </div>
+
         </section>
 
-        <footer class="mt-auto pt-8 flex flex-col justify-center items-center gap-6">
-            <button id="whatsapp-btn" class="btn-angular bg-transparent border border-[#00FF41] text-[#00FF41] px-12 py-5 text-sm font-bold tracking-[0.2em] uppercase w-full md:w-auto">
-                <span id="btn-text">Iniciar Protocolo de Conexão</span>
+        <!-- CTA DIRETO E CLARO DE CONEXÃO WHATSAPP -->
+        <footer class="mt-auto pt-4 flex flex-col justify-center items-center gap-4">
+            <button id="whatsapp-btn" class="btn-angular bg-transparent border border-[#00FF41] text-[#00FF41] px-10 py-5 text-sm font-bold tracking-[0.15em] uppercase w-full md:w-auto shadow-lg">
+                <span id="btn-text">📲 FALAR COM ROBERT LIMA NO WHATSAPP</span>
             </button>
-            <div class="font-mono-tech text-[10px] text-gray-500 mt-4">
-                TERMINAL_NODE // R.LIMA_DESIGN
+            <div class="font-mono-tech text-[10px] text-gray-500 text-center">
+                RDESK DESIGN // Belo Horizonte - MG & Atendimento Remoto <br>
+                <span class="text-gray-600">Sessão Segura Encriptada via WhatsApp Web</span>
             </div>
         </footer>
     </div>
 
     <script>
-        // --- 1. SINTETIZADOR DE ÁUDIO ANALÓGICO VINTAGE (Estilo Pink Floyd) ---
+        // --- 1. SINTETIZADOR DE ÁUDIO ANALÓGICO VINTAGE (Pink Floyd Style) ---
         let audioCtx;
         function initPinkFloydAudio() {
             if (audioCtx) return;
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             
-            // Master Volume (Baixo, imersivo)
             const masterGain = audioCtx.createGain();
-            masterGain.gain.value = 0.2; 
+            masterGain.gain.value = 0.18; 
             masterGain.connect(audioCtx.destination);
 
-            // --- DEEP SPACE DELAY (O Eco Cavernoso) ---
             const delay = audioCtx.createDelay(3.0);
-            delay.delayTime.value = 0.75; // Eco longo
+            delay.delayTime.value = 0.75; 
             const feedback = audioCtx.createGain();
-            feedback.gain.value = 0.5; // Quantidade de repetições
+            feedback.gain.value = 0.45; 
             delay.connect(feedback);
             feedback.connect(delay);
             delay.connect(masterGain);
 
-            // --- THE "SHINE ON" ATMOSPHERIC PAD ---
-            // Frequências para um acorde sombrio/espacial (Tônica, Quinta, Oitava)
-            const freqs = [73.42, 110.00, 146.83]; // D2, A2, D3
+            const freqs = [73.42, 110.00, 146.83]; // Acorde Dm Espacial
             
-            // Filtro Lowpass (O abafador analógico)
             const padFilter = audioCtx.createBiquadFilter();
             padFilter.type = 'lowpass';
-            padFilter.frequency.value = 200; 
+            padFilter.frequency.value = 220; 
             padFilter.connect(masterGain);
-            padFilter.connect(delay); // Envia o sintetizador para o Eco também
+            padFilter.connect(delay);
 
-            // LFO: O pulmão do sintetizador (faz o filtro respirar)
             const lfo = audioCtx.createOscillator();
             lfo.type = 'sine';
-            lfo.frequency.value = 0.05; // Ciclo de 20 segundos
+            lfo.frequency.value = 0.05; 
             const lfoGain = audioCtx.createGain();
-            lfoGain.gain.value = 400; // Abre o filtro suavemente até 600Hz
+            lfoGain.gain.value = 350; 
             lfo.connect(lfoGain);
             lfoGain.connect(padFilter.frequency);
             lfo.start();
 
-            // Inicia os osciladores do Acorde
             freqs.forEach(freq => {
                 const osc = audioCtx.createOscillator();
-                osc.type = 'triangle'; // Onda mais quente que a senoidal pura
-                // Detune sutil para dar a "gordura" analógica vintage
-                osc.detune.value = (Math.random() - 0.5) * 10; 
+                osc.type = 'triangle'; 
+                osc.detune.value = (Math.random() - 0.5) * 8; 
                 osc.frequency.value = freq;
                 osc.connect(padFilter);
                 osc.start();
             });
 
-            // --- THE "ECHOES" SONAR PING ---
+            // Sonar Echoes Ping
             setInterval(() => {
-                if (Math.random() > 0.6) { // 40% de chance a cada 4 segundos
+                if (Math.random() > 0.5) { 
                     const pingOsc = audioCtx.createOscillator();
                     pingOsc.type = 'sine';
-                    // Notas etéreas altas
                     const pingFreqs = [880, 1174.66, 1318.51]; 
                     pingOsc.frequency.value = pingFreqs[Math.floor(Math.random() * pingFreqs.length)];
                     
@@ -288,19 +400,18 @@
                     pingGain.gain.value = 0;
                     
                     pingOsc.connect(pingGain);
-                    pingGain.connect(delay); // Ping vai direto pro Eco profundo
+                    pingGain.connect(delay); 
                     pingGain.connect(masterGain);
                     
                     pingOsc.start();
                     
-                    // Curva de volume (Sino/Sonar)
-                    pingGain.gain.setTargetAtTime(0.06, audioCtx.currentTime, 0.05); // Attack
+                    pingGain.gain.setTargetAtTime(0.05, audioCtx.currentTime, 0.04); 
                     setTimeout(() => {
-                        pingGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5); // Release
-                        setTimeout(() => pingOsc.stop(), 2000);
+                        pingGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.4); 
+                        setTimeout(() => pingOsc.stop(), 1800);
                     }, 100);
                 }
-            }, 4000); 
+            }, 4500); 
         }
 
         // --- 2. CONTROLE DE FLUXO (Boot e Overlay) ---
@@ -310,12 +421,12 @@
         const terminalOutput = document.getElementById('terminal-output');
 
         const bootText = [
-            "Iniciando RDESK_CORE BIOS v1.0",
-            "Sintetizando espectro analógico...... OK",
-            "Buscando artefatos volumétricos...... OK",
-            "Renderizando espaço arquitetônico...... OK",
+            "Iniciando RDESK_CORE BIOS v2.4",
+            "Identificando Designer: ROBERT LIMA...... OK",
+            "Sintetizando espectro de áudio analógico...... OK",
+            "Carregando projetos 3D e volumetria...... OK",
             "Siga o Coelho Branco...",
-            "Conexão Estabelecida!"
+            "Conexão com Robert Lima Estabelecida!"
         ];
 
         let lineIndex = 0;
@@ -325,7 +436,7 @@
                 line.textContent = `> ${bootText[lineIndex]}`;
                 terminalOutput.appendChild(line);
                 lineIndex++;
-                setTimeout(typeLine, Math.random() * 200 + 100);
+                setTimeout(typeLine, Math.random() * 180 + 80);
             } else {
                 setTimeout(() => {
                     bootScreen.style.opacity = '0';
@@ -334,18 +445,18 @@
                         bootScreen.style.display = 'none';
                         mainContent.classList.remove('opacity-0');
                     }, 500);
-                }, 800);
+                }, 600);
             }
         }
 
         initOverlay.addEventListener('click', () => {
-            initPinkFloydAudio(); // Dispara a síntese analógica
+            initPinkFloydAudio();
             initOverlay.style.opacity = '0';
             setTimeout(() => {
                 initOverlay.style.display = 'none';
                 bootScreen.style.display = 'flex';
-                setTimeout(typeLine, 300); 
-            }, 500);
+                setTimeout(typeLine, 200); 
+            }, 400);
         });
 
         // --- 3. EFEITOS VISUAIS (Matrix Rain) ---
@@ -389,7 +500,14 @@
             for(let x = 0; x < columns; x++) drops[x] = 1;
         });
 
-        // --- 4. UPLINK WHATSAPP ---
+        // --- 4. REDIRECIONAMENTO WHATSAPP ---
+        const phone = "5531982313684";
+
+        function openZapService(serviceName) {
+            const message = encodeURIComponent(`Olá, Robert! Gostaria de um orçamento para: *${serviceName}*. Vim pelo seu cartão/site RDESK! 🐇`);
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
         const zapBtn = document.getElementById('whatsapp-btn');
         const btnText = document.getElementById('btn-text');
 
@@ -397,29 +515,28 @@
             e.preventDefault();
             zapBtn.style.pointerEvents = 'none'; 
             
-            btnText.innerText = '[ ALOCANDO ROTA SEGURA... ]';
+            btnText.innerText = '[ BUSCANDO ROBERT LIMA... ]';
             zapBtn.classList.add('bg-[#1A2E1F]', 'border-[#00FF41]');
             
             setTimeout(() => {
-                btnText.innerText = '[ CRIPTOGRAFANDO CHAVE... ]';
-            }, 800);
+                btnText.innerText = '[ ABRINDO CONEXÃO DIRETA... ]';
+            }, 700);
             
             setTimeout(() => {
-                btnText.innerText = '[ CONEXÃO WHATSAPP ESTABELECIDA ]';
+                btnText.innerText = '[ CONECTADO AO WHATSAPP! ]';
                 zapBtn.classList.add('bg-[#00FF41]', 'text-[#030304]');
-            }, 1600);
+            }, 1400);
 
             setTimeout(() => {
-                const phone = "5531982313684";
-                const message = encodeURIComponent("🐇 Protocolo Coelho Branco iniciado... Vim pelo cartão 😉😎");
+                const message = encodeURIComponent("🐇 Olá, Robert! Vim pelo seu cartão RDESK e quero conversar sobre um projeto!");
                 window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
                 
                 setTimeout(() => {
-                    btnText.innerText = 'Iniciar Protocolo de Conexão';
+                    btnText.innerText = '📲 FALAR COM ROBERT LIMA NO WHATSAPP';
                     zapBtn.classList.remove('bg-[#00FF41]', 'text-[#030304]', 'bg-[#1A2E1F]');
                     zapBtn.style.pointerEvents = 'auto';
                 }, 2000);
-            }, 2400);
+            }, 2000);
         });
     </script>
 </body>
